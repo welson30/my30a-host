@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>My30A Host — App Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+  --deep:#0a1628;--teal:#0d4f45;--teal-mid:#1a7a6a;--gold:#c9a96e;--gold-lt:#e8d5a3;
+  --cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--white:#fff;
+  --border-g:rgba(201,169,110,0.22);--radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Inter',sans-serif;background:#111;display:flex;align-items:center;justify-content:center;}
+
+.phone-wrap{
+  width:100%;max-width:420px;height:100dvh;max-height:860px;
+  border-radius:0;overflow:hidden;position:relative;display:flex;flex-direction:column;
+  background:var(--deep);
+}
+@media(min-width:480px){
+  .phone-wrap{border-radius:40px;height:860px;box-shadow:0 40px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.07);}
+}
+
+/* SCREENS */
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;transition:opacity .25s,transform .25s;opacity:0;pointer-events:none;transform:translateX(20px);}
+.screen.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.screen.prev{transform:translateX(-20px);}
+
+/* === WELCOME === */
+#s-welcome{background:linear-gradient(180deg,var(--deep) 0%,#1a3050 20%,#3a5070 35%,#d87050 52%,#e89030 58%,#c06028 62%,#1a6080 64%,#0d3a50 75%,#061a28 100%);}
+.welcome-art{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.w-sun{position:absolute;top:22%;left:50%;transform:translateX(-50%);width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#f5d060,#e8a030 50%,#c06820);box-shadow:0 0 100px 50px rgba(240,160,60,0.28);}
+.w-reflect{position:absolute;top:59%;left:50%;transform:translateX(-50%);width:160px;height:8px;background:rgba(240,160,60,0.45);border-radius:50%;filter:blur(4px);}
+.w-sea{position:absolute;top:58%;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a6080,#0d3a50 30%,#061a28);}
+.w-beach{position:absolute;bottom:0;left:0;right:0;height:28%;background:linear-gradient(180deg,#c8a870,#a07848);}
+.w-palm{position:absolute;bottom:26%;left:10%;width:3px;height:90px;background:rgba(10,22,40,0.7);}
+.w-palm::before{content:'';position:absolute;top:-4px;left:-22px;width:48px;height:24px;background:rgba(10,22,40,0.7);border-radius:50% 50% 0 0;transform:rotate(-22deg);}
+.welcome-content{position:relative;z-index:2;margin-top:auto;padding:0 28px 48px;text-align:center;}
+.w-logo{width:48px;height:48px;margin:0 auto 12px;}
+.w-brand{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:#fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.w-greet{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--gold-lt);margin-bottom:3px;}
+.w-sub{font-size:11.5px;color:rgba(255,255,255,0.45);margin-bottom:26px;font-weight:300;}
+.w-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid var(--border-g);border-radius:9px;padding:11px 14px;font-size:13.5px;color:#fff;font-family:'Inter',sans-serif;margin-bottom:10px;}
+.w-input::placeholder{color:rgba(255,255,255,0.3);}
+.w-btn{width:100%;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:600;color:var(--deep);cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:12px;}
+.w-skip{font-size:12px;color:rgba(255,255,255,0.28);cursor:pointer;}
+
+/* === MAIN APP (tabs) === */
+#s-app{background:var(--deep);display:flex;flex-direction:column;}
+.app-header{background:linear-gradient(180deg,rgba(10,22,40,1),rgba(10,22,40,0.95));padding:44px 18px 12px;flex-shrink:0;}
+.vitoria-row{display:flex;align-items:center;gap:10px;}
+.v-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal-mid),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;font-style:italic;border:1px solid var(--border-g);}
+.v-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:#fff;}
+.v-status{font-size:10px;color:var(--gold);display:flex;align-items:center;gap:3px;}
+.vdot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+.app-tab-content{flex:1;overflow:hidden;position:relative;}
+.tab-panel{position:absolute;inset:0;overflow-y:auto;display:none;}
+.tab-panel.active{display:flex;flex-direction:column;}
+
+/* BOTTOM NAV */
+.bot-nav{display:flex;flex-shrink:0;background:rgba(10,22,40,0.98);border-top:1px solid rgba(255,255,255,0.05);padding:8px 0 20px;}
+.nav-t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:rgba(255,255,255,0.3);cursor:pointer;transition:color .2s;padding:4px 0;}
+.nav-t i{font-size:20px;}
+.nav-t.active{color:var(--gold);}
+
+/* CHAT TAB */
+.chat-thread{flex:1;padding:14px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;}
+.msg-v{display:flex;gap:8px;align-items:flex-start;}
+.av-sm{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal-mid),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:11px;color:#fff;font-style:italic;border:1px solid var(--border-g);flex-shrink:0;margin-top:2px;}
+.bub-v{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:3px 12px 12px 12px;padding:10px 12px;font-size:13px;color:rgba(255,255,255,0.88);line-height:1.5;max-width:82%;}
+.bub-v strong{color:var(--gold-lt);}
+.msg-g{display:flex;justify-content:flex-end;}
+.bub-g{background:linear-gradient(135deg,var(--teal),var(--teal-mid));border-radius:12px 3px 12px 12px;padding:10px 12px;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.5;max-width:78%;}
+.venue-card{background:rgba(255,255,255,0.06);border:1px solid var(--border-g);border-radius:12px;overflow:hidden;margin-left:34px;}
+.vc-img{height:90px;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.vc-body{padding:11px 12px;}
+.vc-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;font-weight:500;margin-bottom:2px;}
+.vc-meta{font-size:11px;color:var(--gold);margin-bottom:7px;}
+.vc-desc{font-size:11.5px;color:rgba(255,255,255,0.55);line-height:1.4;margin-bottom:9px;}
+.vc-btns{display:flex;gap:7px;}
+.vc-btn{flex:1;padding:8px;border:1px solid var(--border-g);border-radius:7px;background:none;color:rgba(255,255,255,0.65);font-size:11.5px;cursor:pointer;font-family:'Inter',sans-serif;}
+.vc-btn.primary{background:linear-gradient(135deg,var(--gold),#b8863c);border:none;color:var(--deep);font-weight:500;}
+.quick-chips{padding:0 14px 10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.quick-chip{white-space:nowrap;background:rgba(255,255,255,0.05);border:1px solid var(--border-g);border-radius:20px;padding:6px 13px;font-size:12px;color:rgba(255,255,255,0.6);cursor:pointer;flex-shrink:0;}
+.quick-chip:hover{background:rgba(255,255,255,0.1);}
+.composer{padding:10px 14px 8px;border-top:1px solid rgba(255,255,255,0.05);display:flex;gap:9px;align-items:center;flex-shrink:0;background:rgba(10,22,40,0.98);}
+.comp-in{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.09);border-radius:22px;padding:10px 16px;font-size:13.5px;color:#fff;font-family:'Inter',sans-serif;}
+.comp-in::placeholder{color:rgba(255,255,255,0.28);}
+.send-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;display:flex;align-items:center;justify-content:center;color:var(--deep);cursor:pointer;flex-shrink:0;}
+.typing{display:flex;gap:4px;padding:4px 0;}
+.typing span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);animation:tb 1.2s infinite ease-in-out;}
+.typing span:nth-child(2){animation-delay:.15s;}
+.typing span:nth-child(3){animation-delay:.3s;}
+@keyframes tb{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+
+/* SERVICES TAB */
+.svc-hero-sm{background:linear-gradient(160deg,var(--deep),var(--teal));padding:18px;flex-shrink:0;}
+.svc-hero-sm h2{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:500;margin-bottom:2px;}
+.svc-hero-sm p{font-size:11px;color:rgba(255,255,255,0.5);}
+.svc-list{background:var(--cream);flex:1;padding:14px;}
+.svc-row{background:#fff;border:0.5px solid rgba(0,0,0,0.07);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;gap:10px;align-items:center;cursor:pointer;transition:transform .15s;}
+.svc-row:hover{transform:translateX(3px);}
+.svc-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.svc-nm{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.svc-ds{font-size:11px;color:var(--soft);}
+.svc-pr{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:var(--teal);white-space:nowrap;text-align:right;}
+.svc-pn{font-size:9.5px;color:var(--soft);text-align:right;}
+
+/* EXPLORE TAB */
+.explore-list{background:var(--cream);flex:1;padding:12px;overflow-y:auto;}
+.exp-filter{padding:10px 14px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;background:var(--cream);}
+.fchip{white-space:nowrap;background:#fff;border:0.5px solid rgba(0,0,0,0.1);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--ink);cursor:pointer;}
+.fchip.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+.place-row{background:#fff;border:0.5px solid rgba(0,0,0,0.06);border-radius:11px;padding:11px 12px;margin-bottom:7px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;}
+.place-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;flex-shrink:0;}
+.place-nm{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.place-meta{font-size:11px;color:var(--soft);}
+.travel-chips{display:flex;gap:5px;margin-top:5px;}
+.tc{font-size:10.5px;background:var(--cream);border-radius:999px;padding:2px 8px;color:var(--soft);}
+.map-banner{background:linear-gradient(135deg,var(--deep),var(--teal));padding:14px;display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;}
+.map-banner i{font-size:20px;color:var(--gold);}
+.map-banner p{font-size:13px;font-weight:500;color:#fff;}
+.map-banner span{font-size:11px;color:rgba(255,255,255,0.55);}
+
+/* PROFILE TAB */
+.profile-hero{background:linear-gradient(160deg,var(--deep),#0d3040);padding:44px 18px 22px;text-align:center;flex-shrink:0;}
+.p-av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--teal-mid),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;margin:0 auto 10px;border:2px solid var(--border-g);}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:500;margin-bottom:2px;}
+.p-sub{font-size:11px;color:rgba(255,255,255,0.45);}
+.profile-body{background:var(--cream);flex:1;overflow-y:auto;padding:14px;}
+.p-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.p-stat{background:#fff;border-radius:10px;padding:10px;text-align:center;}
+.p-stat-n{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--teal);}
+.p-stat-l{font-size:10px;color:var(--soft);}
+.sec-lbl{font-size:10px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--soft);margin:0 0 8px;}
+.pref-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.ptag{font-size:11px;background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:999px;padding:4px 10px;color:var(--ink);}
+.stay-card{background:#fff;border:0.5px solid rgba(0,0,0,0.06);border-radius:10px;padding:11px;margin-bottom:8px;}
+.stay-prop{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:1px;}
+.stay-meta{font-size:11px;color:var(--soft);margin-bottom:6px;}
+.stay-chips{display:flex;gap:5px;flex-wrap:wrap;}
+.sc{font-size:10px;background:var(--cream);border-radius:4px;padding:2px 7px;color:var(--soft);}
+.active-order{background:#fff;border:0.5px solid rgba(0,0,0,0.06);border-left:3px solid var(--teal-mid);border-radius:0 10px 10px 0;padding:11px;margin-bottom:8px;}
+.order-nm{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.order-meta{font-size:11px;color:var(--soft);}
+.conf-badge{font-size:10px;background:#e3f0ec;color:#0d4f45;padding:2px 8px;border-radius:999px;}
+
+/* SERVICE DETAIL OVERLAY */
+#s-svc-detail{background:var(--cream);}
+.detail-hero{flex-shrink:0;height:160px;display:flex;align-items:flex-end;padding:14px;position:relative;}
+.detail-icon{font-size:48px;position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);}
+.detail-badge{font-size:10px;font-weight:600;background:rgba(201,169,110,0.9);color:var(--deep);padding:3px 10px;border-radius:999px;}
+.back-row{display:flex;align-items:center;gap:6px;padding:12px 16px;background:var(--cream);border-bottom:0.5px solid rgba(0,0,0,0.07);cursor:pointer;flex-shrink:0;}
+.back-row i{font-size:16px;color:var(--teal);}
+.back-row span{font-size:13px;font-weight:500;color:var(--teal);}
+.detail-body{flex:1;overflow-y:auto;padding:16px;}
+.detail-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);font-weight:500;margin-bottom:4px;}
+.detail-sub{font-size:12.5px;color:var(--soft);margin-bottom:14px;}
+.detail-feat{display:flex;gap:8px;align-items:flex-start;margin-bottom:9px;font-size:12.5px;color:var(--ink);}
+.detail-feat i{color:var(--teal);font-size:14px;margin-top:1px;flex-shrink:0;}
+.price-tier{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:0.5px solid rgba(0,0,0,0.07);}
+.tier-lbl{font-size:13px;color:var(--soft);}
+.tier-val{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);}
+.tier-val.highlight{color:var(--teal);}
+.detail-form{margin-top:14px;}
+.d-label{font-size:11.5px;font-weight:500;color:var(--soft);display:block;margin-bottom:5px;}
+.d-input{width:100%;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:10px 12px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;margin-bottom:10px;}
+.d-note{background:#f7f2e9;border-radius:8px;padding:10px;font-size:11.5px;color:var(--soft);line-height:1.5;margin-bottom:14px;}
+.d-cta{width:100%;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:600;color:var(--deep);cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;}
+
+/* TOASTS */
+.toast{position:absolute;bottom:90px;left:50%;transform:translateX(-50%) translateY(8px);background:rgba(20,20,15,0.9);color:#fff;font-size:12.5px;font-weight:500;padding:10px 18px;border-radius:999px;opacity:0;transition:all .25s;white-space:nowrap;z-index:50;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="phone-wrap" id="app">
+
+  <!-- WELCOME SCREEN -->
+  <div class="screen active" id="s-welcome">
+    <div class="welcome-art">
+      <div class="w-sun"></div>
+      <div class="w-reflect"></div>
+      <div class="w-sea"></div>
+      <div class="w-beach"></div>
+      <div class="w-palm"></div>
+    </div>
+    <div class="welcome-content">
+      <svg class="w-logo" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="24" fill="url(#wg1)"/>
+        <path d="M11 30c3.5-5.5 7-5.5 13 0s9 5.5 13 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M11 34c3.5-4.5 7-4.5 13 0s9 4.5 13 0" stroke="rgba(255,255,255,0.3)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+        <circle cx="33" cy="15" r="5" fill="url(#wg2)"/>
+        <defs>
+          <radialGradient id="wg1" cx="40%" cy="30%"><stop offset="0%" stop-color="#1a7a6a"/><stop offset="100%" stop-color="#0a1628"/></radialGradient>
+          <radialGradient id="wg2" cx="40%" cy="30%"><stop offset="0%" stop-color="#e8d5a3"/><stop offset="100%" stop-color="#c9a96e"/></radialGradient>
+        </defs>
+      </svg>
+      <div class="w-brand">My30A Host</div>
+      <div class="w-greet">I'm Vitória, your personal host</div>
+      <div class="w-sub">Before you arrive, everything is ready.</div>
+      <input class="w-input" placeholder="First name (optional)" id="w-name">
+      <input class="w-input" placeholder="Email — save your history" id="w-email">
+      <button class="w-btn" onclick="enterApp()">Begin your experience</button>
+      <div class="w-skip" onclick="enterApp()">Skip →</div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="screen" id="s-app">
+    <div class="app-header">
+      <div class="vitoria-row">
+        <div class="v-av">V</div>
+        <div>
+          <div class="v-name">Vitória</div>
+          <div class="v-status"><div class="vdot"></div>Your personal 30A host</div>
+        </div>
+        <a href="index.html" style="margin-left:auto;color:rgba(255,255,255,0.3);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:4px;"><i class="ti ti-home" style="font-size:16px;"></i></a>
+      </div>
+    </div>
+
+    <div class="app-tab-content">
+
+      <!-- CHAT TAB -->
+      <div class="tab-panel active" id="tab-chat">
+        <div class="chat-thread" id="chatThread">
+          <div class="msg-v">
+            <div class="av-sm">V</div>
+            <div class="bub-v">Hi there! 👋 I'm <strong>Vitória</strong>, your personal 30A host. I can help with restaurant reservations, grocery delivery, beach recommendations, and so much more. What can I help you with?</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-left:34px;">
+            <button class="quick-chip" onclick="demoChat('grocery')">🛒 Grocery delivery</button>
+            <button class="quick-chip" onclick="demoChat('dinner')">🍽️ Dinner tonight</button>
+            <button class="quick-chip" onclick="demoChat('beach')">🏖️ Best beaches</button>
+            <button class="quick-chip" onclick="demoChat('activities')">🌴 Activities</button>
+          </div>
+        </div>
+        <div class="quick-chips">
+          <div class="quick-chip" onclick="demoChat('welcome')">🌺 Welcome setup</div>
+          <div class="quick-chip" onclick="demoChat('transfer')">🚗 Airport transfer</div>
+          <div class="quick-chip" onclick="demoChat('fishing')">🎣 Fishing charter</div>
+          <div class="quick-chip" onclick="demoChat('golf')">⛳ Golf tee time</div>
+        </div>
+        <div class="composer">
+          <input class="comp-in" id="chatInput" placeholder="Ask Vitória anything…" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="send-btn" onclick="sendChat()"><i class="ti ti-arrow-up" style="font-size:16px;"></i></button>
+        </div>
+      </div>
+
+      <!-- SERVICES TAB -->
+      <div class="tab-panel" id="tab-services">
+        <div class="svc-hero-sm">
+          <h2>Before you arrive</h2>
+          <p>Managed by your personal hosts · Paid securely in advance</p>
+        </div>
+        <div class="svc-list">
+          <p class="sec-lbl" style="margin-top:2px;">Concierge services — we handle everything</p>
+          <div class="svc-row" onclick="openDetail('grocery')">
+            <div class="svc-ico" style="background:#f0f8f4;">🛒</div>
+            <div style="flex:1;"><div class="svc-nm">Grocery delivery</div><div class="svc-ds">We shop and stock your kitchen before check-in</div></div>
+            <div><div class="svc-pr">$99–199</div><div class="svc-pn">+ items</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('welcome')">
+            <div class="svc-ico" style="background:#fef9ec;">🌺</div>
+            <div style="flex:1;"><div class="svc-nm">Welcome setup</div><div class="svc-ds">Flowers, champagne, charcuterie, personal note</div></div>
+            <div><div class="svc-pr">$145–450</div><div class="svc-pn">all inclusive</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('transfer')">
+            <div class="svc-ico" style="background:#f0f4fa;">🚗</div>
+            <div style="flex:1;"><div class="svc-nm">Airport transfer</div><div class="svc-ds">ECP 40min · VPS 1h15 · PNS 2h</div></div>
+            <div><div class="svc-pr">$150–299</div><div class="svc-pn">private ride</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('reservation')">
+            <div class="svc-ico" style="background:#fef0ee;">🍽️</div>
+            <div style="flex:1;"><div class="svc-nm">Restaurant reservation</div><div class="svc-ds">We call and confirm · hard-to-get tables too</div></div>
+            <div><div class="svc-pr">$35–65</div><div class="svc-pn">free if self-booked</div></div>
+          </div>
+          <p class="sec-lbl" style="margin-top:14px;">Local experiences — curated partners</p>
+          <div class="svc-row" onclick="openDetail('water')">
+            <div class="svc-ico" style="background:#e8f4fb;">🚤</div>
+            <div style="flex:1;"><div class="svc-nm">On the water</div><div class="svc-ds">Boat charter · fishing · dolphin · kayak</div></div>
+            <div><div class="svc-pr">From $400</div><div class="svc-pn">partner rate</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('golf')">
+            <div class="svc-ico" style="background:#f0f8ee;">⛳</div>
+            <div style="flex:1;"><div class="svc-nm">Golf & tee time</div><div class="svc-ds">Origins · Camp Creek · Shark's Tooth</div></div>
+            <div><div class="svc-pr">Ask us</div><div class="svc-pn">varies</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('photos')">
+            <div class="svc-ico" style="background:#fbeaf0;">📸</div>
+            <div style="flex:1;"><div class="svc-nm">Special moments</div><div class="svc-ds">Photos · proposals · anniversary setups</div></div>
+            <div><div class="svc-pr">From $300</div><div class="svc-pn">partner rate</div></div>
+          </div>
+          <div class="svc-row" onclick="openDetail('wellness')">
+            <div class="svc-ico" style="background:#f4f0fb;">💆</div>
+            <div style="flex:1;"><div class="svc-nm">Wellness & spa</div><div class="svc-ds">Massage · beach yoga · couples spa</div></div>
+            <div><div class="svc-pr">From $120</div><div class="svc-pn">partner rate</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPLORE TAB -->
+      <div class="tab-panel" id="tab-explore">
+        <div class="map-banner" onclick="showToast('3D map opens here in the real app')">
+          <i class="ti ti-map-2"></i>
+          <div>
+            <p>30A Interactive Map</p>
+            <span>Tap to open 3D satellite view →</span>
+          </div>
+        </div>
+        <div class="exp-filter">
+          <div class="fchip active" onclick="setFilter(this,'all')">All</div>
+          <div class="fchip" onclick="setFilter(this,'beach')">🏖️ Beaches</div>
+          <div class="fchip" onclick="setFilter(this,'bar')">🍻 Bars</div>
+          <div class="fchip" onclick="setFilter(this,'food')">🍽️ Food</div>
+          <div class="fchip" onclick="setFilter(this,'activity')">🎠 Activities</div>
+        </div>
+        <div class="explore-list" id="placesList"></div>
+      </div>
+
+      <!-- PROFILE TAB -->
+      <div class="tab-panel" id="tab-profile">
+        <div class="profile-hero">
+          <div class="p-av" id="profileAv">G</div>
+          <div class="p-name" id="profileName">Guest</div>
+          <div class="p-sub">Member since June 2025 · 3 stays on 30A</div>
+        </div>
+        <div class="profile-body">
+          <div class="p-stat-row">
+            <div class="p-stat"><div class="p-stat-n">3</div><div class="p-stat-l">Stays</div></div>
+            <div class="p-stat"><div class="p-stat-n">7</div><div class="p-stat-l">Services</div></div>
+            <div class="p-stat"><div class="p-stat-n">12</div><div class="p-stat-l">Restaurants</div></div>
+          </div>
+          <div class="sec-lbl">Your preferences</div>
+          <div class="pref-tags">
+            <span class="ptag">🐟 Seafood</span>
+            <span class="ptag">👨‍👩‍👧 Family (2 kids)</span>
+            <span class="ptag">🌅 Sunsets</span>
+            <span class="ptag">🍷 White wine</span>
+          </div>
+          <div class="sec-lbl">Previous stays</div>
+          <div class="stay-card">
+            <div class="stay-prop">Rosemary Beach House 12</div>
+            <div class="stay-meta">July 2024 · 7 nights</div>
+            <div class="stay-chips">
+              <span class="sc">Grocery delivery</span>
+              <span class="sc">Gallion's reservation</span>
+              <span class="sc">Family photoshoot</span>
+            </div>
+          </div>
+          <div class="stay-card">
+            <div class="stay-prop">Seagrove Beach Cottage</div>
+            <div class="stay-meta">June 2023 · 5 nights</div>
+            <div class="stay-chips">
+              <span class="sc">Welcome setup</span>
+              <span class="sc">Dolphin tour</span>
+            </div>
+          </div>
+          <div class="sec-lbl" style="margin-top:14px;">Active orders</div>
+          <div class="active-order">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div class="order-nm">Grocery delivery</div>
+                <div class="order-meta">Thu Jul 17 · $389 paid</div>
+              </div>
+              <span class="conf-badge">Confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bot-nav">
+      <div class="nav-t active" id="nav-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitória</span></div>
+      <div class="nav-t" id="nav-services" onclick="switchTab('services')"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
+      <div class="nav-t" id="nav-explore" onclick="switchTab('explore')"><i class="ti ti-map"></i><span>Explore</span></div>
+      <div class="nav-t" id="nav-profile" onclick="switchTab('profile')"><i class="ti ti-user-circle"></i><span>Profile</span></div>
+    </div>
+  </div>
+
+  <!-- SERVICE DETAIL SCREEN -->
+  <div class="screen" id="s-svc-detail">
+    <div class="back-row" onclick="closeDetail()">
+      <i class="ti ti-arrow-left"></i>
+      <span>Back to services</span>
+    </div>
+    <div class="detail-hero" id="detailHero"></div>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const PLACES = [
+  {name:"Inlet Beach Regional Access",cat:"beach",color:"#2f93a8",meta:"Rosemary Beach · Parking · ADA",walk:"49 min",bike:"16 min",drive:"7 min"},
+  {name:"Gallion's Rosemary Beach",cat:"bar",color:"#1a5f8a",meta:"★ 4.7 · Fine dining · Rosemary Beach",walk:null,bike:null,drive:"5 min"},
+  {name:"Amavida Coffee Roasters",cat:"cafe",color:"#7a4a2a",meta:"★ 4.6 · Seagrove Beach",walk:"1 min",bike:"1 min",drive:"1 min"},
+  {name:"The Red Bar",cat:"bar",color:"#1a5f8a",meta:"★ 4.6 · Live music · Grayton Beach",walk:null,bike:"34 min",drive:"15 min"},
+  {name:"Pescado Seafood Grill",cat:"bar",color:"#1a5f8a",meta:"★ 4.3 · Rooftop · Rosemary Beach",walk:null,bike:null,drive:"5 min"},
+  {name:"Black Bear Bread Co.",cat:"cafe",color:"#7a4a2a",meta:"★ 4.8 · Grayton Beach",walk:null,bike:"34 min",drive:"15 min"},
+  {name:"Eden Gardens State Park",cat:"activity",color:"#2f7a4a",meta:"★ 4.8 · Nature · Point Washington",walk:null,bike:null,drive:"14 min"},
+  {name:"30A Surf & Paddle",cat:"activity",color:"#2f7a4a",meta:"★ 4.5 · Beach activities",walk:null,bike:"7 min",drive:"3 min"},
+  {name:"Great Southern Cafe",cat:"food",color:"#c87040",meta:"★ 4.5 · Southern breakfast · Seaside",walk:null,bike:null,drive:"13 min"},
+  {name:"Bud & Alley's",cat:"bar",color:"#1a5f8a",meta:"★ 4.0 · Waterfront · Santa Rosa Beach",walk:null,bike:null,drive:"8 min"},
+  {name:"Vivo Spa Rosemary Beach",cat:"activity",color:"#2f7a4a",meta:"★ 4.7 · Massage & facials",walk:null,bike:null,drive:"5 min"},
+  {name:"Grayton Beach State Park",cat:"beach",color:"#2f93a8",meta:"Grayton Beach · Dune lake · Trails",walk:null,bike:"34 min",drive:"15 min"},
+];
+
+const DEMO_RESPONSES = {
+  grocery:`<div class="msg-g"><div class="bub-g">I need grocery delivery before we arrive Thursday</div></div>`,
+  grocery_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Of course! I can have everything stocked before you arrive. 🛒 Just tell me what you need — or describe your family's usual meals and I'll suggest a list. We pay 100% upfront before I shop. <br><br>Would you like to fill out your full grocery list, or start with our <strong>Starter Kit</strong> (15 essentials for $129)?</div></div>`,
+  dinner:`<div class="msg-g"><div class="bub-g">Where should we have dinner tonight? We have 2 kids</div></div>`,
+  dinner_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Great question! For a family with little ones, I love <strong>Great Southern Cafe</strong> in Seaside — generous portions, relaxed vibe, and the kids menu is excellent. If you want waterfront, <strong>Bud & Alley's</strong> is a local institution with a great outdoor deck.</div></div>
+  <div class="venue-card"><div class="vc-img" style="background:linear-gradient(135deg,#c87040,#a05020);">🍽️</div><div class="vc-body"><div class="vc-name">Great Southern Cafe</div><div class="vc-meta">★ 4.5 · Southern · Seaside, FL · 13 min</div><div class="vc-desc">Beloved Southern comfort food in Seaside's town square — go early, it fills up fast.</div><div class="vc-btns"><button class="vc-btn">Map</button><button class="vc-btn">Call</button><button class="vc-btn primary" onclick="showToast('Reservation flow opens here')">Reserve</button></div></div></div>`,
+  beach:`<div class="msg-g"><div class="bub-g">What's the best beach access near Rosemary Beach?</div></div>`,
+  beach_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">The closest to Rosemary Beach is <strong>Inlet Beach Regional Access</strong> — 7 min drive, great parking, has restrooms and an ADA ramp. If you want something more secluded, <strong>Grayton Beach State Park</strong> is stunning with a rare dune lake and much less crowded. 🌊</div></div>`,
+  activities:`<div class="msg-g"><div class="bub-g">What activities do you recommend for our family?</div></div>`,
+  activities_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">So many great options! <strong>Eden Gardens State Park</strong> is perfect for kids — shaded lawns, a historic mansion, and easy walking paths. In the afternoon, <strong>30A Surf & Paddle</strong> offers kayak rentals and paddleboard lessons. If you're up for a day trip, a <strong>dolphin tour</strong> from Destin Harbor is unforgettable — I can arrange one. 🐬</div></div>`,
+  welcome:`<div class="msg-g"><div class="bub-g">Can you set up a special welcome for when we arrive?</div></div>`,
+  welcome_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Absolutely! We offer three welcome packages: <br><br>🌸 <strong>Warm Welcome</strong> ($145) — flowers + handwritten note<br>🥂 <strong>Coastal Luxury</strong> ($275) — champagne + fruits + chocolates<br>✨ <strong>VIP Arrival</strong> ($450) — full decoration + charcuterie board + custom letter<br><br>All paid upfront, all set up before you arrive. Which feels right?</div></div>`,
+  transfer:`<div class="msg-g"><div class="bub-g">We land at ECP Thursday at 2pm — can you arrange a ride?</div></div>`,
+  transfer_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Perfect! ECP (Northwest Florida Beaches) is the closest airport — about 40 min from Rosemary Beach. Our private transfer is <strong>$150</strong> and includes a meet at baggage claim. I'll confirm availability and send you a payment link. How many people and bags?</div></div>`,
+  fishing:`<div class="msg-g"><div class="bub-g">Can you arrange a fishing charter?</div></div>`,
+  fishing_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Love it! 🎣 We work with vetted local captains out of Destin Harbor (about 20 min from Rosemary Beach). Options are:<br><br>Half-day (4h): ~$600–800 for up to 6<br>Full-day (8h): ~$1,100–1,400 for up to 6<br><br>Equipment included. Great for kids too. What date were you thinking?</div></div>`,
+  golf:`<div class="msg-g"><div class="bub-g">Can you get us a tee time at Camp Creek?</div></div>`,
+  golf_v:`<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">Camp Creek is an Audubon-certified gem — one of the best on the Emerald Coast! 🏌️ Tee times can be tricky in peak season but I have local contacts. Tell me your preferred date, number of players, and morning vs afternoon — I'll check and get back to you within 2 hours.</div></div>`,
+};
+
+const SERVICE_DETAILS = {
+  grocery:{icon:'🛒',bg:'linear-gradient(135deg,#1a4a30,#0d3020)',badge:'We do it',title:'Grocery delivery',sub:'We shop and stock your kitchen before you arrive',feats:['We shop at Publix using your list','Delivery before check-in (with host access) or synchronized at arrival','Receipt sent after delivery — difference refunded automatically'],tiers:[{l:'Starter kit (15 essentials)',v:'$129 all-in'},{l:'Small — up to 30 items',v:'$99 + items'},{l:'Full — 30–70 items',v:'$149 + items'},{l:'Premium — 70+ items',v:'$199 + items'}],note:'Payment 100% upfront before we shop. Free cancellation 48h+ before delivery.',cta:'Start my grocery list'},
+  welcome:{icon:'🌺',bg:'linear-gradient(135deg,#4a2a1a,#3a1a10)',badge:'We do it',title:'Welcome setup',sub:'Everything ready the moment you open the door',feats:['We set up before you arrive (with host access)','Real flowers from local florist','Handwritten personal note included'],tiers:[{l:'Warm Welcome — flowers + note',v:'$145'},{l:'Coastal Luxury — champagne + fruits + chocolates',v:'$275'},{l:'VIP Arrival — full setup + charcuterie + letter',v:'$450'}],note:'All prices are all-inclusive. No hidden costs.',cta:'Book your welcome setup'},
+  transfer:{icon:'🚗',bg:'linear-gradient(135deg,#1a2a4a,#0d1a3a)',badge:'We do it',title:'Airport transfer',sub:'Private ride from your airport of choice',feats:['Private vehicle, no rideshare apps','Meet at baggage claim with your name','Comfortable, safe, and on time'],tiers:[{l:'ECP — Northwest FL Beaches (~40 min)',v:'$150'},{l:'VPS — Destin-Fort Walton (~1h15)',v:'$225'},{l:'PNS — Pensacola (~2h)',v:'$299'}],note:'Round trip available — 15% discount when you book both.',cta:'Book airport transfer'},
+  reservation:{icon:'🍽️',bg:'linear-gradient(135deg,#3a1a1a,#2a0d0d)',badge:'We do it',title:'Restaurant reservation',sub:'We call and confirm for you',feats:['We contact the restaurant directly','Confirmation sent to your phone','Access to hard-to-book tables in peak season'],tiers:[{l:'We book for you (any restaurant)',v:'$35'},{l:'Concierge access (hard-to-get tables)',v:'$65'},{l:'Guest books themselves via app link',v:'Free'}],note:'Restaurant commission applies on all bookings. You pay the restaurant directly.',cta:'Request a reservation'},
+  water:{icon:'🚤',bg:'linear-gradient(135deg,#0d2a4a,#051a3a)',badge:'We connect',title:'On the water',sub:'Curated local captains and tour operators',feats:['Vetted by us personally','Destin Harbor — 20 min from Rosemary Beach','Kids and beginners welcome'],tiers:[{l:'Fishing charter — half-day (4h)',v:'~$600–800'},{l:'Fishing charter — full-day (8h)',v:'~$1,100–1,400'},{l:'Boat charter (private)',v:'From $800/day'},{l:'Dolphin tour, kayak, paddleboard',v:'From $60/person'}],note:"We confirm availability with our captain and send you the exact price. No charge until you confirm.",cta:'Request this experience'},
+  golf:{icon:'⛳',bg:'linear-gradient(135deg,#1a3a1a,#0d2a0d)',badge:'We connect',title:'Golf & tee time',sub:'The best courses on the Emerald Coast',feats:['Origins Golf Course — public, 30A','Camp Creek Golf Club — premium','Shark\'s Tooth Golf Club — links style'],tiers:[{l:'Origins — public course',v:'~$80–120/round'},{l:'Camp Creek — request required',v:'~$150–200/round'},{l:"Shark's Tooth — contact us",v:'Varies'}],note:"Access to Club courses may require resort stay or membership. We'll check your eligibility.",cta:'Request a tee time'},
+  photos:{icon:'📸',bg:'linear-gradient(135deg,#3a1a3a,#2a0d2a)',badge:'We connect',title:'Special moments',sub:'Our curated photographer partner on 30A',feats:['Sunset beach photoshoots','Family and couple sessions','Proposals and anniversary setups'],tiers:[{l:'30-min mini session',v:'From $300'},{l:'60-min family session',v:'From $450'},{l:'Full proposal setup + photos',v:'From $600'}],note:"Prices vary by photographer availability and season. We coordinate everything for you.",cta:'Book a photo session'},
+  wellness:{icon:'💆',bg:'linear-gradient(135deg,#2a1a4a,#1a0d3a)',badge:'We connect',title:'Wellness & spa',sub:'Premium partners for body and mind',feats:['Vivo Spa Rosemary Beach — in-town','Emerald Coast Massage — Seagrove Beach','Beach yoga and private pilates available'],tiers:[{l:'60-min massage',v:'From $120'},{l:'Couples massage',v:'From $220'},{l:'Beach yoga (private group)',v:'From $80/person'}],note:"We book and confirm with our spa partners. Payment handled at the spa directly.",cta:'Book wellness experience'},
+};
+
+let guestName = '';
+
+function enterApp(){
+  const name = document.getElementById('w-name').value.trim();
+  if(name){
+    guestName = name;
+    document.getElementById('profileName').textContent = name;
+    document.getElementById('profileAv').textContent = name[0].toUpperCase();
+    addMsg('v',`Hi <strong>${name}!</strong> 👋 I'm <strong>Vitória</strong>, your personal 30A host. I'm here to make sure everything is perfect before and during your stay. What can I help you with?`);
+  }
+  showScreen('s-app');
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.classList.remove('active','prev');
+    if(!s.classList.contains('active')) s.classList.add('prev');
+  });
+  const el = document.getElementById(id);
+  el.classList.remove('prev');
+  el.classList.add('active');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-t').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('nav-'+tab).classList.add('active');
+  if(tab==='explore') renderPlaces('all');
+}
+
+function addMsg(type, html){
+  const thread = document.getElementById('chatThread');
+  const div = document.createElement('div');
+  if(type==='v'){
+    div.innerHTML = `<div class="msg-v"><div class="av-sm">V</div><div class="bub-v">${html}</div></div>`;
+  } else {
+    div.innerHTML = `<div class="msg-g"><div class="bub-g">${html}</div></div>`;
+  }
+  thread.appendChild(div);
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function addTyping(){
+  const thread = document.getElementById('chatThread');
+  const div = document.createElement('div');
+  div.id = 'typing';
+  div.innerHTML = `<div class="msg-v"><div class="av-sm">V</div><div class="bub-v"><div class="typing"><span></span><span></span><span></span></div></div></div>`;
+  thread.appendChild(div);
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function removeTyping(){
+  const el = document.getElementById('typing');
+  if(el) el.remove();
+}
+
+function addRaw(html){
+  const thread = document.getElementById('chatThread');
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  thread.appendChild(div);
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function demoChat(key){
+  switchTab('chat');
+  const q = DEMO_RESPONSES[key];
+  const a = DEMO_RESPONSES[key+'_v'];
+  if(!q||!a) return;
+  addRaw(q);
+  addTyping();
+  setTimeout(()=>{removeTyping(); addRaw(a);},1200);
+}
+
+function sendChat(){
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value='';
+  addMsg('g',msg);
+  addTyping();
+  const lower = msg.toLowerCase();
+  let responseKey = null;
+  if(lower.includes('grocer')||lower.includes('food')||lower.includes('kitchen')||lower.includes('shop')) responseKey='grocery';
+  else if(lower.includes('dinner')||lower.includes('restaurant')||lower.includes('eat')) responseKey='dinner';
+  else if(lower.includes('beach')||lower.includes('sand')||lower.includes('swim')) responseKey='beach';
+  else if(lower.includes('activit')||lower.includes('kids')||lower.includes('children')) responseKey='activities';
+  else if(lower.includes('welcome')||lower.includes('arrival')||lower.includes('flower')) responseKey='welcome';
+  else if(lower.includes('airport')||lower.includes('flight')||lower.includes('transfer')) responseKey='transfer';
+  else if(lower.includes('fish')) responseKey='fishing';
+  else if(lower.includes('golf')||lower.includes('tee')) responseKey='golf';
+  setTimeout(()=>{
+    removeTyping();
+    if(responseKey && DEMO_RESPONSES[responseKey+'_v']){
+      addRaw(DEMO_RESPONSES[responseKey+'_v']);
+    } else {
+      addMsg('v',`Great question about "<em>${msg}</em>"! In the live app, I'd search our curated catalog of 37+ local venues and the entire Google Places database to give you a real-time answer. Ask me about restaurants, beaches, activities, services, or anything 30A. 🌴`);
+    }
+  },1100);
+}
+
+function openDetail(key){
+  const d = SERVICE_DETAILS[key];
+  if(!d) return;
+  document.getElementById('detailHero').style.background = d.bg;
+  document.getElementById('detailHero').innerHTML = `<div class="detail-icon">${d.icon}</div><div style="display:flex;justify-content:space-between;align-items:flex-end;width:100%;"><div><p style="font-size:9px;color:rgba(255,255,255,0.55);margin-bottom:3px;">${d.badge==='We do it'?'CONCIERGE SERVICE':'LOCAL EXPERIENCE'}</p><p style="font-size:17px;font-weight:500;color:#fff;font-family:Cormorant Garamond,serif;">${d.title}</p></div><span class="detail-badge">${d.badge}</span></div>`;
+  document.getElementById('detailBody').innerHTML = `
+    <p class="detail-title">${d.title}</p>
+    <p class="detail-sub">${d.sub}</p>
+    ${d.feats.map(f=>`<div class="detail-feat"><i class="ti ti-check"></i><span>${f}</span></div>`).join('')}
+    <div style="margin:14px 0;">
+      ${d.tiers.map((t,i)=>`<div class="price-tier"><span class="tier-lbl">${t.l}</span><span class="tier-val${i===d.tiers.length-1?' highlight':''}">${t.v}</span></div>`).join('')}
+    </div>
+    <div class="d-note">${d.note}</div>
+    <button class="d-cta" onclick="showToast('Payment flow opens here in the real app ✓')"><i class="ti ti-lock" style="font-size:15px;"></i>${d.cta}</button>
+  `;
+  showScreen('s-svc-detail');
+}
+
+function closeDetail(){
+  showScreen('s-app');
+  document.getElementById('nav-services').classList.add('active');
+}
+
+function renderPlaces(filter){
+  const list = document.getElementById('placesList');
+  const places = filter==='all' ? PLACES : PLACES.filter(p=>p.cat===filter||(filter==='food'&&p.cat==='cafe'));
+  list.innerHTML = places.map(p=>`
+    <div class="place-row" onclick="showToast('Map flies to ${p.name}')">
+      <div class="place-dot" style="background:${p.color};">${p.cat==='beach'?'🏖':p.cat==='bar'?'🍻':p.cat==='cafe'?'☕':p.cat==='activity'?'🎠':'🍽'}</div>
+      <div style="flex:1;">
+        <div class="place-nm">${p.name}</div>
+        <div class="place-meta">${p.meta}</div>
+        <div class="travel-chips">
+          ${p.walk?`<span class="tc">🚶 ${p.walk}</span>`:''}
+          ${p.bike?`<span class="tc">🚲 ${p.bike}</span>`:''}
+          ${p.drive?`<span class="tc">🚗 ${p.drive}</span>`:''}
+        </div>
+      </div>
+      <i class="ti ti-external-link" style="font-size:14px;color:#999;"></i>
+    </div>
+  `).join('');
+}
+
+function setFilter(el, filter){
+  document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderPlaces(filter);
+}
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2500);
+}
+</script>
+
+</body>
+</html>

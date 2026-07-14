@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Your Personal 30A Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+  --deep:#0a1628;--teal:#0d4f45;--teal-mid:#1a7a6a;--gold:#c9a96e;--gold-lt:#e8d5a3;
+  --cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--white:#fff;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,22,40,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.15);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--white);letter-spacing:1.5px;text-decoration:none;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);font-size:13.5px;text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:9px 20px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#0a1628 0%,#1a3050 20%,#4a6080 35%,#e08060 52%,#f09040 58%,#d06030 62%);}
+.sun{position:absolute;top:36%;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#f5d060 0%,#e8a030 50%,#c06820 100%);box-shadow:0 0 120px 60px rgba(240,160,60,0.3);}
+.horizon-glow{position:absolute;top:58%;left:0;right:0;height:80px;background:linear-gradient(0deg,transparent,rgba(240,140,60,0.4),transparent);}
+.sea{position:absolute;top:58%;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a6080 0%,#0d3a50 30%,#061a28 100%);}
+.sea-reflect{position:absolute;top:58%;left:50%;transform:translateX(-50%);width:200px;height:10px;background:rgba(240,160,60,0.5);border-radius:50%;filter:blur(6px);}
+.beach{position:absolute;bottom:0;left:0;right:0;height:22%;background:linear-gradient(180deg,#c8a870 0%,#b89060 40%,#a07848 100%);}
+.palm-l{position:absolute;bottom:20%;left:8%;width:3px;height:100px;background:rgba(10,22,40,0.75);}
+.palm-l::before{content:'';position:absolute;top:-6px;left:-26px;width:56px;height:28px;background:rgba(10,22,40,0.75);border-radius:50% 50% 0 0;transform:rotate(-25deg);}
+.palm-l::after{content:'';position:absolute;top:12px;left:-6px;width:48px;height:24px;background:rgba(10,22,40,0.75);border-radius:50% 0 0 50%;transform:rotate(20deg);}
+.palm-r{position:absolute;bottom:20%;right:6%;width:3px;height:80px;background:rgba(10,22,40,0.6);}
+.palm-r::before{content:'';position:absolute;top:-4px;right:-20px;width:44px;height:22px;background:rgba(10,22,40,0.6);border-radius:50% 50% 0 0;transform:rotate(30deg);}
+
+.hero-content{position:relative;z-index:10;text-align:center;padding:0 24px;max-width:760px;}
+.hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;opacity:0.85;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,7vw,76px);font-weight:500;color:var(--white);line-height:1.08;margin-bottom:18px;letter-spacing:-0.5px;}
+.hero-h1 em{font-style:italic;color:var(--gold-lt);}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:38px;line-height:1.6;font-weight:300;max-width:500px;margin-left:auto;margin-right:auto;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:14px 32px;border-radius:999px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-ghost{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.25);color:var(--white);padding:14px 32px;border-radius:999px;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+
+/* SECTIONS */
+section{padding:80px 24px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal-mid);margin-bottom:12px;font-weight:500;}
+.section-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,50px);font-weight:500;color:var(--ink);margin-bottom:16px;line-height:1.15;}
+.section-sub{font-size:15px;color:var(--soft);line-height:1.65;max-width:560px;}
+
+/* PHONES MOCKUP */
+.phones-section{background:var(--deep);overflow:hidden;}
+.phones-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:0 24px;}
+.phones-text .section-h2{color:var(--white);}
+.phones-text .section-sub{color:rgba(255,255,255,0.6);}
+.phones-text .section-label{color:var(--gold);}
+.phones-visual{display:flex;gap:16px;justify-content:center;padding:40px 0;}
+.mock-phone{width:180px;background:var(--deep);border-radius:28px;border:1px solid rgba(201,169,110,0.2);overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.5);}
+.mock-phone.offset{margin-top:40px;}
+.mock-screen{padding:0;}
+.mock-header{background:linear-gradient(135deg,var(--teal),var(--teal-mid));padding:28px 12px 12px;display:flex;align-items:center;gap:8px;}
+.mock-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal-mid),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#fff;font-style:italic;flex-shrink:0;}
+.mock-name{font-size:13px;font-weight:500;color:#fff;font-family:'Cormorant Garamond',serif;}
+.mock-status{font-size:9px;color:var(--gold);}
+.mock-body{padding:10px;}
+.mock-bubble-v{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.07);border-radius:3px 10px 10px 10px;padding:8px 10px;font-size:10px;color:rgba(255,255,255,0.85);line-height:1.45;margin-bottom:7px;}
+.mock-bubble-g{background:linear-gradient(135deg,var(--teal),var(--teal-mid));border-radius:10px 3px 10px 10px;padding:8px 10px;font-size:10px;color:rgba(255,255,255,0.9);line-height:1.45;margin-bottom:7px;margin-left:20px;}
+.mock-card{background:rgba(255,255,255,0.07);border:1px solid rgba(201,169,110,0.2);border-radius:8px;padding:9px;}
+.mock-card-img{height:50px;background:linear-gradient(135deg,#1a4a3a,#0d3020);border-radius:5px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.mock-card-name{font-size:10.5px;font-weight:500;color:rgba(255,255,255,0.9);font-family:'Cormorant Garamond',serif;margin-bottom:2px;}
+.mock-card-meta{font-size:9px;color:var(--gold);}
+.mock-card-btn{margin-top:7px;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:5px;padding:6px;font-size:9.5px;font-weight:500;color:var(--deep);width:100%;cursor:pointer;}
+.mock-nav{display:flex;border-top:1px solid rgba(255,255,255,0.06);padding:8px 0 12px;background:rgba(10,22,40,0.98);}
+.mock-nav-t{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:8px;color:rgba(255,255,255,0.35);}
+.mock-nav-t i{font-size:14px;}
+.mock-nav-t.a{color:var(--gold);}
+
+/* SERVICES */
+.services-section{background:var(--white);}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
+.service-card{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);padding:20px;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.08);}
+.svc-icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px;}
+.svc-card-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px;}
+.svc-card-desc{font-size:13px;color:var(--soft);line-height:1.5;}
+.svc-card-price{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--teal);margin-top:10px;}
+.badge-us{font-size:10px;font-weight:600;background:#e3f0ec;color:#0d4f45;padding:2px 8px;border-radius:999px;margin-left:6px;}
+.badge-partner{font-size:10px;font-weight:600;background:#f7f2e9;color:#6b6356;padding:2px 8px;border-radius:999px;margin-left:6px;}
+
+/* HOW IT WORKS */
+.how-section{background:linear-gradient(160deg,var(--deep),#0d3030);}
+.how-section .section-h2{color:var(--white);}
+.how-section .section-sub{color:rgba(255,255,255,0.55);}
+.how-section .section-label{color:var(--gold);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:50px;}
+.step{text-align:center;}
+.step-num{width:44px;height:44px;border-radius:50%;background:rgba(201,169,110,0.15);border:1px solid var(--border-g,rgba(201,169,110,0.3));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin:0 auto 14px;}
+.step-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:6px;}
+.step-desc{font-size:12.5px;color:rgba(255,255,255,0.5);line-height:1.55;}
+
+/* PRICING */
+.pricing-section{background:var(--cream);}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;}
+.price-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);border-radius:var(--radius);padding:22px 18px;}
+.price-card.featured{border:2px solid var(--teal-mid);}
+.price-badge{font-size:10px;font-weight:600;background:#e3f0ec;color:#0d4f45;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px;}
+.price-plan{font-size:15px;font-weight:500;margin-bottom:4px;}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--teal);margin-bottom:2px;}
+.price-per{font-size:11px;color:var(--soft);}
+.price-features{margin-top:14px;font-size:12.5px;color:var(--soft);line-height:1.8;list-style:none;}
+.price-features li::before{content:"✓ ";color:var(--teal-mid);}
+.price-cta{display:block;margin-top:16px;text-align:center;padding:10px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid rgba(0,0,0,0.1);color:var(--ink);}
+.price-cta.featured-cta{background:var(--teal);color:#fff;border-color:var(--teal);}
+
+/* ABOUT */
+.about-section{background:var(--white);}
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;}
+.founder{background:var(--cream);border-radius:var(--radius);overflow:hidden;}
+.founder-photo{height:200px;background:linear-gradient(135deg,var(--teal),var(--teal-mid));display:flex;align-items:center;justify-content:center;}
+.founder-initials{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;border:2px solid rgba(201,169,110,0.4);}
+.founder-info{padding:18px;}
+.founder-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;margin-bottom:2px;}
+.founder-role{font-size:11.5px;color:var(--gold);margin-bottom:8px;font-weight:500;}
+.founder-bio{font-size:13px;color:var(--soft);line-height:1.6;}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.review{background:var(--cream);border-radius:var(--radius);padding:18px;}
+.stars{color:var(--gold);font-size:13px;margin-bottom:8px;}
+.review-text{font-size:13px;color:var(--ink);line-height:1.55;font-style:italic;margin-bottom:10px;}
+.review-by{font-size:11.5px;color:var(--soft);}
+
+/* DEMO CTA */
+.demo-section{background:linear-gradient(135deg,var(--deep),var(--teal));text-align:center;padding:90px 24px;}
+.demo-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);color:#fff;margin-bottom:14px;font-weight:500;}
+.demo-section p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;}
+.demo-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--white);letter-spacing:1.5px;}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;}
+.footer-copy{color:rgba(255,255,255,0.3);font-size:12px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .phones-inner{grid-template-columns:1fr;text-align:center;}
+  .phones-text .section-sub{margin:0 auto;}
+  .steps{grid-template-columns:1fr 1fr;}
+  .pricing-grid{grid-template-columns:1fr 1fr;}
+  .founders{grid-template-columns:1fr;}
+  .reviews-grid{grid-template-columns:1fr 1fr;}
+  nav .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">MY30A HOST</a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">For hosts</a></li>
+    <li><a href="#about">About us</a></li>
+  </ul>
+  <a href="app.html" class="nav-cta"><i class="ti ti-sparkles" style="font-size:14px;vertical-align:-2px;margin-right:4px;"></i>Open demo</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <div class="horizon-glow"></div>
+    <div class="sea"></div>
+    <div class="sea-reflect"></div>
+    <div class="beach"></div>
+    <div class="palm-l"></div>
+    <div class="palm-r"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Rosemary Beach · Alys Beach · 30A, Florida</p>
+    <h1 class="hero-h1">Before you arrive,<br><em>everything is ready.</em></h1>
+    <p class="hero-sub">Meet Vitória — your personal AI concierge on 30A. Groceries stocked, restaurants booked, experiences arranged. Before you even land.</p>
+    <div class="hero-btns">
+      <a href="app.html" class="btn-primary"><i class="ti ti-player-play" style="font-size:15px;"></i>Try the demo</a>
+      <a href="#how" class="btn-ghost"><i class="ti ti-arrow-down" style="font-size:15px;"></i>See how it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- APP MOCKUP -->
+<section class="phones-section" style="padding:80px 0;">
+  <div class="phones-inner">
+    <div class="phones-text">
+      <p class="section-label">Meet Vitória</p>
+      <h2 class="section-h2" style="color:white;">Your local expert, always available</h2>
+      <p class="section-sub">Ask anything — where to have dinner with the kids, what beach has the best parking, which restaurant can actually get you a table Saturday night. Vitória knows.</p>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(201,169,110,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-brain" style="font-size:14px;color:var(--gold);"></i></div>
+          <div><p style="font-size:13.5px;font-weight:500;color:white;margin-bottom:2px;">Real AI — not scripts</p><p style="font-size:12.5px;color:rgba(255,255,255,0.5);">Powered by Claude — understands context, remembers your preferences, speaks your language.</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(201,169,110,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-map-pin" style="font-size:14px;color:var(--gold);"></i></div>
+          <div><p style="font-size:13.5px;font-weight:500;color:white;margin-bottom:2px;">We actually live here</p><p style="font-size:12.5px;color:rgba(255,255,255,0.5);">Not a generic travel app. Real local knowledge from people who call 30A home.</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(201,169,110,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-heart" style="font-size:14px;color:var(--gold);"></i></div>
+          <div><p style="font-size:13.5px;font-weight:500;color:white;margin-bottom:2px;">Remembers you next year</p><p style="font-size:12.5px;color:rgba(255,255,255,0.5);">Come back in 2026 and Vitória already knows your family, your preferences, your usual spots.</p></div>
+        </div>
+      </div>
+      <a href="app.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:12px 24px;border-radius:999px;font-size:13.5px;font-weight:600;text-decoration:none;"><i class="ti ti-sparkles" style="font-size:14px;"></i>Chat with Vitória</a>
+    </div>
+    <div class="phones-visual">
+      <div class="mock-phone">
+        <div class="mock-header">
+          <div class="mock-av">V</div>
+          <div><div class="mock-name">Vitória</div><div class="mock-status">● Your 30A host</div></div>
+        </div>
+        <div class="mock-body" style="background:#0a1628;min-height:240px;">
+          <div class="mock-bubble-v" style="margin-top:8px;">Hi Sarah! 👋 I remember you loved Gallion's last summer. Shall I book your usual table for Saturday?</div>
+          <div class="mock-bubble-g">Yes please! And we need groceries before Thursday</div>
+          <div class="mock-bubble-v">Perfect — I'll arrange both. Tell me your list and I'll have everything ready when you arrive. 🛒</div>
+          <div class="mock-card" style="margin-top:8px;">
+            <div class="mock-card-img">🍷</div>
+            <div class="mock-card-name">Gallion's Rosemary Beach</div>
+            <div class="mock-card-meta">★ 4.7 · Fine dining · 5 min away</div>
+            <button class="mock-card-btn">Reserve for Saturday</button>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <div class="mock-nav-t a"><i class="ti ti-message-circle"></i><span>Vitória</span></div>
+          <div class="mock-nav-t"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
+          <div class="mock-nav-t"><i class="ti ti-map"></i><span>Explore</span></div>
+          <div class="mock-nav-t"><i class="ti ti-user-circle"></i><span>Profile</span></div>
+        </div>
+      </div>
+      <div class="mock-phone offset">
+        <div style="background:linear-gradient(160deg,var(--deep),var(--teal));padding:28px 12px 14px;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;font-weight:500;">Before you arrive</p>
+          <p style="font-size:9px;color:rgba(255,255,255,0.5);">Paid securely in advance</p>
+        </div>
+        <div style="background:#faf7f2;padding:10px;min-height:240px;">
+          <p style="font-size:8.5px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#6b6356;margin-bottom:8px;">Concierge services</p>
+          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
+            <span style="font-size:18px;">🛒</span>
+            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">Grocery delivery</p><p style="font-size:9px;color:#6b6356;">$99–199 + items</p></div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
+            <span style="font-size:18px;">🌺</span>
+            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">Welcome setup</p><p style="font-size:9px;color:#6b6356;">$145–450 all-in</p></div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
+            <span style="font-size:18px;">🚗</span>
+            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">Airport transfer</p><p style="font-size:9px;color:#6b6356;">ECP $150 · VPS $225</p></div>
+          </div>
+          <p style="font-size:8.5px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#6b6356;margin:10px 0 8px;">Local experiences</p>
+          <div style="background:#fff;border-radius:8px;padding:9px;display:flex;gap:8px;align-items:center;">
+            <span style="font-size:18px;">🚤</span>
+            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">On the water</p><p style="font-size:9px;color:#6b6356;">From $400</p></div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <div class="mock-nav-t"><i class="ti ti-message-circle"></i><span>Vitória</span></div>
+          <div class="mock-nav-t a"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
+          <div class="mock-nav-t"><i class="ti ti-map"></i><span>Explore</span></div>
+          <div class="mock-nav-t"><i class="ti ti-user-circle"></i><span>Profile</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <p class="section-label">Simple as texting a friend</p>
+    <h2 class="section-h2">How it works</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.55);">Four steps from opening the app to finding everything on your kitchen counter.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Open the app</div>
+        <div class="step-desc">Scan the QR code in your welcome card or visit the link. Vitória introduces herself and remembers you next time.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Tell Vitória what you need</div>
+        <div class="step-desc">Talk naturally. "We have 2 kids and want seafood tonight." She recommends, books, and arranges — all in the chat.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Pay securely in-app</div>
+        <div class="step-desc">Grocery delivery, welcome setups, transfers — pay once via Stripe. 100% upfront before we do anything.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Enjoy 30A</div>
+        <div class="step-desc">Your kitchen is stocked, your table is booked, your chairs are on the sand. You just arrived — and everything is ready.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-inner">
+    <p class="section-label">What Vitória arranges</p>
+    <h2 class="section-h2">Everything your stay needs</h2>
+    <p class="section-sub">Some we handle personally. Others we connect you with the best local partners — always vetted, always premium.</p>
+    <div class="services-grid">
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#f0f8f4;">🛒</div>
+        <div class="svc-card-name">Grocery delivery <span class="badge-us">We do it</span></div>
+        <div class="svc-card-desc">We shop at Publix and stock your kitchen before you arrive. You pay once — we handle the rest.</div>
+        <div class="svc-card-price">$99–199 + items</div>
+      </div>
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#fef9ec;">🌺</div>
+        <div class="svc-card-name">Welcome setup <span class="badge-us">We do it</span></div>
+        <div class="svc-card-desc">Flowers, champagne, charcuterie, and a handwritten note. Because first impressions matter.</div>
+        <div class="svc-card-price">$145–450</div>
+      </div>
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#f0f4fa;">🚗</div>
+        <div class="svc-card-name">Airport transfer <span class="badge-us">We do it</span></div>
+        <div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim.</div>
+        <div class="svc-card-price">$150–299</div>
+      </div>
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#fef0ee;">🍽️</div>
+        <div class="svc-card-name">Restaurant reservations <span class="badge-us">We do it</span></div>
+        <div class="svc-card-desc">We call and confirm — including tables at Gallion's, Pescado, and 'drome during peak season.</div>
+        <div class="svc-card-price">$35–65</div>
+      </div>
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#e8f4fb;">🚤</div>
+        <div class="svc-card-name">On the water <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Boat charter, fishing, dolphin tour, kayak. We connect you with curated local captains.</div>
+        <div class="svc-card-price">From $400</div>
+      </div>
+      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-icon-wrap" style="background:#fbeaf0;">📸</div>
+        <div class="svc-card-name">Special moments <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Sunset photoshoots, proposals, anniversary setups. Our photographer partner handles the magic.</div>
+        <div class="svc-card-price">From $300</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="app.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;padding:13px 28px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;">See all services in the app <i class="ti ti-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING (for hosts) -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <p class="section-label">For property owners</p>
+    <h2 class="section-h2">Give your guests a 5-star experience</h2>
+    <p class="section-sub">Stop answering the same wifi-password texts every stay. Your guests get Vitória. You get your evenings back.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan">Free guide</div>
+        <div class="price-amount">$0</div>
+        <div class="price-per">Public, no branding</div>
+        <ul class="price-features" style="margin-top:14px;">
+          <li>General 30A recommendations</li>
+          <li>Interactive 3D map</li>
+          <li>May suggest competitors</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Starter</div>
+        <div class="price-amount">$29<span style="font-size:14px;font-weight:400;color:var(--soft);">/mo</span></div>
+        <div class="price-per">per property</div>
+        <ul class="price-features" style="margin-top:14px;">
+          <li>Wifi, check-in, house rules</li>
+          <li>5 curated picks</li>
+          <li>Never suggests a competitor</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="price-cta">Get started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most hosts</div>
+        <div class="price-plan">Growth</div>
+        <div class="price-amount">$59<span style="font-size:14px;font-weight:400;color:var(--soft);">/mo</span></div>
+        <div class="price-per">per property</div>
+        <ul class="price-features" style="margin-top:14px;">
+          <li>Unlimited curated picks</li>
+          <li>Guest analytics</li>
+          <li>Booking integrations</li>
+          <li>Early access authorization</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="price-cta featured-cta">Get started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Portfolio</div>
+        <div class="price-amount">$39<span style="font-size:14px;font-weight:400;color:var(--soft);">/mo</span></div>
+        <div class="price-per">per property, 5+</div>
+        <ul class="price-features" style="margin-top:14px;">
+          <li>5+ properties</li>
+          <li>Everything in Growth</li>
+          <li>Multi-property dashboard</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="price-cta">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <p class="section-label">Who we are</p>
+    <h2 class="section-h2">Your neighbors on 30A</h2>
+    <p class="section-sub">We're not an app company that built a travel tool. We live here. We know which beach has the best parking on a Saturday in July, which restaurant's chef will accommodate a nut allergy, and which fishing captain is the best for kids.</p>
+    <div class="founders">
+      <div class="founder">
+        <div class="founder-photo"><div class="founder-initials">W</div></div>
+        <div class="founder-info">
+          <div class="founder-name">Welson Santos</div>
+          <div class="founder-role">Co-founder · Local Host</div>
+          <div class="founder-bio">Born in Brazil, living the 30A dream. Years spent getting to know every beach access, hidden restaurant, and local shortcut this stretch of coast has to offer.</div>
+        </div>
+      </div>
+      <div class="founder">
+        <div class="founder-photo" style="background:linear-gradient(135deg,#4a6a9c,var(--teal));"><div class="founder-initials">A</div></div>
+        <div class="founder-info">
+          <div class="founder-name">Ana Santos</div>
+          <div class="founder-role">Co-founder · Guest Experience</div>
+          <div class="founder-bio">I handle the details that make a stay unforgettable — welcome setups, grocery runs, and making sure everything is perfect before you open the door.</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid" style="margin-top:50px;">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Opened the door Thursday evening and the kitchen was already stocked. Felt like a 5-star hotel."</div>
+        <div class="review-by">— Jennifer M., Alys Beach · July 2024</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Vitória got us a table at Gallion's on a Saturday in August. We genuinely couldn't believe it."</div>
+        <div class="review-by">— David K., Rosemary Beach · Aug 2024</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Used the fishing charter recommendation — the captain was incredible with our boys. Already booked for next summer."</div>
+        <div class="review-by">— Michelle R., WaterColor · June 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO CTA -->
+<section class="demo-section">
+  <h2>Ready to try it?</h2>
+  <p>Open the demo and explore the full app — chat with Vitória, browse services, and see the 30A map.</p>
+  <div class="demo-btns">
+    <a href="app.html" class="btn-primary"><i class="ti ti-sparkles" style="font-size:15px;"></i>Open the demo</a>
+    <a href="mailto:dealsconnectllc@gmail.com" class="btn-ghost"><i class="ti ti-mail" style="font-size:15px;"></i>Contact us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MY30A HOST</div>
+  <div class="footer-links">
+    <a href="#how">How it works</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">For hosts</a>
+    <a href="mailto:dealsconnectllc@gmail.com">Contact</a>
+    <a href="#">Privacy</a>
+  </div>
+  <div class="footer-copy">© 2026 My30A Host · 30A, Florida</div>
+</footer>
+
+</body>
+</html>
