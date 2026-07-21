@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — For Property Owners & Managers</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+  --deep:#0a1628;--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--glt:#e8d5a3;
+  --cream:#faf7f2;--white:#fff;--ink:#1a1a18;--soft:#6b6356;
+  --border:rgba(0,0,0,.08);--r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);line-height:1.6;}
+.inner{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;}
+.nav-inner{max-width:1040px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.nav-av{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#fff;font-style:italic;}
+.nav-nm{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--ink);}
+.nav-sub{font-size:10.5px;color:var(--soft);margin-left:3px;}
+.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-links a{font-size:13.5px;color:var(--soft);text-decoration:none;transition:color .15s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{background:var(--teal);color:var(--white);padding:9px 20px;border-radius:999px;font-size:13.5px;font-weight:500;text-decoration:none;transition:background .15s;}
+.nav-cta:hover{background:var(--tm);}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--deep) 0%,#0d3a32 60%,#1a5a4a 100%);padding:96px 24px 80px;text-align:center;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);color:var(--gold);font-size:12px;font-weight:500;padding:5px 14px;border-radius:999px;margin-bottom:24px;letter-spacing:.3px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,62px);font-weight:500;color:#fff;margin-bottom:18px;line-height:1.12;}
+.hero h1 em{font-style:italic;color:var(--glt);}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 36px;line-height:1.6;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-pri{background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:14px 32px;border-radius:999px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.btn-sec{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.hero-proof{margin-top:48px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
+.hp{text-align:center;}
+.hp-n{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--gold);}
+.hp-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:1px;}
+
+/* PAIN */
+.pain{padding:80px 24px;background:var(--cream);}
+.sec-lbl{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--tm);margin-bottom:12px;}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,42px);font-weight:500;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.sec-sub{font-size:15.5px;color:var(--soft);max-width:580px;line-height:1.6;margin-bottom:40px;}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.pain-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+.pain-ico{font-size:24px;margin-bottom:12px;}
+.pain-q{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px;font-style:italic;}
+.pain-a{font-size:13px;color:var(--soft);line-height:1.5;}
+.pain-a strong{color:var(--teal);font-style:normal;}
+
+/* HOW */
+.how{padding:80px 24px;background:var(--white);}
+.steps-h{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px;}
+.step:last-child{margin-bottom:0;}
+.step-n{width:36px;height:36px;border-radius:50%;background:var(--cream);border:2px solid var(--tm);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--teal);flex-shrink:0;margin-top:2px;}
+.step-tit{font-size:15px;font-weight:500;margin-bottom:4px;}
+.step-desc{font-size:13px;color:var(--soft);line-height:1.55;}
+.dash-mock{background:var(--cream);border-radius:16px;border:1px solid var(--border);overflow:hidden;}
+.dm-hdr{background:linear-gradient(135deg,var(--deep),var(--teal));padding:14px 18px;}
+.dm-hdr p{font-size:12px;color:rgba(255,255,255,.55);}
+.dm-hdr h3{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;}
+.dm-body{padding:16px;}
+.dm-stat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.dm-sb{background:var(--white);border-radius:8px;padding:10px;text-align:center;}
+.dm-n{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--teal);}
+.dm-l{font-size:9.5px;color:var(--soft);}
+.dm-row{background:var(--white);border-radius:8px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;}
+.dm-tag{font-size:10px;padding:2px 8px;border-radius:999px;}
+.tog-sm{width:32px;height:18px;border-radius:9px;background:var(--teal);position:relative;flex-shrink:0;}
+.tog-sm::after{content:'';position:absolute;right:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;}
+.q-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);}
+.q-row:last-child{border:none;}
+
+/* WHO */
+.who{padding:80px 24px;background:var(--cream);}
+.who-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:40px;}
+.who-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;position:relative;}
+.who-ico{font-size:28px;margin-bottom:14px;}
+.who-tit{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;margin-bottom:6px;}
+.who-desc{font-size:13px;color:var(--soft);line-height:1.6;margin-bottom:16px;}
+.who-plan{font-size:11.5px;font-weight:600;color:var(--tm);display:flex;align-items:center;gap:5px;}
+
+/* PRICING */
+.pricing{padding:80px 24px;background:var(--deep);}
+.pricing .sec-lbl{color:var(--gold);}
+.pricing .sec-h{color:var(--white);}
+.pricing .sec-sub{color:rgba(255,255,255,.5);}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px;}
+.pc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:22px 18px;}
+.pc.feat{background:rgba(13,79,69,.4);border-color:var(--tm);}
+.pc-badge{font-size:10px;font-weight:600;background:rgba(26,122,106,.3);color:#6ee8d0;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px;}
+.pc-nm{font-size:14px;font-weight:500;color:rgba(255,255,255,.8);margin-bottom:5px;}
+.pc-pr{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:#fff;margin-bottom:2px;}
+.pc-per{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:16px;}
+.pc-feats{list-style:none;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.9;}
+.pc-feats li::before{content:'✓ ';color:var(--tm);}
+.pc-cta{display:block;margin-top:18px;text-align:center;padding:10px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1);}
+.pc-cta.feat-cta{background:var(--tm);color:#fff;border-color:var(--tm);}
+
+/* FEATURES */
+.features{padding:80px 24px;background:var(--white);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:40px;}
+.feat-card{padding:20px 0;}
+.feat-ico{width:44px;height:44px;border-radius:12px;background:var(--cream);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.feat-ico i{font-size:20px;color:var(--teal);}
+.feat-tit{font-size:15px;font-weight:500;margin-bottom:6px;}
+.feat-desc{font-size:13px;color:var(--soft);line-height:1.6;}
+
+/* TESTIMONIALS */
+.testi{padding:80px 24px;background:var(--cream);}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+.tcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;}
+.tcard .stars{color:var(--gold);font-size:13px;margin-bottom:10px;}
+.tcard p{font-size:14px;color:var(--ink);line-height:1.6;font-style:italic;margin-bottom:14px;}
+.tcard .by{font-size:12px;color:var(--soft);}
+
+/* CTA */
+.cta-sec{background:linear-gradient(160deg,var(--deep),var(--teal));padding:96px 24px;text-align:center;}
+.cta-sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);color:#fff;margin-bottom:14px;font-weight:500;}
+.cta-sec p{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.cta-note{font-size:12.5px;color:rgba(255,255,255,.35);}
+
+footer{background:var(--deep);border-top:1px solid rgba(255,255,255,.06);padding:36px 24px;}
+.footer-inner{max-width:1040px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;letter-spacing:1px;}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:12.5px;color:rgba(255,255,255,.35);text-decoration:none;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.25);}
+
+@media(max-width:860px){
+  .pain-grid,.who-grid,.feat-grid,.pg{grid-template-columns:1fr 1fr;}
+  .steps-h{grid-template-columns:1fr;}
+  .dm-hdr,.dm-body{padding:12px;}
+}
+@media(max-width:600px){
+  .pain-grid,.who-grid,.feat-grid,.pg,.tg{grid-template-columns:1fr;}
+  .hero-proof{gap:24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-av">V</div>
+      <span class="nav-nm">My30A Host</span><span class="nav-sub">For hosts</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="index.html">Guest app</a>
+      <a href="mailto:dealsconnectllc@gmail.com" class="nav-cta">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="inner">
+    <div class="hero-tag"><i class="ti ti-home-check" style="font-size:13px;"></i>For property owners & managers on 30A</div>
+    <h1>Your guests deserve<br>a <em>5-star concierge.</em><br>You deserve your evenings back.</h1>
+    <p class="hero-sub">Vitoria handles every guest question, recommendation, and service request — automatically. You stop getting texts about the WiFi password. Your guests fall in love with 30A.</p>
+    <div class="hero-btns">
+      <a href="mailto:dealsconnectllc@gmail.com" class="btn-pri"><i class="ti ti-rocket" style="font-size:15px;"></i>Start for free</a>
+      <a href="host-dashboard.html" class="btn-sec"><i class="ti ti-layout-dashboard" style="font-size:15px;"></i>See the dashboard</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hp"><div class="hp-n">5★</div><div class="hp-l">Guest satisfaction</div></div>
+      <div class="hp"><div class="hp-n">50+</div><div class="hp-l">Languages handled</div></div>
+      <div class="hp"><div class="hp-n">24/7</div><div class="hp-l">Available to guests</div></div>
+      <div class="hp"><div class="hp-n">0</div><div class="hp-l">WiFi texts to you</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain" id="pain">
+  <div class="inner">
+    <p class="sec-lbl">Sound familiar?</p>
+    <h2 class="sec-h">Every host knows these messages.</h2>
+    <p class="sec-sub">Your guests arrive excited and send you a barrage of questions. At 11pm. On a Saturday. Vitoria answers all of them — instantly, personally, in any language.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-ico">📱</div>
+        <div class="pain-q">"What's the WiFi password again?"</div>
+        <div class="pain-a">Vitoria answers instantly, 24/7. <strong>You never see the text.</strong></div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-ico">🍽️</div>
+        <div class="pain-q">"Where should we eat tonight with the kids?"</div>
+        <div class="pain-a">Vitoria recommends from a curated local list you approved. <strong>Restaurant booked, problem solved.</strong></div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-ico">🔑</div>
+        <div class="pain-q">"What time is check-out and how do we lock up?"</div>
+        <div class="pain-a">Your check-out instructions, your rules, delivered automatically. <strong>No last-minute calls.</strong></div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-ico">🚗</div>
+        <div class="pain-q">"Can you recommend a car rental / airport pickup?"</div>
+        <div class="pain-a">Vitoria handles transfer bookings and local services. <strong>You earn a referral — effortlessly.</strong></div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-ico">🏖️</div>
+        <div class="pain-q">"Which beach is closest? Is there parking?"</div>
+        <div class="pain-a">Real-time local knowledge with walking and driving times. <strong>Your guests explore confidently.</strong></div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-ico">🛒</div>
+        <div class="pain-q">"Is there anywhere to get groceries before we arrive?"</div>
+        <div class="pain-a">Vitoria offers our grocery delivery service. Your guests arrive to a stocked kitchen. <strong>They rate you 5 stars.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="inner">
+    <div class="steps-h">
+      <div>
+        <p class="sec-lbl">How it works</p>
+        <h2 class="sec-h">Set it up once.<br>Runs forever.</h2>
+        <p class="sec-sub" style="margin-bottom:32px;">Takes 10 minutes to configure. From that moment, Vitoria handles every guest conversation automatically.</p>
+        <div class="step">
+          <div class="step-n">1</div>
+          <div><div class="step-tit">You set up your property</div><div class="step-desc">Enter your WiFi, check-in time, access instructions, house rules, and your favorite local spots. Takes 10 minutes. Do it once.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div><div class="step-tit">Your guest receives the link</div><div class="step-desc">On booking confirmation, your guest gets a QR code or link to Vitoria — your personal AI concierge, configured for your property.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div><div class="step-tit">Vitoria handles everything</div><div class="step-desc">Questions, recommendations, service bookings, translations. 24/7, in any language. You only get notified when there's something that genuinely needs you.</div></div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div><div class="step-tit">You check the dashboard weekly</div><div class="step-desc">See what guests asked about, which services were booked, your satisfaction score. 5 minutes a week — maximum.</div></div>
+        </div>
+      </div>
+      <div class="dash-mock">
+        <div class="dm-hdr">
+          <p>Rosemary Beach House 12 · Growth plan</p>
+          <h3>Host Dashboard</h3>
+        </div>
+        <div class="dm-body">
+          <div class="dm-stat">
+            <div class="dm-sb"><div class="dm-n">47</div><div class="dm-l">Guests/month</div></div>
+            <div class="dm-sb"><div class="dm-n">183</div><div class="dm-l">Chats handled</div></div>
+            <div class="dm-sb"><div class="dm-n">4.8★</div><div class="dm-l">Satisfaction</div></div>
+          </div>
+          <div class="dm-row"><span style="font-size:12px;font-weight:500;">Early access for grocery delivery</span><div class="tog-sm"></div></div>
+          <div class="dm-row"><span style="font-size:12px;font-weight:500;">Vitoria answers all guest questions</span><div class="tog-sm"></div></div>
+          <p style="font-size:10.5px;color:var(--soft);margin:10px 0 6px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;">Top questions this week</p>
+          <div class="q-row"><span>WiFi password</span><strong>32 chats</strong></div>
+          <div class="q-row"><span>Best restaurant nearby</span><strong>24 chats</strong></div>
+          <div class="q-row"><span>Closest beach access</span><strong>18 chats</strong></div>
+          <div class="q-row"><span>Grocery delivery request</span><strong>11 chats</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS IT FOR -->
+<section class="who" id="who">
+  <div class="inner">
+    <p class="sec-lbl">Who it's for</p>
+    <h2 class="sec-h">Built for every 30A host.</h2>
+    <p class="sec-sub">Whether you have one beach house or a portfolio of 50+ properties, My30A Host scales to fit your operation.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-ico">🏡</div>
+        <div class="who-tit">Individual owners</div>
+        <div class="who-desc">You rent on Airbnb or VRBO, manage it yourself, and want to stop fielding guest messages on your vacation days. Vitoria becomes your always-on property manager.</div>
+        <div class="who-plan"><i class="ti ti-arrow-right" style="font-size:13px;"></i>Starter plan — $29/month</div>
+      </div>
+      <div class="who-card" style="border-color:var(--tm);">
+        <div style="position:absolute;top:16px;right:16px;font-size:10px;font-weight:600;background:#e3f0ec;color:var(--teal);padding:3px 10px;border-radius:999px;">Most popular</div>
+        <div class="who-ico">🏘️</div>
+        <div class="who-tit">Property managers</div>
+        <div class="who-desc">You manage 5–50+ properties and every guest stay is a reputation event. Vitoria gives each guest a personalized experience — at scale. You get analytics across all properties.</div>
+        <div class="who-plan"><i class="ti ti-arrow-right" style="font-size:13px;"></i>Growth plan — $59/month per property</div>
+      </div>
+      <div class="who-card">
+        <div class="who-ico">🏢</div>
+        <div class="who-tit">HOAs & communities</div>
+        <div class="who-desc">Alys Beach, Rosemary Beach, WaterColor — communities where guest experience is everything. Deploy Vitoria across every rental property in your community with portfolio pricing.</div>
+        <div class="who-plan"><i class="ti ti-arrow-right" style="font-size:13px;"></i>Portfolio plan — $39/month per property</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="inner">
+    <p class="sec-lbl">What you get</p>
+    <h2 class="sec-h">Everything your guests need.<br>Nothing you have to manage.</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-message-chatbot"></i></div>
+        <div class="feat-tit">AI concierge — 24/7</div>
+        <div class="feat-desc">Vitoria answers every question instantly. WiFi, check-in, restaurant recommendations, local activities — all handled without you lifting a finger.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-world"></i></div>
+        <div class="feat-tit">50+ languages</div>
+        <div class="feat-desc">Vitoria detects the guest's language and responds automatically. English, Portuguese, Spanish, French, Japanese, Italian, German — and 45+ more. Never ask.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-star"></i></div>
+        <div class="feat-tit">Curated local picks</div>
+        <div class="feat-desc">You choose your favorite restaurants, beaches, and experiences. Vitoria recommends them first — giving your guests a local insider feel that earns 5-star reviews.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-shopping-bag"></i></div>
+        <div class="feat-tit">Concierge services</div>
+        <div class="feat-desc">Grocery delivery, airport transfers, welcome setups, restaurant reservations. Your guests pay upfront, we handle everything. You can even authorize early property access.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-map-2"></i></div>
+        <div class="feat-tit">3D local map</div>
+        <div class="feat-desc">Interactive satellite map of 30A with all beach accesses, restaurants, and activities. Walking, biking and driving times calculated from the property.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-chart-bar"></i></div>
+        <div class="feat-tit">Host analytics</div>
+        <div class="feat-desc">See exactly what your guests ask about most, which services they book, and your satisfaction score. Know your property better than ever.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-qrcode"></i></div>
+        <div class="feat-tit">QR code ready</div>
+        <div class="feat-desc">Print a welcome card with a QR code for your property. Guests scan on arrival and Vitoria introduces herself. No app store, no download — opens in the browser.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-currency-dollar"></i></div>
+        <div class="feat-tit">Referral income</div>
+        <div class="feat-desc">When your guests book local experiences or services through Vitoria, you earn a share of the referral commission. Your property earns while you sleep.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ico"><i class="ti ti-lock"></i></div>
+        <div class="feat-tit">Your brand, your rules</div>
+        <div class="feat-desc">Vitoria never mentions competitors, never suggests other properties, never reveals your private info. She's fully loyal to your property and your guests.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="inner">
+    <p class="sec-lbl">Pricing</p>
+    <h2 class="sec-h">Simple, transparent pricing.</h2>
+    <p class="sec-sub">No setup fees. No long-term contracts. Cancel anytime. Start free and upgrade when you're ready.</p>
+    <div class="pg">
+      <div class="pc">
+        <div class="pc-nm">Free guide</div>
+        <div class="pc-pr">$0</div>
+        <div class="pc-per">forever free</div>
+        <ul class="pc-feats">
+          <li>30A local guide for guests</li>
+          <li>Basic Vitoria responses</li>
+          <li>May suggest other properties</li>
+          <li>No property customization</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="pc-cta">Start free</a>
+      </div>
+      <div class="pc">
+        <div class="pc-nm">Starter</div>
+        <div class="pc-pr">$29</div>
+        <div class="pc-per">/month · 1 property</div>
+        <ul class="pc-feats">
+          <li>WiFi, check-in, rules configured</li>
+          <li>5 curated local picks</li>
+          <li>Never suggests competitors</li>
+          <li>Concierge services for guests</li>
+          <li>Basic analytics</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="pc-cta">Get started</a>
+      </div>
+      <div class="pc feat">
+        <div class="pc-badge">Most hosts choose this</div>
+        <div class="pc-nm">Growth</div>
+        <div class="pc-pr">$59</div>
+        <div class="pc-per">/month · 1 property</div>
+        <ul class="pc-feats">
+          <li>Everything in Starter</li>
+          <li>Unlimited curated picks</li>
+          <li>Full analytics dashboard</li>
+          <li>Early access authorization</li>
+          <li>Booking integration</li>
+          <li>Guest history & CRM</li>
+          <li>Referral income share</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="pc-cta feat-cta">Get Growth</a>
+      </div>
+      <div class="pc">
+        <div class="pc-nm">Portfolio</div>
+        <div class="pc-pr">$39</div>
+        <div class="pc-per">/month · per property (5+)</div>
+        <ul class="pc-feats">
+          <li>Everything in Growth</li>
+          <li>Multi-property dashboard</li>
+          <li>Bulk property setup</li>
+          <li>Portfolio-level analytics</li>
+          <li>Dedicated onboarding call</li>
+          <li>Priority support</li>
+          <li>Custom branding options</li>
+        </ul>
+        <a href="mailto:dealsconnectllc@gmail.com" class="pc-cta">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="inner">
+    <p class="sec-lbl">What hosts say</p>
+    <h2 class="sec-h">From hosts who made the switch.</h2>
+    <div class="tg">
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"I manage 8 properties in Rosemary Beach and used to spend 2 hours a day answering the same questions. Since Vitoria, I check the dashboard once a week. My guests leave better reviews than ever."</p>
+        <div class="by">— Michael R., property manager · 8 properties · Rosemary Beach</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"My guests actually mentioned Vitoria in their Airbnb review by name. They said it felt like having a local friend. I've never had that before in 6 years of hosting."</p>
+        <div class="by">— Sandra L., individual host · 2 properties · Alys Beach</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"Our HOA deployed My30A Host across 40+ properties in WaterColor. The consistency of guest experience improved overnight. Every guest gets the same excellent welcome."</p>
+        <div class="by">— James T., HOA board member · WaterColor community</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"The grocery delivery alone paid for 3 months of my subscription in the first week. Guests love arriving to a stocked kitchen. I love the 5-star reviews that follow."</p>
+        <div class="by">— Patricia M., Vacasa property manager · 12 properties · 30A</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--soft);text-align:center;margin-top:20px;">* Testimonials are representative examples. Real guest reviews available upon request.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="inner">
+    <h2>Ready to give your guests<br>a <em style="font-style:italic;color:var(--glt);">5-star concierge</em>?</h2>
+    <p>Set up in 10 minutes. First month free. No contract, no setup fees. Cancel anytime.</p>
+    <div class="cta-btns">
+      <a href="mailto:dealsconnectllc@gmail.com" class="btn-pri"><i class="ti ti-rocket" style="font-size:15px;"></i>Get started — it's free</a>
+      <a href="host-dashboard.html" class="btn-sec"><i class="ti ti-layout-dashboard" style="font-size:15px;"></i>See the dashboard</a>
+    </div>
+    <p class="cta-note">Questions? Email us at dealsconnectllc@gmail.com or text (850) 687-7999</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">MY30A HOST</div>
+    <div class="footer-links">
+      <a href="index.html">Guest app</a>
+      <a href="#pricing">Pricing</a>
+      <a href="mailto:dealsconnectllc@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 My30A Host · 30A, Florida · Welson & Vitoria Santos</div>
+  </div>
+</footer>
+
+</body>
+</html>

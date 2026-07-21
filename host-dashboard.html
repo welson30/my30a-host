@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Host Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--cream:#faf7f2;--white:#fff;--ink:#1a1a18;--soft:#6b6356;--deep:#0a1628;--border:rgba(0,0,0,.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-height:100vh;}
+
+/* SIDEBAR */
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:220px;background:var(--deep);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh;}
+.sb-logo{padding:22px 18px;border-bottom:1px solid rgba(255,255,255,.06);}
+.sb-brand{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;margin-bottom:1px;}
+.sb-prop{font-size:10.5px;color:rgba(255,255,255,.35);}
+.sb-nav{padding:12px 10px;flex:1;}
+.sbn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;font-size:13px;color:rgba(255,255,255,.45);cursor:pointer;margin-bottom:2px;transition:all .15s;}
+.sbn:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8);}
+.sbn.on{background:rgba(13,79,69,.5);color:#fff;}
+.sbn i{font-size:17px;flex-shrink:0;}
+.sb-plan{margin:10px;background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.18);border-radius:10px;padding:12px;}
+.sb-plan p{font-size:10.5px;color:var(--gold);font-weight:500;margin-bottom:2px;}
+.sb-plan span{font-size:11.5px;color:#fff;}
+.sb-plan a{display:block;margin-top:8px;text-align:center;font-size:11.5px;color:var(--gold);text-decoration:none;background:rgba(201,169,110,.12);border-radius:5px;padding:5px;}
+.sb-foot{padding:14px;border-top:1px solid rgba(255,255,255,.06);}
+.sb-host{display:flex;align-items:center;gap:8px;}
+.sb-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:#fff;font-style:italic;}
+.sb-hn{font-size:12.5px;color:rgba(255,255,255,.7);}
+.sb-hr{font-size:10px;color:rgba(255,255,255,.3);}
+
+/* MAIN */
+.main{flex:1;overflow:auto;}
+.top-bar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.top-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;}
+.top-right{display:flex;align-items:center;gap:10px;}
+.notif{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
+.notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:#e74c3c;}
+.prop-switch{font-size:12.5px;border:1px solid var(--border);border-radius:7px;padding:6px 12px;background:var(--white);cursor:pointer;display:flex;align-items:center;gap:5px;color:var(--soft);}
+.content{padding:24px;}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.stat-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--ink);margin-bottom:1px;}
+.stat-l{font-size:11.5px;color:var(--soft);}
+.stat-ch{font-size:11px;margin-top:3px;}
+.ch-up{color:#1a8a3a;}
+.ch-dn{color:#c0392b;}
+
+/* GRID 2-COL */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.g3{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.card h3{font-size:13px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.card h3 i{font-size:15px;color:var(--teal);}
+
+/* PROPERTY CONFIG */
+.config-field{margin-bottom:12px;}
+.cfg-lbl{font-size:11px;color:var(--soft);margin-bottom:4px;display:block;}
+.cfg-val{font-size:13.5px;font-weight:500;color:var(--ink);background:var(--cream);border-radius:7px;padding:8px 11px;display:flex;align-items:center;justify-content:space-between;}
+.cfg-edit{font-size:11px;color:var(--teal);cursor:pointer;}
+.tog{width:38px;height:21px;border-radius:10px;cursor:pointer;position:relative;flex-shrink:0;}
+.tog.on{background:var(--teal);}
+.tog.off{background:#ccc;}
+.tog::after{content:'';position:absolute;top:3px;width:15px;height:15px;border-radius:50%;background:#fff;transition:left .2s;}
+.tog.on::after{left:20px;}
+.tog.off::after{left:3px;}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.tog-row:last-child{border:none;}
+.tr-lbl{font-size:13px;color:var(--ink);}
+.tr-sub{font-size:11px;color:var(--soft);}
+
+/* QUESTIONS */
+.q-bar{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.q-lbl{font-size:12.5px;color:var(--ink);flex:1;}
+.q-ct{font-size:12px;font-weight:600;color:var(--soft);width:32px;text-align:right;}
+.q-track{flex:1;height:6px;background:var(--cream);border-radius:999px;overflow:hidden;}
+.q-fill{height:100%;border-radius:999px;background:var(--teal);}
+
+/* PICKS */
+.pick{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
+.pick:last-child{border:none;}
+.pick-ico{width:30px;height:30px;border-radius:7px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.pick-nm{font-size:12.5px;font-weight:500;flex:1;}
+.pick-cat{font-size:10.5px;color:var(--soft);}
+.pick-act{font-size:11px;color:var(--soft);cursor:pointer;}
+
+/* ORDERS */
+.ord{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.ord:last-child{border:none;}
+.ord-ico{width:32px;height:32px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ord-nm{font-size:12.5px;font-weight:500;margin-bottom:1px;}
+.ord-meta{font-size:11px;color:var(--soft);}
+.ord-val{font-size:13px;font-weight:600;color:var(--teal);white-space:nowrap;margin-left:auto;}
+.badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;}
+.b-ok{background:#e3f0ec;color:var(--teal);}
+.b-pend{background:#fef9ec;color:#8a6020;}
+.b-soon{background:#f4f0fb;color:#6a3a8a;}
+
+/* GUEST HISTORY */
+.gh{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
+.gh:last-child{border:none;}
+.gh-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--gold));display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-family:'Cormorant Garamond',serif;font-style:italic;flex-shrink:0;}
+.gh-nm{font-size:12.5px;font-weight:500;margin-bottom:1px;}
+.gh-meta{font-size:11px;color:var(--soft);}
+.gh-tags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;}
+.gh-tag{font-size:9.5px;background:var(--cream);border-radius:4px;padding:2px 6px;color:var(--soft);}
+
+/* ADD PICK BTN */
+.add-pick{display:flex;align-items:center;gap:7px;padding:9px;border:1.5px dashed var(--border);border-radius:8px;font-size:12.5px;color:var(--soft);cursor:pointer;margin-top:8px;}
+.add-pick:hover{border-color:var(--tm);color:var(--teal);}
+
+/* QR */
+.qr-box{background:var(--cream);border-radius:12px;padding:16px;text-align:center;}
+.qr-sq{width:100px;height:100px;background:var(--white);border:1px solid var(--border);border-radius:10px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;}
+.qr-sq i{font-size:40px;color:var(--soft);}
+.qr-url{font-size:10.5px;color:var(--teal);word-break:break-all;margin-bottom:8px;}
+.qr-btn{display:inline-block;font-size:12px;font-weight:500;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:6px 14px;cursor:pointer;}
+
+@media(max-width:860px){
+  .sidebar{display:none;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .g2,.g3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-brand">My30A Host</div>
+    <div class="sb-prop">Rosemary Beach House 12</div>
+  </div>
+  <div class="sb-nav">
+    <div class="sbn on"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+    <div class="sbn" onclick="showToast('Property settings')"><i class="ti ti-home-cog"></i>Property setup</div>
+    <div class="sbn" onclick="showToast('View-only — Vitoria handles all responses')"><i class="ti ti-messages"></i>Guest chats</div>
+    <div class="sbn" onclick="showToast('Service orders')"><i class="ti ti-shopping-bag"></i>Orders</div>
+    <div class="sbn" onclick="showToast('Analytics')"><i class="ti ti-chart-bar"></i>Analytics</div>
+    <div class="sbn" onclick="showToast('Partner deals')"><i class="ti ti-ticket"></i>Deals & partners</div>
+    <div class="sbn" onclick="showToast('Guest history')"><i class="ti ti-users"></i>Guest history</div>
+    <div class="sbn" onclick="showToast('Billing')"><i class="ti ti-credit-card"></i>Billing</div>
+  </div>
+  <div class="sb-plan">
+    <p>Current plan</p>
+    <span>Growth · $59/month</span>
+    <a href="#">Upgrade to Portfolio</a>
+  </div>
+  <div class="sb-foot">
+    <div class="sb-host">
+      <div class="sb-av">W</div>
+      <div><div class="sb-hn">Welson Santos</div><div class="sb-hr">Host · Growth plan</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-bar">
+    <div class="top-title">Dashboard</div>
+    <div class="top-right">
+      <div class="prop-switch"><i class="ti ti-home" style="font-size:14px;"></i>Rosemary Beach House 12<i class="ti ti-chevron-down" style="font-size:13px;"></i></div>
+      <div class="notif" onclick="showToast('2 new guest requests')"><i class="ti ti-bell" style="font-size:17px;color:var(--soft);"></i><div class="notif-dot"></div></div>
+      <a href="index.html" style="font-size:12.5px;color:var(--soft);text-decoration:none;border:1px solid var(--border);padding:6px 12px;border-radius:7px;">← Guest app</a>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- STATS -->
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-ico" style="background:#e3f0ec;"><i class="ti ti-messages" style="font-size:18px;color:var(--teal);"></i></div>
+        <div class="stat-n">183</div>
+        <div class="stat-l">Guest chats this month</div>
+        <div class="stat-ch ch-up">↑ 24% vs last month</div>
+      </div>
+      <div class="stat">
+        <div class="stat-ico" style="background:#e3f0ec;"><i class="ti ti-star" style="font-size:18px;color:var(--teal);"></i></div>
+        <div class="stat-n">4.8★</div>
+        <div class="stat-l">Guest satisfaction</div>
+        <div class="stat-ch ch-up">↑ from 4.5 last month</div>
+      </div>
+      <div class="stat">
+        <div class="stat-ico" style="background:#fef9ec;"><i class="ti ti-shopping-bag" style="font-size:18px;color:#8a6020;"></i></div>
+        <div class="stat-n">11</div>
+        <div class="stat-l">Service orders</div>
+        <div class="stat-ch" style="color:var(--soft);">7 grocery · 2 transfers · 2 welcome</div>
+      </div>
+      <div class="stat">
+        <div class="stat-ico" style="background:#f5f0fb;"><i class="ti ti-users" style="font-size:18px;color:#6a3a8a;"></i></div>
+        <div class="stat-n">47</div>
+        <div class="stat-l">Guests this month</div>
+        <div class="stat-ch ch-up">↑ 12% vs last month</div>
+      </div>
+    </div>
+
+    <div class="g3">
+      <!-- PROPERTY CONFIG -->
+      <div class="card">
+        <h3><i class="ti ti-home-cog"></i>Property configuration</h3>
+        <div class="config-field">
+          <label class="cfg-lbl">WiFi network</label>
+          <div class="cfg-val">RosemaryBeach12 <span class="cfg-edit">Edit</span></div>
+        </div>
+        <div class="config-field">
+          <label class="cfg-lbl">WiFi password</label>
+          <div class="cfg-val">SunsetVibes2026 <span class="cfg-edit">Edit</span></div>
+        </div>
+        <div class="config-field">
+          <label class="cfg-lbl">Check-in · Check-out</label>
+          <div class="cfg-val">4:00 PM · 10:00 AM <span class="cfg-edit">Edit</span></div>
+        </div>
+        <div class="config-field">
+          <label class="cfg-lbl">Access instructions</label>
+          <div class="cfg-val" style="font-size:12.5px;">Lockbox at front door, code 4821 <span class="cfg-edit">Edit</span></div>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="tog-row">
+            <div><div class="tr-lbl">Authorize early access</div><div class="tr-sub">Allow My30A Host in for grocery delivery before check-in</div></div>
+            <div class="tog on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></div>
+          </div>
+          <div class="tog-row">
+            <div><div class="tr-lbl">Suggest re-stays</div><div class="tr-sub">Vitoria may suggest rebooking next year</div></div>
+            <div class="tog on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></div>
+          </div>
+          <div class="tog-row">
+            <div><div class="tr-lbl">Show concierge services</div><div class="tr-sub">Grocery delivery, transfers, welcome setups</div></div>
+            <div class="tog on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QR CODE -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card">
+          <h3><i class="ti ti-qrcode"></i>Guest QR code</h3>
+          <div class="qr-box">
+            <div class="qr-sq"><i class="ti ti-qrcode"></i></div>
+            <div class="qr-url">my30ahost.com/app?p=rosemary12</div>
+            <div style="display:flex;gap:7px;justify-content:center;">
+              <div class="qr-btn" onclick="showToast('QR code downloaded')"><i class="ti ti-download" style="font-size:12px;"></i> Download</div>
+              <div class="qr-btn" onclick="showToast('Print ready PDF created')"><i class="ti ti-printer" style="font-size:12px;"></i> Print card</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,var(--deep),var(--teal));">
+          <h3 style="color:rgba(255,255,255,.5);">Vitoria is active</h3>
+          <p style="font-size:13px;color:#fff;line-height:1.5;">Your guests are currently chatting with Vitoria. She's answered <strong>183 questions</strong> this month without a single text to you.</p>
+          <div style="margin-top:10px;font-size:11.5px;color:rgba(255,255,255,.5);">Last guest chat: 2 hours ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <!-- TOP QUESTIONS -->
+      <div class="card">
+        <h3><i class="ti ti-chart-bar"></i>Top guest questions this month</h3>
+        <div class="q-bar"><div class="q-lbl">WiFi password</div><div class="q-ct">32</div><div class="q-track"><div class="q-fill" style="width:100%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Best restaurant recommendation</div><div class="q-ct">24</div><div class="q-track"><div class="q-fill" style="width:75%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Closest beach access</div><div class="q-ct">18</div><div class="q-track"><div class="q-fill" style="width:56%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Grocery delivery request</div><div class="q-ct">11</div><div class="q-track"><div class="q-fill" style="width:34%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Golf cart rental</div><div class="q-ct">9</div><div class="q-track"><div class="q-fill" style="width:28%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Check-out instructions</div><div class="q-ct">8</div><div class="q-track"><div class="q-fill" style="width:25%"></div></div></div>
+        <div class="q-bar"><div class="q-lbl">Airport transfer request</div><div class="q-ct">6</div><div class="q-track"><div class="q-fill" style="width:19%"></div></div></div>
+      </div>
+
+      <!-- CURATED PICKS -->
+      <div class="card">
+        <h3><i class="ti ti-star"></i>Your curated picks</h3>
+        <div class="pick"><div class="pick-ico">🍽️</div><div style="flex:1;"><div class="pick-nm">Gallion's Rosemary Beach</div><div class="pick-cat">Fine dining · date night</div></div><span class="pick-act"><i class="ti ti-grip-vertical" style="font-size:14px;"></i></span></div>
+        <div class="pick"><div class="pick-ico">☕</div><div style="flex:1;"><div class="pick-nm">Amavida Coffee</div><div class="pick-cat">Morning coffee · walkable</div></div><span class="pick-act"><i class="ti ti-grip-vertical" style="font-size:14px;"></i></span></div>
+        <div class="pick"><div class="pick-ico">🏖️</div><div style="flex:1;"><div class="pick-nm">Inlet Beach Regional Access</div><div class="pick-cat">Best beach · 7 min drive</div></div><span class="pick-act"><i class="ti ti-grip-vertical" style="font-size:14px;"></i></span></div>
+        <div class="pick"><div class="pick-ico">🍻</div><div style="flex:1;"><div class="pick-nm">The Red Bar</div><div class="pick-cat">Live music · Grayton Beach</div></div><span class="pick-act"><i class="ti ti-grip-vertical" style="font-size:14px;"></i></span></div>
+        <div class="add-pick" onclick="showToast('Add a new pick')"><i class="ti ti-plus" style="font-size:14px;"></i>Add a favorite spot…</div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <!-- RECENT ORDERS -->
+      <div class="card">
+        <h3><i class="ti ti-shopping-bag"></i>Recent service orders</h3>
+        <div class="ord"><div class="ord-ico">🛒</div><div><div class="ord-nm">Grocery delivery — Johnson family</div><div class="ord-meta">Jul 14 · Full kit (42 items)</div></div><div style="text-align:right;margin-left:auto;"><div style="font-size:11px;color:var(--soft);">42 items</div><span class="badge b-ok">Delivered</span></div></div>
+        <div class="ord"><div class="ord-ico">🚗</div><div><div class="ord-nm">Airport transfer — Martinez family</div><div class="ord-meta">Jul 12 · ECP → Rosemary Beach</div></div><div style="text-align:right;margin-left:auto;"><div style="font-size:11px;color:var(--soft);">ECP → 30A</div><span class="badge b-ok">Done</span></div></div>
+        <div class="ord"><div class="ord-ico">🌺</div><div><div class="ord-nm">Welcome setup — Thompson</div><div class="ord-meta">Jul 10 · Coastal Luxury</div></div><div style="text-align:right;margin-left:auto;"><div style="font-size:11px;color:var(--soft);">Coastal pkg</div><span class="badge b-ok">Done</span></div></div>
+        <div class="ord"><div class="ord-ico">🛒</div><div><div class="ord-nm">Grocery delivery — Lee family</div><div class="ord-meta">Jul 19 · arriving Thu · pending</div></div><div style="text-align:right;margin-left:auto;"><div class="ord-val">$189</div><span class="badge b-pend">Pending</span></div></div>
+        <div class="ord"><div class="ord-ico">🎣</div><div><div class="ord-nm">Fishing charter — Williams</div><div class="ord-meta">Jul 22 · half-day · referral sent</div></div><div style="text-align:right;margin-left:auto;"><div class="ord-val">~$84 comm</div><span class="badge b-soon">Referral</span></div></div>
+      </div>
+
+      <!-- GUEST HISTORY -->
+      <div class="card">
+        <h3><i class="ti ti-users"></i>Recent guests</h3>
+        <div class="gh"><div class="gh-av">J</div><div><div class="gh-nm">Johnson family · Boston, MA</div><div class="gh-meta">Jul 13–20 · 7 nights · 4 guests</div><div class="gh-tags"><span class="gh-tag">Grocery delivery</span><span class="gh-tag">Fishing charter</span><span class="gh-tag">★5 review</span></div></div></div>
+        <div class="gh"><div class="gh-av">M</div><div><div class="gh-nm">Martinez family · Dallas, TX</div><div class="gh-meta">Jul 10–13 · 3 nights · 6 guests</div><div class="gh-tags"><span class="gh-tag">Airport transfer</span><span class="gh-tag">Dinner reservation</span></div></div></div>
+        <div class="gh"><div class="gh-av">T</div><div><div class="gh-nm">Thompson couple · Chicago, IL</div><div class="gh-meta">Jul 8–11 · 3 nights · 2 guests</div><div class="gh-tags"><span class="gh-tag">Welcome Coastal</span><span class="gh-tag">Golf cart</span><span class="gh-tag">★5 review</span></div></div></div>
+        <div class="gh"><div class="gh-av">L</div><div><div class="gh-nm">Lee family · Atlanta, GA</div><div class="gh-meta">Jul 19–26 · arriving Thu</div><div class="gh-tags"><span class="gh-tag">Grocery order pending</span></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(8px);background:rgba(15,15,12,.92);color:#fff;font-size:12px;font-weight:500;padding:9px 16px;border-radius:999px;opacity:0;transition:all .22s;white-space:nowrap;z-index:99;pointer-events:none;" id="t"></div>
+<script>
+let tt;
+function showToast(m){const t=document.getElementById('t');t.textContent=m;t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';clearTimeout(tt);tt=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(8px)'},2500);}
+</script>
+</body>
+</html>

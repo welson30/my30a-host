@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Watersound Inn — Your Personal Concierge</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--deep:#1a120a;--sand:#c4a882;--sandlt:#e8d5b8;--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--glt:#e8d5a3;--cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--border:rgba(0,0,0,.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:#1a120a;}
+body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;}
+.wrap{width:100%;max-width:420px;height:100dvh;max-height:860px;border-radius:0;overflow:hidden;position:relative;background:var(--deep);display:flex;flex-direction:column;}
+@media(min-width:480px){.wrap{border-radius:40px;height:860px;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.07);}}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateX(18px);transition:opacity .22s,transform .22s;}
+.scr.on{opacity:1;pointer-events:all;transform:none;}
+
+/* WELCOME */
+#sw{background:linear-gradient(180deg,#1a120a 0%,#2a1e10 20%,#c4a882 55%,#8a6840 62%,#1a3a30 68%,#0d2a20 100%);}
+.wa{position:absolute;inset:0;pointer-events:none;}
+.wbch{position:absolute;top:48%;inset-x:0;bottom:0;background:linear-gradient(180deg,#c4a882,#a07848 30%,#6a5030);}
+.wsea{position:absolute;top:57%;inset-x:0;height:14%;background:linear-gradient(180deg,rgba(13,79,69,.8),rgba(13,42,32,.6));}
+.wc{position:relative;z-index:2;margin-top:auto;padding:0 28px 44px;text-align:center;}
+.hotel-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);color:var(--glt);font-size:10px;font-weight:500;padding:4px 12px;border-radius:999px;margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase;}
+.wbrand{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:#fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;}
+.wgreet{font-family:'Cormorant Garamond',serif;font-size:14.5px;font-style:italic;color:var(--glt);margin-bottom:3px;}
+.wsub{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:18px;}
+.win{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:10px 14px;font-size:13px;color:#fff;font-family:'Inter',sans-serif;margin-bottom:9px;}
+.win::placeholder{color:rgba(255,255,255,.28);}
+.wbtn{width:100%;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:9px;padding:13px;font-size:13.5px;font-weight:600;color:var(--deep);cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:10px;}
+.wskip{font-size:11.5px;color:rgba(255,255,255,.25);cursor:pointer;}
+
+/* MAIN */
+#sa{background:var(--deep);display:flex;flex-direction:column;}
+.hdr{background:rgba(26,18,10,.97);padding:44px 16px 10px;flex-shrink:0;}
+.vrow{display:flex;align-items:center;gap:9px;}
+.vav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;font-style:italic;border:1px solid rgba(201,169,110,.2);flex-shrink:0;}
+.vnm{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#fff;}
+.vst{font-size:9.5px;color:var(--gold);display:flex;align-items:center;gap:3px;}
+.vdot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+.hotel-chip{background:rgba(196,168,130,.12);border:1px solid rgba(196,168,130,.22);color:var(--sandlt);font-size:9.5px;padding:2px 8px;border-radius:999px;}
+.tc{flex:1;overflow:hidden;position:relative;}
+.tp{position:absolute;inset:0;overflow-y:auto;display:none;flex-direction:column;}
+.tp.on{display:flex;}
+.bnav{display:flex;flex-shrink:0;background:rgba(26,18,10,.98);border-top:1px solid rgba(255,255,255,.05);padding:6px 0 18px;}
+.nt{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:9px;color:rgba(255,255,255,.28);cursor:pointer;padding:4px 0;}
+.nt i{font-size:19px;}
+.nt.on{color:var(--gold);}
+
+/* CHAT */
+.cthread{flex:1;padding:12px;display:flex;flex-direction:column;gap:11px;overflow-y:auto;}
+.mv{display:flex;gap:7px;align-items:flex-start;}
+.avsm{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:10px;color:#fff;font-style:italic;border:1px solid rgba(201,169,110,.2);flex-shrink:0;margin-top:2px;}
+.bv{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);border-radius:3px 11px 11px 11px;padding:9px 11px;font-size:12.5px;color:rgba(255,255,255,.88);line-height:1.52;max-width:83%;}
+.bv strong{color:var(--glt);}
+.mg{display:flex;justify-content:flex-end;}
+.bg{background:linear-gradient(135deg,var(--teal),var(--tm));border-radius:11px 3px 11px 11px;padding:9px 11px;font-size:12.5px;color:rgba(255,255,255,.92);line-height:1.52;max-width:78%;}
+.chips{padding:0 12px 9px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.chip{white-space:nowrap;background:rgba(255,255,255,.05);border:1px solid rgba(196,168,130,.18);border-radius:20px;padding:5px 12px;font-size:11.5px;color:rgba(255,255,255,.58);cursor:pointer;flex-shrink:0;}
+.comp{padding:9px 12px 7px;border-top:1px solid rgba(255,255,255,.05);display:flex;gap:8px;align-items:center;flex-shrink:0;background:rgba(26,18,10,.98);}
+.cin{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:9px 15px;font-size:13px;color:#fff;font-family:'Inter',sans-serif;}
+.cin::placeholder{color:rgba(255,255,255,.26);}
+.sndbtn{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8863c);border:none;display:flex;align-items:center;justify-content:center;color:var(--deep);cursor:pointer;flex-shrink:0;}
+
+/* AMENITIES TAB */
+.amhero{background:linear-gradient(160deg,#1a120a,#2a1810);padding:16px;flex-shrink:0;}
+.amhero h2{font-family:'Cormorant Garamond',serif;font-size:21px;color:#fff;font-weight:500;margin-bottom:2px;}
+.amhero p{font-size:10.5px;color:rgba(255,255,255,.4);}
+.amlist{background:var(--cream);flex:1;padding:13px;overflow-y:auto;}
+.amlbl{font-size:9.5px;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--soft);margin:0 0 8px;}
+.amrow{background:#fff;border:.5px solid rgba(0,0,0,.07);border-radius:11px;padding:12px;margin-bottom:7px;display:flex;gap:9px;align-items:flex-start;}
+.amico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.amnm{font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.amds{font-size:11px;color:var(--soft);line-height:1.5;}
+.ambdg{font-size:9.5px;padding:2px 7px;border-radius:999px;display:inline-block;margin-top:4px;}
+.ab-incl{background:#e3f0ec;color:#0d4f45;}
+.ab-room{background:#e8f0fb;color:#1a3a8a;}
+.ab-req{background:#fef9ec;color:#8a6020;}
+
+/* EXPLORE */
+.mbanner{background:linear-gradient(135deg,#1a120a,#0d3a2a);padding:13px;display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0;}
+.mbanner i{font-size:19px;color:var(--gold);}
+.efil{padding:8px 13px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;background:var(--cream);}
+.fc{white-space:nowrap;background:#fff;border:.5px solid rgba(0,0,0,.09);border-radius:20px;padding:5px 13px;font-size:11.5px;color:var(--ink);cursor:pointer;}
+.fc.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+.exlist{background:var(--cream);flex:1;padding:11px;overflow-y:auto;}
+.prow{background:#fff;border:.5px solid rgba(0,0,0,.06);border-radius:10px;padding:10px 11px;margin-bottom:6px;display:flex;gap:9px;align-items:flex-start;}
+.pdot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;flex-shrink:0;}
+.pnm{font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:1px;}
+.pm{font-size:10.5px;color:var(--soft);}
+
+/* PROFILE */
+.phero{background:linear-gradient(160deg,#1a120a,#0d3040);padding:44px 16px 20px;text-align:center;flex-shrink:0;}
+.pav{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin:0 auto 9px;border:2px solid rgba(201,169,110,.3);}
+.pnm2{font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;font-weight:500;margin-bottom:1px;}
+.pbody{background:var(--cream);flex:1;overflow-y:auto;padding:13px;}
+.scard{background:#fff;border:.5px solid rgba(0,0,0,.06);border-radius:9px;padding:10px;margin-bottom:7px;}
+.sc1{font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:1px;}
+.sc2{font-size:10.5px;color:var(--soft);}
+.slbl{font-size:9.5px;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--soft);margin:0 0 8px;}
+
+.toast{position:absolute;bottom:80px;left:50%;transform:translateX(-50%) translateY(8px);background:rgba(15,15,12,.92);color:#fff;font-size:12px;font-weight:500;padding:9px 16px;border-radius:999px;opacity:0;transition:all .22s;white-space:nowrap;z-index:99;pointer-events:none;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+
+<!-- WELCOME -->
+<div class="scr on" id="sw">
+  <div class="wa"><div class="wbch"></div><div class="wsea"></div></div>
+  <div class="wc">
+    <div class="hotel-badge"><i class="ti ti-building" style="font-size:10px;"></i>Watersound Inn · St. Joe Company</div>
+    <div class="wbrand">Watersound Inn</div>
+    <div class="wgreet">I'm Vitoria, your personal concierge</div>
+    <div class="wsub">Speaks 50+ languages — responds in yours · Available 24/7</div>
+    <input class="win" placeholder="Your name (optional)" id="wname">
+    <input class="win" placeholder="Room number (optional)" id="wroom">
+    <button class="wbtn" onclick="enterApp()">Begin your stay experience</button>
+    <div class="wskip" onclick="enterApp()">Skip →</div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="scr" id="sa">
+  <div class="hdr">
+    <div class="vrow">
+      <div class="vav">V</div>
+      <div><div class="vnm">Vitoria</div><div class="vst"><div class="vdot"></div>Watersound Inn concierge</div></div>
+      <span class="hotel-chip" style="margin-left:auto;">Room <span id="rn">—</span></span>
+    </div>
+  </div>
+  <div class="tc">
+    <!-- CHAT -->
+    <div class="tp on" id="t-chat">
+      <div class="cthread" id="ct">
+        <div class="mv"><div class="avsm">V</div><div class="bv">Welcome to <strong>Watersound Inn</strong>! 🌊 I'm Vitoria, your personal concierge during your stay. I can help with beach club access, dining at Camp Creek, local recommendations, transfers, activities — and anything else you need. What can I help with?</div></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-left:31px;">
+          <button class="chip" onclick="dc('beach_club')">🏖 Beach club access</button>
+          <button class="chip" onclick="dc('camp_creek')">⛳ Camp Creek Golf</button>
+          <button class="chip" onclick="dc('checkout')">🔑 Check-out info</button>
+          <button class="chip" onclick="dc('dining')">🍽 Dining options</button>
+        </div>
+      </div>
+      <div class="chips">
+        <div class="chip" onclick="dc('pool')">🏊 Pool & facilities</div>
+        <div class="chip" onclick="dc('wifi')">📶 WiFi & room info</div>
+        <div class="chip" onclick="dc('transfer')">🚗 Airport transfer</div>
+        <div class="chip" onclick="dc('fishing')">🎣 Fishing charter</div>
+        <div class="chip" onclick="dc('golf_cart')">🛺 Golf cart</div>
+        <div class="chip" onclick="dc('events')">🎉 Events this week</div>
+      </div>
+      <div class="comp">
+        <input class="cin" id="ci" placeholder="Ask anything — in any language…" onkeydown="if(event.key==='Enter')sc()">
+        <button class="sndbtn" onclick="sc()"><i class="ti ti-arrow-up" style="font-size:15px;"></i></button>
+      </div>
+    </div>
+
+    <!-- AMENITIES -->
+    <div class="tp" id="t-am">
+      <div class="amhero"><h2>Your amenities</h2><p>Watersound Inn · Included with your stay</p></div>
+      <div class="amlist">
+        <p class="amlbl">Included with all rooms</p>
+        <div class="amrow"><div class="amico" style="background:#e3f0ec;">🏖️</div><div><div class="amnm">Watersound Beach Club</div><div class="amds">Private beach with beach chairs, umbrellas, and attended service. 3 pools, beach bar, and poolside restaurant. Full access for all inn guests.</div><span class="ambdg ab-incl">✓ Included for all guests</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#e8f0fb;">🏊</div><div><div class="amnm">Pool complex</div><div class="amds">3 pools on property including a lap pool. Open 7am–10pm. Towels provided. Poolside service available 11am–6pm.</div><span class="ambdg ab-incl">✓ Included</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#fef9ec;">🍽️</div><div><div class="amnm">The Gathering Place Restaurant</div><div class="amds">On-site restaurant serving breakfast, lunch and dinner. Breakfast included for all guests 7–10am. Dinner reservations recommended.</div><span class="ambdg ab-room">Breakfast included · Dinner à la carte</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#fef9ec;">📶</div><div><div class="amnm">WiFi & room info</div><div class="amds">Network: <strong>WatersoundInn_Guest</strong> · Password: <strong>Coastal2026</strong> · Check-in: 3pm · Check-out: 11am · Concierge desk: 8am–8pm · Front desk 24h: (850) 534-5000</div><span class="ambdg ab-incl">✓ In your room</span></div></div>
+        <p class="amlbl" style="margin-top:14px;">Available on request</p>
+        <div class="amrow"><div class="amico" style="background:#f0f8ee;">⛳</div><div><div class="amnm">Camp Creek Golf Club</div><div class="amds">18-hole championship course. Inn guests receive preferred tee times and discounted rates. Must request through Vitoria or the concierge desk 24h in advance.</div><span class="ambdg ab-req">Request via Vitoria</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#f4f0fb;">💆</div><div><div class="amnm">Spa at Watersound</div><div class="amds">Full-service spa with massages, facials and wellness treatments. Appointments recommended 48h in advance especially on weekends.</div><span class="ambdg ab-req">Book via Vitoria</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#e8f4fb;">🚤</div><div><div class="amnm">Water activities</div><div class="amds">Kayaking, paddleboarding, and fishing charters available through our preferred partners. Ask Vitoria to arrange.</div><span class="ambdg ab-req">Arrange via Vitoria</span></div></div>
+        <div class="amrow"><div class="amico" style="background:#f5f0fb;">🛺</div><div><div class="amnm">Golf cart rental</div><div class="amds">Best way to explore 30A. Delivered to the inn. Ask Vitoria for partner rate and availability. Code MY30A for 10% off.</div><span class="ambdg ab-req">Request via Vitoria</span></div></div>
+      </div>
+    </div>
+
+    <!-- EXPLORE -->
+    <div class="tp" id="t-exp">
+      <div class="mbanner" onclick="toast('3D satellite map — live in app')">
+        <i class="ti ti-map-2"></i>
+        <div><p style="font-size:12.5px;font-weight:500;color:#fff;margin:0;">30A Interactive Map</p><span style="font-size:10px;color:rgba(255,255,255,.5);">Tap to open 3D satellite view →</span></div>
+      </div>
+      <div class="efil">
+        <div class="fc on" onclick="sf(this,'all')">All</div>
+        <div class="fc" onclick="sf(this,'beach')">🏖 Beaches</div>
+        <div class="fc" onclick="sf(this,'bar')">🍻 Bars</div>
+        <div class="fc" onclick="sf(this,'food')">🍽 Dining</div>
+        <div class="fc" onclick="sf(this,'activity')">🎠 Activities</div>
+      </div>
+      <div class="exlist" id="pl"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="tp" id="t-prof">
+      <div class="phero"><div class="pav" id="pav">G</div><div class="pnm2" id="pnm">Guest</div><div style="font-size:10.5px;color:rgba(255,255,255,.4);">Room <span id="rn2">—</span> · Watersound Inn</div></div>
+      <div class="pbody">
+        <p class="slbl">Your stay</p>
+        <div class="scard"><div class="sc1">Watersound Inn</div><div class="sc2">Check-in: 3:00 PM · Check-out: 11:00 AM</div></div>
+        <div class="scard"><div class="sc1">Beach club access</div><div class="sc2">Included · Watersound Beach Club — private beach + 3 pools</div></div>
+        <div class="scard"><div class="sc1">Concierge desk</div><div class="sc2">8am–8pm daily · Front desk 24h: (850) 534-5000</div></div>
+        <p class="slbl" style="margin-top:14px;">Requests & services</p>
+        <div class="scard"><div class="sc1">Camp Creek Golf tee time</div><div class="sc2">Request 24h in advance via Vitoria or concierge desk</div></div>
+        <div class="scard"><div class="sc1">Airport transfer</div><div class="sc2">ECP (~30 min) · VPS (~1h) · Private ride · From $150</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bnav">
+    <div class="nt on" id="n-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
+    <div class="nt" id="n-am" onclick="switchTab('am')"><i class="ti ti-building-estate"></i><span>Amenities</span></div>
+    <div class="nt" id="n-exp" onclick="switchTab('exp')"><i class="ti ti-map"></i><span>Explore</span></div>
+    <div class="nt" id="n-prof" onclick="switchTab('prof')"><i class="ti ti-user-circle"></i><span>My stay</span></div>
+  </div>
+</div>
+
+<div class="toast" id="tst"></div>
+</div>
+
+<script>
+const PLACES=[
+  {n:"Watersound Beach Club",c:"beach",col:"#0d4f45",m:"Private beach · 3 pools · Included",walk:"5m"},
+  {n:"Camp Creek Golf Club",c:"activity",col:"#2f7a4a",m:"Championship course · Inn guests preferred",drv:"3m"},
+  {n:"The Gathering Place",c:"food",col:"#c87040",m:"On-site · Breakfast included · Dinner reservations"},
+  {n:"Amavida Coffee Roasters",c:"food",col:"#7a4a2a",m:"★4.6 · Seagrove Beach",drv:"5m"},
+  {n:"Gallion's Rosemary Beach",c:"bar",col:"#1a5f8a",m:"★4.7 · Fine dining · 12 min",drv:"12m"},
+  {n:"The Red Bar",c:"bar",col:"#1a5f8a",m:"★4.6 · Live music · Grayton Beach",drv:"14m"},
+  {n:"Inlet Beach Regional Access",c:"beach",col:"#2f93a8",m:"Public beach · Parking · 8 min",drv:"8m"},
+  {n:"Grayton Beach State Park",c:"beach",col:"#2f93a8",m:"Dune lake · Trails · 15 min",drv:"15m"},
+  {n:"30A Surf & Paddle",c:"activity",col:"#2f7a4a",m:"Rentals · Kayak · SUP",drv:"5m"},
+  {n:"Pescado Seafood Grill",c:"bar",col:"#1a5f8a",m:"★4.3 · Rooftop · Rosemary Beach",drv:"10m"},
+];
+
+const DEMOS={
+  beach_club:[`<div class="mg"><div class="bg">How do I access the beach club?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">Your stay at Watersound Inn includes <strong>full access to the Watersound Beach Club</strong> 🏖<br><br>• Private beach with attended beach chairs and umbrellas<br>• 3 pools (including lap pool, open 7am–10pm)<br>• Beach bar and poolside restaurant<br>• Towels provided at poolside<br><br>Just show your room key at the club entrance. It's a 5-minute walk from the inn. Anything else?</div></div>`],
+  camp_creek:[`<div class="mg"><div class="bg">Can I play golf at Camp Creek?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">Yes! 🏌️ Inn guests receive <strong>preferred tee times and discounted rates</strong> at Camp Creek Golf Club — it's just 3 minutes away.<br><br>I'll need 24 hours' notice to secure your tee time. Tell me:<br>• What date were you thinking?<br>• How many players?<br>• Morning or afternoon?<br><br>I'll coordinate with the club and confirm your booking.</div></div>`],
+  checkout:[`<div class="mg"><div class="bg">What time is check-out and how do I leave?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv"><strong>Check-out is 11:00 AM.</strong> 🔑<br><br>Simply leave the key card at the front desk or in the room when you're ready to go. No need to call ahead.<br><br>If you'd like a late check-out, ask the front desk the night before — it's $25/hour and subject to availability.<br><br>Need a transfer to the airport? ECP is about 30 minutes away. I can arrange a private car for you.</div></div>`],
+  dining:[`<div class="mg"><div class="bg">Where can we eat tonight?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">A few options for tonight 🍽<br><br><strong>On property:</strong><br>• The Gathering Place — dinner à la carte, reservations recommended<br><br><strong>Nearby (10–15 min):</strong><br>• Gallion's Rosemary Beach — best fine dining on 30A (★4.7)<br>• Pescado Seafood Grill — rooftop, great for sunset<br>• The Red Bar — local favorite, live music (★4.6)<br><br>Want me to call and make a reservation at any of these? That's $35 for hard-to-get spots — or I can send you the OpenTable link for free.</div></div>`],
+  pool:[`<div class="mg"><div class="bg">What are the pool hours?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv"><strong>Pools are open 7am–10pm</strong> daily. 🏊<br><br>Poolside service runs 11am–6pm — towels, drinks, and food ordering at your chair. The lap pool is typically quieter in the mornings. The main pool has the most activity (and the swim-up bar!) from 12pm onwards.</div></div>`],
+  wifi:[`<div class="mg"><div class="bg">What's the WiFi password?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv"><strong>WiFi network:</strong> WatersoundInn_Guest<br><strong>Password:</strong> Coastal2026<br><br>Works throughout the inn and at the pool area. If you have any connectivity issues, the front desk can reset your access. Anything else?</div></div>`],
+  transfer:[`<div class="mg"><div class="bg">Can I get a car to the airport?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">Of course! 🚗 Here are the airports with estimated drive times from Watersound Inn:<br><br>• <strong>ECP</strong> (Northwest FL Beaches) — ~30 min · $150<br>• <strong>VPS</strong> (Destin-Fort Walton) — ~1h · $225<br>• <strong>PNS</strong> (Pensacola) — ~2h · $299<br><br>Which airport and what time is your flight? I'll confirm availability and send a secure payment link.</div></div>`],
+  fishing:[`<div class="mg"><div class="bg">Where can we go fishing?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">Great choice — the Gulf is excellent right now! 🎣 We work with licensed captains out of Destin Harbor, about 20 min away.<br><br>Half-day (4h): ~$600–800 · Full-day (8h): ~$1,100–1,400<br>Up to 6 people · all gear included · kids welcome<br><br>Use code <strong>MY30A</strong> for 10% off. What date works for you?</div></div>`],
+  golf_cart:[`<div class="mg"><div class="bg">Can we rent a golf cart?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">Absolutely — perfect for exploring 30A! 🛺<br><br>We partner with 30A Gulf Carts who will deliver directly to Watersound Inn.<br>4-seat: ~$120–150/day · 6-seat: ~$150–180/day<br>Use code <strong>MY30A</strong> for 10% off.<br><br>What dates do you need it and how many seats?</div></div>`],
+  events:[`<div class="mg"><div class="bg">What's happening on 30A this week?</div></div>`,
+    `<div class="mv"><div class="avsm">V</div><div class="bv">This week on 30A 🎉<br><br><strong>Sat Jul 19</strong> — 30A Songwriters Festival · Grayton Beach State Park · Free<br><strong>Sun Jul 20</strong> — Seaside Farmers Market · 8am–1pm<br><strong>Daily</strong> — Live music at The Red Bar, Grayton Beach<br><br>For the full calendar: <a href="https://30a.com/events" target="_blank" style="color:var(--glt);">30a.com/events →</a></div></div>`],
+};
+
+function enterApp(){
+  const n=document.getElementById('wname').value.trim();
+  const r=document.getElementById('wroom').value.trim();
+  if(n){document.getElementById('pnm').textContent=n;document.getElementById('pav').textContent=n[0].toUpperCase();}
+  if(r){document.getElementById('rn').textContent=r;document.getElementById('rn2').textContent=r;}
+  const g=n?`Welcome, <strong>${n}</strong>!`:'Welcome!';
+  ar(`<div class="mv"><div class="avsm">V</div><div class="bv">${g} I'm Vitoria — your personal concierge at Watersound Inn. You have full access to the <strong>Watersound Beach Club</strong> (private beach + 3 pools), Camp Creek Golf, and everything 30A has to offer. How can I help?</div></div>`);
+  go('sa');
+}
+
+function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function switchTab(t){document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.nt').forEach(n=>n.classList.remove('on'));const el=document.getElementById('t-'+t);const nt=document.getElementById('n-'+t);if(el)el.classList.add('on');if(nt)nt.classList.add('on');if(t==='exp')rp('all');}
+function ar(html){const c=document.getElementById('ct');const d=document.createElement('div');d.innerHTML=html;c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function at(){const c=document.getElementById('ct');const d=document.createElement('div');d.id='typ';d.innerHTML='<div class="mv"><div class="avsm">V</div><div class="bv" style="padding:10px 14px;"><span style="display:flex;gap:5px;"><span style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:tb 1.2s infinite ease-in-out;"></span><span style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:tb 1.2s .15s infinite ease-in-out;"></span><span style="width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:tb 1.2s .3s infinite ease-in-out;"></span></span></div></div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function rt(){const e=document.getElementById('typ');if(e)e.remove();}
+function dc(k){switchTab('chat');go('sa');const p=DEMOS[k];if(!p)return;ar(p[0]);at();setTimeout(()=>{rt();ar(p[1]);},1100);}
+function sc(){const i=document.getElementById('ci');const m=i.value.trim();if(!m)return;i.value='';ar(`<div class="mg"><div class="bg">${m}</div></div>`);at();const l=m.toLowerCase();let k=null;if(l.match(/beach.?club|private.?beach|pool/))k='beach_club';else if(l.match(/camp.?creek|golf.?course|tee.?time/))k='camp_creek';else if(l.match(/check.?out|leave|key/))k='checkout';else if(l.match(/dinner|eat|restaurant|dining/))k='dining';else if(l.match(/pool|swim|lap/))k='pool';else if(l.match(/wifi|password|internet/))k='wifi';else if(l.match(/airport|transfer|car.?service/))k='transfer';else if(l.match(/fish|charter/))k='fishing';else if(l.match(/golf.?cart|cart/))k='golf_cart';else if(l.match(/event|happen|week/))k='events';setTimeout(()=>{rt();if(k&&DEMOS[k])ar(DEMOS[k][1]);else ar(`<div class="mv"><div class="avsm">V</div><div class="bv">In the live app I search our curated local database plus Google Places in real time. Try asking about the beach club, Camp Creek golf, dining, pools, or any local activity! 🌊</div></div>`);},1100);}
+function rp(f){const L=document.getElementById('pl');const ps=f==='all'?PLACES:PLACES.filter(p=>p.c===f);L.innerHTML=ps.map(p=>`<div class="prow" onclick="toast('Map opens in live app')"><div class="pdot" style="background:${p.col};">${p.c==='beach'?'🏖':p.c==='bar'?'🍻':p.c==='activity'?'⛳':'🍽'}</div><div style="flex:1;"><div class="pnm">${p.n}</div><div class="pm">${p.m}</div></div><i class="ti ti-external-link" style="font-size:13px;color:#bbb;"></i></div>`).join('');}
+function sf(el,f){document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));el.classList.add('on');rp(f);}
+let tt;function toast(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2500);}
+document.head.insertAdjacentHTML('beforeend','<style>@keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}</style>');
+</script>
+</body>
+</html>

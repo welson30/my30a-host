@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Developer Technical Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--border:rgba(0,0,0,.08);--blue:#1a4a8a;--coral:#c85a3a;--green:#2a7a3a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);}
+.page{max-width:960px;margin:0 auto;padding:40px 24px 80px;}
+.cover{background:linear-gradient(160deg,#0a1628,#0d4f45);border-radius:16px;padding:40px;margin-bottom:36px;}
+.cover h1{font-family:'Cormorant Garamond',serif;font-size:38px;color:#fff;font-weight:500;margin-bottom:8px;}
+.cover p{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:4px;}
+.cover .meta{display:flex;gap:20px;margin-top:20px;flex-wrap:wrap;}
+.cover .meta span{font-size:12px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:4px;}
+.sec{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;}
+.sec-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.sec-hdr h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;}
+.sec-body{padding:18px;}
+.sprint{border-radius:10px;padding:13px 15px;margin-bottom:10px;border-left:4px solid;}
+.s1{background:#e3f0ec;border-color:var(--teal);}
+.s2{background:#e8f0fb;border-color:var(--blue);}
+.s3{background:#fef9ec;border-color:var(--gold);}
+.s4{background:#fbeae6;border-color:var(--coral);}
+.sprint h3{font-size:13px;font-weight:600;margin-bottom:6px;}
+.sprint ul{font-size:12.5px;color:var(--soft);padding-left:16px;line-height:1.9;}
+code{background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:12px;font-family:monospace;}
+.env{background:#0a1628;border-radius:10px;padding:14px 16px;margin:10px 0;}
+.env p{font-size:12.5px;color:#6ee8d0;font-family:monospace;line-height:2;}
+.env .comment{color:rgba(255,255,255,.3);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--cream);padding:9px 12px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.3px;border-bottom:2px solid var(--border);}
+td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--soft);}
+td strong{color:var(--ink);}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;}
+.b-done{background:#e3f0ec;color:var(--teal);}
+.b-build{background:#fbeae6;color:var(--coral);}
+.b-pend{background:#fef9ec;color:#8a6020;}
+.agent{background:var(--cream);border-radius:9px;padding:11px 13px;margin-bottom:8px;display:flex;gap:11px;}
+.agent-ico{font-size:22px;flex-shrink:0;}
+.agent-n{font-size:13px;font-weight:500;margin-bottom:2px;}
+.agent-d{font-size:12px;color:var(--soft);line-height:1.5;}
+.agent-cost{font-size:11px;color:var(--green);font-weight:500;margin-top:4px;}
+.schema{background:#0a1628;border-radius:10px;padding:14px 16px;font-size:12px;font-family:monospace;color:#a0d8d0;line-height:1.9;overflow-x:auto;}
+.schema .kw{color:#6ee8d0;}
+.schema .ty{color:#ffd060;}
+.schema .cm{color:rgba(255,255,255,.3);}
+.file-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.file-row:last-child{border:none;}
+.file-nm{font-family:monospace;font-size:12.5px;color:var(--blue);font-weight:500;min-width:180px;}
+.file-url{font-size:11.5px;color:var(--soft);min-width:160px;}
+.file-desc{font-size:12px;color:var(--soft);flex:1;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="cover">
+  <h1>My30A Host — Developer Technical Brief</h1>
+  <p>Complete handoff document for the developer building the production app</p>
+  <p>Prepared by Welson Santos & Vitoria Santos · dealsconnectllc@gmail.com</p>
+  <div class="meta">
+    <span><i class="ti ti-calendar"></i>July 2026</span>
+    <span><i class="ti ti-code"></i>Stack: Node.js · Supabase · Stripe · Anthropic · Resend</span>
+    <span><i class="ti ti-world"></i>Demo: my30ahost.vercel.app</span>
+    <span><i class="ti ti-app-window"></i>Live app: 30aconcierge.netlify.app</span>
+  </div>
+</div>
+
+<!-- WHAT EXISTS -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-check-circle" style="font-size:20px;color:var(--teal);"></i><h2>What already exists</h2></div>
+  <div class="sec-body">
+    <p style="font-size:13.5px;color:var(--soft);margin-bottom:14px;">All demo files are on Vercel. The real backend is on Netlify. Both are connected to GitHub.</p>
+    <p style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin-bottom:8px;">8 pages on Vercel (demo UI — developer reference)</p>
+    <div class="file-row"><div class="file-nm">index.html</div><div class="file-url">my30ahost.com</div><div class="file-desc">Public landing page — guests and hosts discovering the product</div></div>
+    <div class="file-row"><div class="file-nm">app.html</div><div class="file-url">/app.html</div><div class="file-desc">Full guest app demo — 5 tabs, all service detail screens, Publix flow, status tracker, tips, loyalty</div></div>
+    <div class="file-row"><div class="file-nm">for-hosts.html</div><div class="file-url">/for-hosts.html</div><div class="file-desc">SaaS sales page for property owners, managers and HOAs</div></div>
+    <div class="file-row"><div class="file-nm">host-dashboard.html</div><div class="file-url">/host-dashboard.html</div><div class="file-desc">Host dashboard demo — stats, property config, analytics, QR code</div></div>
+    <div class="file-row"><div class="file-nm">calendar.html</div><div class="file-url">/calendar.html</div><div class="file-desc">Operations calendar — transfers, grocery, welcome setups — monthly view with Stripe card hold</div></div>
+    <div class="file-row"><div class="file-nm">admin.html</div><div class="file-url">/admin.html</div><div class="file-desc">Partner management — 28 partners, 3 modes, toggles, commission reconciliation</div></div>
+    <div class="file-row"><div class="file-nm">privacy.html</div><div class="file-url">/privacy.html</div><div class="file-desc">Privacy policy, terms of service, cancellation policy, substitution policy</div></div>
+    <div class="file-row"><div class="file-nm">watersound-inn.html</div><div class="file-url">/watersound-inn.html</div><div class="file-desc">Hotel-configured app template — Watersound Inn (St. Joe Company)</div></div>
+
+    <p style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin:16px 0 8px;">7 Netlify Functions (real backend — already deployed)</p>
+    <table>
+      <tr><th>File</th><th>What it does</th><th>Status</th></tr>
+      <tr><td><code>chat.js</code></td><td>Receives guest message → sends to Claude with context → returns Vitoria's response + places + photos</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><code>guest-profile.js</code></td><td>Save and load guest profile in Supabase</td><td><span class="badge b-pend">⚠️ Needs Supabase</span></td></tr>
+      <tr><td><code>notify-order.js</code></td><td>Sends email via Resend when an order is placed</td><td><span class="badge b-pend">⚠️ Needs Resend key</span></td></tr>
+      <tr><td><code>place-photo.js</code></td><td>Fetches real place photo via Google Places API</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><code>create-checkout-session.js</code></td><td>Creates Stripe checkout session for host subscriptions</td><td><span class="badge b-pend">⚠️ Verify Stripe</span></td></tr>
+      <tr><td><code>stripe-webhook.js</code></td><td>Receives Stripe events (paid, cancelled, refunded)</td><td><span class="badge b-pend">⚠️ Configure webhook</span></td></tr>
+      <tr><td><code>partners.js</code></td><td>Partner data management — internal use</td><td><span class="badge b-done">✅ Active</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ENV VARIABLES -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-key" style="font-size:20px;color:#8a6020;"></i><h2>Environment variables — Netlify</h2></div>
+  <div class="sec-body">
+    <p style="font-size:13px;color:var(--soft);margin-bottom:12px;">All keys go in <strong>Netlify → Site settings → Environment variables</strong>. Never in code. Never in GitHub.</p>
+    <div class="env">
+      <p class="comment"># AI — Vitoria's brain</p>
+      <p>ANTHROPIC_API_KEY=<span style="color:rgba(255,255,255,.4);">sk-ant-xxxx (✅ active)</span></p>
+      <p class="comment"># Google Places — real-time local search</p>
+      <p>GOOGLE_PLACES_API_KEY=<span style="color:rgba(255,255,255,.4);">AIza... (✅ active)</span></p>
+      <p class="comment"># Database — guest profiles, orders, partners</p>
+      <p>SUPABASE_URL=<span style="color:rgba(255,255,255,.4);">https://xxxx.supabase.co (⚠️ add keys)</span></p>
+      <p>SUPABASE_KEY=<span style="color:rgba(255,255,255,.4);">eyJhbGc... (⚠️ add service_role key)</span></p>
+      <p class="comment"># Payments</p>
+      <p>STRIPE_SECRET_KEY=<span style="color:rgba(255,255,255,.4);">sk_live_xxxx (✅ new account created)</span></p>
+      <p>STRIPE_WEBHOOK_SECRET=<span style="color:rgba(255,255,255,.4);">whsec_xxxx (⚠️ configure webhook)</span></p>
+      <p class="comment"># Email automation</p>
+      <p>RESEND_API_KEY=<span style="color:rgba(255,255,255,.4);">re_xxxx (❌ create at resend.com)</span></p>
+      <p>NOTIFY_EMAIL=<span style="color:rgba(255,255,255,.4);">dealsconnectllc@gmail.com</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- SUPABASE SCHEMA -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-database" style="font-size:20px;color:var(--blue);"></i><h2>Supabase database schema</h2></div>
+  <div class="sec-body">
+    <p style="font-size:13px;color:var(--soft);margin-bottom:12px;">Create these tables in Supabase → SQL Editor. Run in order.</p>
+    <div class="schema">
+<span class="cm">-- 1. GUESTS</span><br>
+<span class="kw">CREATE TABLE</span> guests (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;email <span class="ty">TEXT UNIQUE NOT NULL</span>,<br>
+&nbsp;&nbsp;name <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;language <span class="ty">TEXT DEFAULT 'en'</span>,<br>
+&nbsp;&nbsp;preferences <span class="ty">JSONB DEFAULT '{}'</span>,<span class="cm"> -- dietary, family, favorites</span><br>
+&nbsp;&nbsp;loyalty_level <span class="ty">TEXT DEFAULT 'guest'</span>, <span class="cm">-- guest | returning | vip</span><br>
+&nbsp;&nbsp;total_stays <span class="ty">INT DEFAULT 0</span>,<br>
+&nbsp;&nbsp;created_at <span class="ty">TIMESTAMPTZ DEFAULT NOW()</span><br>
+);<br><br>
+<span class="cm">-- 2. ORDERS</span><br>
+<span class="kw">CREATE TABLE</span> orders (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;guest_email <span class="ty">TEXT REFERENCES guests(email)</span>,<br>
+&nbsp;&nbsp;type <span class="ty">TEXT NOT NULL</span>, <span class="cm">-- grocery | transfer | welcome | reservation</span><br>
+&nbsp;&nbsp;status <span class="ty">TEXT DEFAULT 'pending'</span>, <span class="cm">-- pending | confirmed | shopping | on_the_way | delivered</span><br>
+&nbsp;&nbsp;service_fee <span class="ty">NUMERIC</span>,<br>
+&nbsp;&nbsp;items_total <span class="ty">NUMERIC</span>, <span class="cm">-- actual Publix receipt</span><br>
+&nbsp;&nbsp;total_paid <span class="ty">NUMERIC</span>,<br>
+&nbsp;&nbsp;stripe_session_id <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;details <span class="ty">JSONB</span>, <span class="cm">-- order-specific data (items, airport, etc.)</span><br>
+&nbsp;&nbsp;delivery_date <span class="ty">DATE</span>,<br>
+&nbsp;&nbsp;arrival_airport <span class="ty">TEXT</span>, <span class="cm">-- ECP | VPS | PNS</span><br>
+&nbsp;&nbsp;arrival_date <span class="ty">DATE</span>,<br>
+&nbsp;&nbsp;tip_amount <span class="ty">NUMERIC DEFAULT 0</span>,<br>
+&nbsp;&nbsp;created_at <span class="ty">TIMESTAMPTZ DEFAULT NOW()</span>,<br>
+&nbsp;&nbsp;updated_at <span class="ty">TIMESTAMPTZ DEFAULT NOW()</span><br>
+);<br><br>
+<span class="cm">-- 3. HOSTS</span><br>
+<span class="kw">CREATE TABLE</span> hosts (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;email <span class="ty">TEXT UNIQUE NOT NULL</span>,<br>
+&nbsp;&nbsp;plan <span class="ty">TEXT DEFAULT 'free'</span>, <span class="cm">-- free | starter | growth | portfolio</span><br>
+&nbsp;&nbsp;stripe_customer_id <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;created_at <span class="ty">TIMESTAMPTZ DEFAULT NOW()</span><br>
+);<br><br>
+<span class="cm">-- 4. PROPERTIES</span><br>
+<span class="kw">CREATE TABLE</span> properties (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;host_id <span class="ty">UUID REFERENCES hosts(id)</span>,<br>
+&nbsp;&nbsp;name <span class="ty">TEXT NOT NULL</span>,<br>
+&nbsp;&nbsp;wifi_name <span class="ty">TEXT</span>, wifi_pass <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;checkin_time <span class="ty">TIME</span>, checkout_time <span class="ty">TIME</span>,<br>
+&nbsp;&nbsp;access_instructions <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;house_rules <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;curated_picks <span class="ty">JSONB DEFAULT '[]'</span>,<br>
+&nbsp;&nbsp;early_access <span class="ty">BOOLEAN DEFAULT FALSE</span>,<br>
+&nbsp;&nbsp;services_active <span class="ty">BOOLEAN DEFAULT TRUE</span>,<br>
+&nbsp;&nbsp;type <span class="ty">TEXT DEFAULT 'house'</span> <span class="cm">-- house | hotel</span><br>
+);<br><br>
+<span class="cm">-- 5. PARTNERS</span><br>
+<span class="kw">CREATE TABLE</span> partners (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;name <span class="ty">TEXT NOT NULL</span>, category <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;phone <span class="ty">TEXT</span>, email <span class="ty">TEXT</span>, website <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;mode <span class="ty">TEXT DEFAULT 'soon'</span>, <span class="cm">-- ref | dir | soon</span><br>
+&nbsp;&nbsp;commission_pct <span class="ty">NUMERIC</span>,<br>
+&nbsp;&nbsp;discount_code <span class="ty">TEXT DEFAULT 'MY30A'</span>,<br>
+&nbsp;&nbsp;discount_offer <span class="ty">TEXT</span>,<br>
+&nbsp;&nbsp;active <span class="ty">BOOLEAN DEFAULT FALSE</span>,<br>
+&nbsp;&nbsp;notes <span class="ty">TEXT</span><br>
+);
+    </div>
+  </div>
+</div>
+
+<!-- SPRINT PLAN -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-rocket" style="font-size:20px;color:var(--coral);"></i><h2>Build order — 4 sprints</h2></div>
+  <div class="sec-body">
+    <div class="sprint s1">
+      <h3>🟢 Sprint 1 — Foundation (Week 1) · Must do before any client</h3>
+      <ul>
+        <li>Connect Supabase — create tables using schema above, add env vars to Netlify</li>
+        <li>Connect Resend — create account at resend.com, add RESEND_API_KEY, verify notify-order.js sends email</li>
+        <li>Configure Stripe webhook — add endpoint in Stripe dashboard → stripe-webhook.js handles events</li>
+        <li>Connect domain my30ahost.com → Vercel (DNS settings at registrar)</li>
+        <li>Test full flow: guest opens app → chats → Vitoria responds → profile saves to Supabase</li>
+      </ul>
+    </div>
+    <div class="sprint s2">
+      <h3>🔵 Sprint 2 — Order flow (Week 2) · Core revenue</h3>
+      <ul>
+        <li>Grocery: wire upload button → Netlify Function → Claude Vision reads screenshot → calculates tier → creates Stripe session → sends link to guest</li>
+        <li>Transfer: wire request form → saves to Supabase orders → appears in calendar.html</li>
+        <li>Welcome: same as transfer flow</li>
+        <li>Order status: Welson updates status in calendar → Resend sends automatic message to guest at each stage</li>
+        <li>Stripe card hold: use capture_method:'manual' for transfers and grocery — capture when Welson confirms</li>
+        <li>Tip: Stripe PaymentIntent after order marked delivered</li>
+      </ul>
+    </div>
+    <div class="sprint s3">
+      <h3>🟡 Sprint 3 — Host SaaS (Week 3)</h3>
+      <ul>
+        <li>Host signup → Stripe subscription → webhook activates account in Supabase</li>
+        <li>Property setup form → saves to properties table → Vitoria reads on guest app load</li>
+        <li>Host dashboard: pull real data from Supabase (chats count, orders, guest history)</li>
+        <li>QR code generation per property → links to app.html?p={property_id}</li>
+        <li>Loyalty logic: total_stays counter → loyalty_level updates automatically</li>
+        <li>Post-checkout rating: Netlify cron job checks daily for completed orders → Resend sends rating request</li>
+      </ul>
+    </div>
+    <div class="sprint s4">
+      <h3>🔴 Sprint 4 — AI Agents (Week 4)</h3>
+      <ul>
+        <li><strong>Pre-arrival transfer agent:</strong> daily cron at 9am → query guests arriving in 3 days without transfer → Resend sends proactive offer with Stripe link</li>
+        <li><strong>Grocery OCR agent:</strong> Claude Vision processes cart screenshot → auto Stripe link (already designed in Sprint 2 — just the proactive trigger)</li>
+        <li><strong>Partner follow-up agent:</strong> 2h after partner email sent → check if order confirmed → if not, send second email → 4h → alert Welson via email</li>
+        <li><strong>Weekly commission reconciliation:</strong> every Monday 9am → cron sends email to each active referral partner summarizing MY30A leads from past week</li>
+        <li><strong>Admin toggles:</strong> connect rush_order_active and holiday_surcharge_active from admin.html to Supabase config table → app reads dynamically</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- AI AGENTS -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-robot" style="font-size:20px;color:var(--tm);"></i><h2>5 AI agents to build</h2></div>
+  <div class="sec-body">
+    <div class="agent"><div class="agent-ico">✈️</div><div><div class="agent-n">Pre-arrival transfer agent</div><div class="agent-d">Netlify Scheduled Function — runs daily at 9am. Queries Supabase for guests arriving in 3 days with no confirmed transfer. Sends email via Resend with Stripe payment link (ECP $150 / VPS $225 / PNS $299 pre-filled). No Claude API needed — just email template + Stripe link.</div><div class="agent-cost">Cost: $0/month (Netlify cron + Resend free tier)</div></div></div>
+    <div class="agent"><div class="agent-ico">🛒</div><div><div class="agent-n">Grocery OCR agent</div><div class="agent-d">Guest uploads Publix cart screenshot → Netlify Function sends image to Claude Vision API with prompt: "List every item with price. Return JSON." → counts items → determines tier (≤30=$175, 31-70=$229, 71-120=$299, 121-200=$379, per $1,000 block above that) → creates Stripe session → sends link to guest. Receipt OCR after delivery → Stripe adjusts difference.</div><div class="agent-cost">Cost: ~$0.03 per image. 50 orders/month = $1.50</div></div></div>
+    <div class="agent"><div class="agent-ico">🔔</div><div><div class="agent-n">Partner follow-up agent</div><div class="agent-d">When guest makes a partner request, system sends email to partner via Resend. Netlify cron checks every 2h: if partner hasn't confirmed → sends second email. After 4h → sends alert to dealsconnectllc@gmail.com: "Partner X hasn't responded to referral for guest Y." Protects guest experience without manual monitoring.</div><div class="agent-cost">Cost: $0 (Netlify cron + Resend)</div></div></div>
+    <div class="agent"><div class="agent-ico">⭐</div><div><div class="agent-n">Post-checkout rating agent</div><div class="agent-d">Daily Netlify cron at 11am. Queries orders with status=delivered where checkout_date = today or yesterday. Sends Resend email/message: "How was everything? ⭐⭐⭐⭐⭐" with rating link. Response saved to orders table. Feeds host dashboard satisfaction score and landing page testimonials.</div><div class="agent-cost">Cost: $0 (Netlify cron + Resend)</div></div></div>
+    <div class="agent"><div class="agent-ico">📊</div><div><div class="agent-n">Weekly commission reconciliation agent</div><div class="agent-d">Every Monday at 9am. Queries partners table for active referral partners. Queries orders from past 7 days with partner_referred=true. Sends Resend email to each partner: "Last week My30A Host sent you N leads using code MY30A. How many converted? Reply to confirm commission." Welson checks replies and marks in admin.html.</div><div class="agent-cost">Cost: $0 (Netlify cron + Resend)</div></div></div>
+  </div>
+</div>
+
+<!-- PRICING RULES -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-currency-dollar" style="font-size:20px;color:#8a6020;"></i><h2>Pricing rules — hardcode in backend</h2></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Service</th><th>Rule</th><th>Amount</th></tr>
+      <tr><td><strong>Starter Kit (15 curated items)</strong></td><td>Fixed all-in, no items cost added</td><td>$199</td></tr>
+      <tr><td><strong>Essentials (≤30 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$175 + items</td></tr>
+      <tr><td><strong>Full Pack (31–70 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$229 + items</td></tr>
+      <tr><td><strong>Large Pack (71–120 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$299 + items</td></tr>
+      <tr><td><strong>Premium Pack (121–200 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$379 + items</td></tr>
+      <tr><td><strong>Orders above $1,000 in items</strong></td><td>$299 per $1,000 block (e.g. $2,500 = 3 blocks = $897)</td><td>$299/block</td></tr>
+      <tr><td><strong>Rush order</strong></td><td>Add to any pack — toggled in admin</td><td>+$50</td></tr>
+      <tr><td><strong>Holiday surcharge</strong></td><td>Add to any pack — toggled in admin</td><td>+$75</td></tr>
+      <tr><td><strong>Transfer ECP</strong></td><td>Per ride, Stripe card hold until confirmed</td><td>$150</td></tr>
+      <tr><td><strong>Transfer VPS</strong></td><td>Per ride</td><td>$225</td></tr>
+      <tr><td><strong>Transfer PNS</strong></td><td>Per ride</td><td>$299</td></tr>
+      <tr><td><strong>Round trip discount</strong></td><td>15% off total</td><td>-15%</td></tr>
+      <tr><td><strong>Welcome Warm</strong></td><td>Fixed</td><td>$145</td></tr>
+      <tr><td><strong>Welcome Coastal Luxury</strong></td><td>Fixed</td><td>$275</td></tr>
+      <tr><td><strong>Restaurant reservation (we call)</strong></td><td>Fixed</td><td>$35</td></tr>
+      <tr><td><strong>Concierge access (hard tables)</strong></td><td>Fixed</td><td>$65</td></tr>
+    </table>
+    <p style="font-size:12.5px;color:var(--soft);margin-top:12px;"><strong>Loyalty discounts (auto-applied by Supabase):</strong> Returning Guest (2 stays) = 10% off grocery. VIP (3+ stays) = 15% off all services.</p>
+    <p style="font-size:12.5px;color:var(--soft);margin-top:6px;"><strong>Admin toggles (Supabase config table):</strong> rush_fee_active (bool) · holiday_surcharge_active (bool) · services_accepting_orders (bool) — admin.html writes to this table, app.html reads it on load.</p>
+  </div>
+</div>
+
+<!-- CANCELLATION RULES -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-file-description" style="font-size:20px;color:var(--coral);"></i><h2>Cancellation rules — enforce in Stripe</h2></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Timing</th><th>Action in Stripe</th></tr>
+      <tr><td><strong>48h+ before</strong></td><td>Full refund via stripe.refunds.create()</td></tr>
+      <tr><td><strong>24–48h before</strong></td><td>50% refund via stripe.refunds.create({amount: total/2})</td></tr>
+      <tr><td><strong>Under 24h / shopping started</strong></td><td>No refund — mark order cancelled in Supabase</td></tr>
+      <tr><td><strong>My30A cancels</strong></td><td>Full refund + create $25 credit in guest profile (credits table)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- PARTNER FLOW -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-network" style="font-size:20px;color:var(--blue);"></i><h2>Partner request flow</h2></div>
+  <div class="sec-body">
+    <p style="font-size:13px;color:var(--soft);margin-bottom:12px;">When guest taps "Request via Vitoria" for a partner service:</p>
+    <ol style="font-size:13px;color:var(--soft);padding-left:18px;line-height:2.2;">
+      <li>Guest fills form: service type, date, # people, contact info, notes</li>
+      <li>Netlify Function saves lead to orders table (type='partner_referral', status='sent')</li>
+      <li>Resend sends email to partner: name, date, contact, service needed, code MY30A</li>
+      <li>Resend sends confirmation to guest: "I've sent your request to [partner]. Expect contact in 2 hours."</li>
+      <li>Cron checks 2h later → if order still status='sent' → second email to partner</li>
+      <li>Cron checks 4h later → if still no response → email alert to dealsconnectllc@gmail.com</li>
+      <li>Weekly Monday cron → summary email to each partner: "N MY30A leads last week"</li>
+    </ol>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div class="sec">
+  <div class="sec-hdr"><i class="ti ti-users" style="font-size:20px;color:var(--soft);"></i><h2>Key contacts & accounts</h2></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Service</th><th>Account</th><th>Status</th></tr>
+      <tr><td><strong>Netlify</strong></td><td>Connected to GitHub — auto-deploys</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><strong>Vercel</strong></td><td>Deployment Protection = None</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><strong>Anthropic</strong></td><td>ANTHROPIC_API_KEY in Netlify env</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><strong>Google Cloud</strong></td><td>GOOGLE_PLACES_API_KEY in Netlify env</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><strong>Mapbox</strong></td><td>Public token hardcoded in app</td><td><span class="badge b-done">✅ Active</span></td></tr>
+      <tr><td><strong>Stripe</strong></td><td>New account created — add keys to Netlify</td><td><span class="badge b-pend">⚠️ Add keys</span></td></tr>
+      <tr><td><strong>Supabase</strong></td><td>Account created — run schema, add URL + KEY</td><td><span class="badge b-pend">⚠️ Add keys</span></td></tr>
+      <tr><td><strong>Resend</strong></td><td>Create account at resend.com — add key</td><td><span class="badge b-build">❌ Create account</span></td></tr>
+      <tr><td><strong>Domain</strong></td><td>Purchase my30ahost.com → point to Vercel</td><td><span class="badge b-build">❌ Purchase</span></td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

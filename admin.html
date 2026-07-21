@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Partner Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--border:rgba(0,0,0,.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;}
+.page{max-width:900px;margin:0 auto;padding:24px 16px 60px;}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#fff;border-bottom:1px solid var(--border);margin:-24px -16px 24px;position:sticky;top:0;z-index:10;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-av{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;color:#fff;font-style:italic;}
+.logo-nm{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;}
+.logo-sub{font-size:10.5px;color:var(--soft);margin-left:4px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;}
+.sb{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.sn{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;}
+.sl{font-size:10.5px;color:var(--soft);margin-top:2px;}
+.sn.act{color:var(--teal);}
+.sn.off{color:#aaa;}
+.sn.soon{color:#c9a96e;}
+.sn.ref{color:#e67e22;}
+.toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+.srch{flex:1;min-width:200px;border:1px solid var(--border);border-radius:8px;padding:9px 14px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;}
+.filt{display:flex;gap:6px;flex-wrap:wrap;}
+.fc{font-size:11px;padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:#fff;cursor:pointer;color:var(--soft);}
+.fc.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+.addbtn{background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;}
+.tbl{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.trow{display:grid;grid-template-columns:36px 1fr 110px 90px 100px 80px 90px;gap:0;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border);transition:background .15s;}
+.trow:last-child{border-bottom:none;}
+.trow:hover{background:#f9f7f3;}
+.thdr{background:var(--cream);font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--soft);padding:9px 14px;}
+.pico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--cream);}
+.pnm{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:1px;}
+.pmeta{font-size:10.5px;color:var(--soft);}
+.pcat{font-size:10px;color:var(--soft);}
+.mbdg{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;}
+.m-ref{background:#e8f5ea;color:#1a6020;}
+.m-dir{background:#e8f0fb;color:#1a3a8a;}
+.m-soon{background:#f7f2e9;color:#8a6020;}
+.tog{width:36px;height:20px;border-radius:10px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;}
+.tog.on{background:var(--teal);}
+.tog.off{background:#ccc;}
+.tog::after{content:'';position:absolute;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .2s;}
+.tog.on::after{left:19px;}
+.tog.off::after{left:3px;}
+.acts{display:flex;gap:5px;}
+.ab{width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--soft);}
+.ab:hover{background:var(--cream);}
+.cat-sec{margin-bottom:10px;}
+.cat-hdr{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--soft);padding:10px 14px;background:var(--cream);border-bottom:1px solid var(--border);}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:100;display:none;}
+.modal-bg.on{display:flex;}
+.modal{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;}
+.modal h2{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:18px;}
+.mrow{margin-bottom:14px;}
+.mlbl{font-size:11px;font-weight:500;color:var(--soft);margin-bottom:5px;display:block;}
+.minp{width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;}
+.msel{width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mbtnrow{display:flex;gap:9px;margin-top:18px;}
+.mbtn{flex:1;padding:11px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+.mbtn.save{background:linear-gradient(135deg,var(--gold),#b8863c);border:none;color:var(--ink);}
+.mbtn.cancel{background:none;border:1px solid var(--border);color:var(--soft);}
+.ref-dash{margin-top:28px;}
+.ref-hdr{font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:14px;}
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.ref-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;}
+.ref-card h3{font-size:12px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.ref-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-size:12.5px;}
+.ref-row:last-child{border-bottom:none;}
+.ref-row span{color:var(--soft);}
+.ref-row strong{color:var(--ink);}
+.note{background:#fff8e1;border:1px solid #ffd060;border-radius:9px;padding:10px 12px;font-size:12px;color:#7a5a00;margin-bottom:14px;display:flex;gap:7px;}
+@media(max-width:700px){
+  .trow{grid-template-columns:32px 1fr 80px 60px;}.thdr{display:none;}
+  .trow>:nth-child(3),.trow>:nth-child(5),.trow>:nth-child(6){display:none;}
+  .stats{grid-template-columns:1fr 1fr;}.ref-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="top">
+  <div class="logo">
+    <div class="logo-av">V</div>
+    <div><span class="logo-nm">My30A Host</span><span class="logo-sub">Partner Admin</span></div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="app.html" style="font-size:12px;color:var(--soft);text-decoration:none;border:1px solid var(--border);padding:6px 12px;border-radius:7px;">Preview app</a>
+    <button class="addbtn" onclick="openModal()"><i class="ti ti-plus" style="font-size:14px;"></i> Add partner</button>
+  </div>
+</div>
+
+<div class="note"><i class="ti ti-lock" style="font-size:15px;flex-shrink:0;color:#e6a000;"></i><div><strong>Admin only.</strong> This page is not visible to guests. Real data is stored in Supabase — this demo shows the interface the developer will build.</div></div>
+
+<div class="stats">
+  <div class="sb"><div class="sn act" id="sact">4</div><div class="sl">Active in app</div></div>
+  <div class="sb"><div class="sn off" id="soff">3</div><div class="sl">Inactive / off</div></div>
+  <div class="sb"><div class="sn soon" id="ssoon">12</div><div class="sl">Coming soon</div></div>
+  <div class="sb"><div class="sn ref" id="sref">4</div><div class="sl">Referral partners</div></div>
+</div>
+
+<div class="toolbar">
+  <input class="srch" placeholder="Search by name, category, email…" oninput="filterRows(this.value)" id="srch">
+  <div class="filt">
+    <button class="fc on" onclick="filterCat(this,'all')">All</button>
+    <button class="fc" onclick="filterCat(this,'water')">Water</button>
+    <button class="fc" onclick="filterCat(this,'beach')">Beach</button>
+    <button class="fc" onclick="filterCat(this,'transport')">Transport</button>
+    <button class="fc" onclick="filterCat(this,'golf_cart')">Golf Cart</button>
+    <button class="fc" onclick="filterCat(this,'photo')">Photo</button>
+    <button class="fc" onclick="filterCat(this,'wellness')">Wellness</button>
+    <button class="fc" onclick="filterCat(this,'chef')">Chef</button>
+    <button class="fc" onclick="filterCat(this,'events')">Events</button>
+    <button class="fc" onclick="filterCat(this,'family')">Family</button>
+  </div>
+</div>
+
+<div class="tbl" id="ptable">
+  <div class="trow thdr">
+    <div></div><div>Partner</div><div>Category</div><div>Mode</div><div>Commission</div><div>Status</div><div>Actions</div>
+  </div>
+  <!-- rows rendered by JS -->
+</div>
+
+<!-- REFERRAL DASHBOARD -->
+<div style="background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
+  <div style="background:var(--cream);padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+    <p style="font-size:13px;font-weight:600;margin:0;display:flex;align-items:center;gap:6px;"><i class="ti ti-settings" style="color:var(--teal);font-size:15px;"></i>Service settings</p>
+    <span style="font-size:11px;color:var(--soft);">Changes apply immediately to guest app</span>
+  </div>
+  <div style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:var(--cream);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <p style="font-size:13px;font-weight:500;margin:0 0 2px;">Rush order fee</p>
+        <p style="font-size:11px;color:var(--soft);margin:0;">+$50 for orders under 48h</p>
+      </div>
+      <div class="tog on" id="tog-rush" onclick="toggleFee(this,'rush')" style="flex-shrink:0;"></div>
+    </div>
+    <div style="background:var(--cream);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <p style="font-size:13px;font-weight:500;margin:0 0 2px;">Holiday surcharge</p>
+        <p style="font-size:11px;color:var(--soft);margin:0;">+$75 on major US holidays</p>
+      </div>
+      <div class="tog on" id="tog-holiday" onclick="toggleFee(this,'holiday')" style="flex-shrink:0;"></div>
+    </div>
+    <div style="background:var(--cream);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <p style="font-size:13px;font-weight:500;margin:0 0 2px;">Concierge services</p>
+        <p style="font-size:11px;color:var(--soft);margin:0;">Grocery, transfer, welcome in app</p>
+      </div>
+      <div class="tog on" id="tog-svc" onclick="toggleFee(this,'svc')" style="flex-shrink:0;"></div>
+    </div>
+    <div style="background:var(--cream);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <p style="font-size:13px;font-weight:500;margin:0 0 2px;">New bookings</p>
+        <p style="font-size:11px;color:var(--soft);margin:0;">Accept new service requests</p>
+      </div>
+      <div class="tog on" id="tog-book" onclick="toggleFee(this,'book')" style="flex-shrink:0;"></div>
+    </div>
+  </div>
+</div>
+
+<div style="background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
+  <div style="background:var(--cream);padding:10px 16px;border-bottom:1px solid var(--border);">
+    <p style="font-size:13px;font-weight:600;margin:0;display:flex;align-items:center;gap:6px;"><i class="ti ti-robot" style="color:var(--teal);font-size:15px;"></i>AI agents — automation status</p>
+  </div>
+  <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🤖</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Vitoria — chat agent</p><p style="font-size:11px;color:var(--soft);margin:0;">Responds to guest messages 24/7</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#e3f0ec;color:var(--teal);padding:3px 10px;border-radius:999px;">✅ Active</span>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">📧</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Partner notification email</p><p style="font-size:11px;color:var(--soft);margin:0;">Auto-email when guest makes request</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#fef9ec;color:#8a6020;padding:3px 10px;border-radius:999px;">⚠️ Needs Resend key</span>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🛒</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Grocery OCR agent</p><p style="font-size:11px;color:var(--soft);margin:0;">Reads cart screenshot → auto Stripe link</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#fbeae6;color:#c85a3a;padding:3px 10px;border-radius:999px;">🔧 Build next</span>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">✈️</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Pre-arrival transfer agent</p><p style="font-size:11px;color:var(--soft);margin:0;">Offers transfer 3 days before check-in</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#fbeae6;color:#c85a3a;padding:3px 10px;border-radius:999px;">🔧 Build next</span>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">⭐</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Post-checkout rating agent</p><p style="font-size:11px;color:var(--soft);margin:0;">Vitoria asks for review on checkout day</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#fbeae6;color:#c85a3a;padding:3px 10px;border-radius:999px;">🔧 Build next</span>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--cream);">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">📊</span><div><p style="font-size:12.5px;font-weight:500;margin:0;">Weekly commission reconciliation</p><p style="font-size:11px;color:var(--soft);margin:0;">Auto-email to partners every Monday</p></div></div>
+      <span style="font-size:10px;font-weight:600;background:#fbeae6;color:#c85a3a;padding:3px 10px;border-radius:999px;">🔧 Build next</span>
+    </div>
+  </div>
+</div>
+
+<div class="ref-dash">
+  <div class="ref-hdr">Referral dashboard — this week</div>
+  <div class="ref-grid">
+    <div class="ref-card">
+      <h3>Referrals sent</h3>
+      <div class="ref-row"><span>Shallow Minded Fishing</span><strong>3 leads</strong></div>
+      <div class="ref-row"><span>30A Gulf Carts</span><strong>5 leads</strong></div>
+      <div class="ref-row"><span>Randi Doris Photography</span><strong>1 lead</strong></div>
+      <div class="ref-row"><span>South Walton Beach Chairs</span><strong>2 leads</strong></div>
+    </div>
+    <div class="ref-card">
+      <h3>Commission to collect</h3>
+      <div class="ref-row"><span>Fishing (3 leads × est. $700 × 15%)</span><strong>~$315</strong></div>
+      <div class="ref-row"><span>Golf cart (5 × $130 × 10%)</span><strong>~$65</strong></div>
+      <div class="ref-row"><span>Photography (1 × $400 × 15%)</span><strong>~$60</strong></div>
+      <div class="ref-row"><span>Beach chairs (2 × $70 × 10%)</span><strong>~$14</strong></div>
+      <div class="ref-row" style="border-top:2px solid var(--border);margin-top:5px;padding-top:7px;"><span style="font-weight:500;color:var(--ink);">Est. this week</span><strong style="color:var(--teal);font-size:15px;">~$454</strong></div>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;">
+    <h3 style="font-size:12px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Weekly reconciliation checklist</h3>
+    <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--soft);">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> Call Shallow Minded Fishing — confirm 3 bookings from MY30A code</label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> Call 30A Gulf Carts — confirm 5 bookings from MY30A code</label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> Email Randi Doris — confirm 1 session from MY30A code</label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> Call South Walton Beach Chairs — confirm 2 from MY30A code</label>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h2>Add / edit partner</h2>
+    <div class="mgrid">
+      <div class="mrow"><label class="mlbl">Company name *</label><input class="minp" id="f-name" placeholder="e.g. Shallow Minded Fishing"></div>
+      <div class="mrow"><label class="mlbl">Category *</label><select class="msel" id="f-cat"><option value="water">Water Experiences</option><option value="beach">Beach Services</option><option value="transport">Transportation</option><option value="golf_cart">Golf Cart Rental</option><option value="bike">Bike Rental</option><option value="photo">Photography</option><option value="wellness">Wellness</option><option value="chef">Private Chef</option><option value="events">Events & Proposals</option><option value="family">Family Services</option><option value="pet">Pet Services</option><option value="golf">Golf</option></select></div>
+    </div>
+    <div class="mgrid">
+      <div class="mrow"><label class="mlbl">Website</label><input class="minp" id="f-web" placeholder="shallowmindedfishingcharters30a.com"></div>
+      <div class="mrow"><label class="mlbl">Phone</label><input class="minp" id="f-ph" placeholder="(850) 376-4938"></div>
+    </div>
+    <div class="mrow"><label class="mlbl">Email</label><input class="minp" id="f-em" placeholder="contact@partner.com"></div>
+    <div class="mgrid">
+      <div class="mrow"><label class="mlbl">Mode</label><select class="msel" id="f-mode"><option value="ref">Referral partner (commission)</option><option value="dir">Directory listing (no commission)</option><option value="soon">Coming soon</option></select></div>
+      <div class="mrow"><label class="mlbl">Commission %</label><input class="minp" id="f-comm" placeholder="e.g. 15%" type="text"></div>
+    </div>
+    <div class="mgrid">
+      <div class="mrow"><label class="mlbl">Discount code shown in app</label><input class="minp" id="f-code" value="MY30A"></div>
+      <div class="mrow"><label class="mlbl">Discount offer</label><input class="minp" id="f-disc" placeholder="e.g. 10% off any charter"></div>
+    </div>
+    <div class="mrow"><label class="mlbl">Internal notes</label><input class="minp" id="f-notes" placeholder="Contact made on Jul 10, waiting on formal agreement..."></div>
+    <div class="mrow"><label class="mlbl" style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="f-active" checked> Active — visible in app immediately</label></div>
+    <div class="mbtnrow">
+      <button class="mbtn cancel" onclick="closeModal()">Cancel</button>
+      <button class="mbtn save" onclick="savePartner()">Save partner</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PARTNERS=[
+  {id:1,ico:'🚤',name:'Shallow Minded Fishing Charters',cat:'water',catLabel:'Water',web:'shallowmindedfishingcharters30a.com',ph:'(850) 376-4938',email:'petealbrecht@yahoo.com',mode:'ref',comm:'15%',code:'MY30A',disc:'10% off any charter',active:true,notes:'High priority — contacted Jul 2026'},
+  {id:2,ico:'🚤',name:'30A Yacht Charters',cat:'water',catLabel:'Water',web:'30ayachtcharters.com',ph:'(850) 517-0220',email:'30ayachtcharters@gmail.com',mode:'ref',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Yet to contact'},
+  {id:3,ico:'🚤',name:'Crab Island Luxury Adventures',cat:'water',catLabel:'Water',web:'crabislandluxuryadventures.com',ph:'(850) 325-0325',email:'info@crabislandluxuryadventures.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:4,ico:'🚤',name:'Blue Sky Fishing 30A',cat:'water',catLabel:'Water',web:'30afishingfun.com',ph:'(850) 896-5794',email:'blueskyfishing30a@gmail.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:5,ico:'🏖️',name:'South Walton Beach Chair Guys',cat:'beach',catLabel:'Beach',web:'southwaltonbeachchairguys.com',ph:'(850) 502-6261',email:'southwaltonbeachchairguys@gmail.com',mode:'ref',comm:'10%',code:'MY30A',disc:'10% off',active:true,notes:''},
+  {id:6,ico:'🏖️',name:'Coastal 30A Chairs',cat:'beach',catLabel:'Beach',web:'coastal30achairs.com',ph:'(850) 468-3222',email:'beachbum@coastal30achairs.com',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:'Backup option'},
+  {id:7,ico:'🏖️',name:'SALTY Beach Setups',cat:'beach',catLabel:'Beach / Events',web:'saltygirlsbeachsetups.com',ph:'(850) 979-4479',email:'saltygirlsbeachsetups@gmail.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Great for proposals'},
+  {id:8,ico:'🚗',name:'T30A — Taxi, Airport & Limo Now',cat:'transport',catLabel:'Transport',web:'t30a.com',ph:'(850) 687-7999',email:'',mode:'dir',comm:'',code:'',disc:'',active:false,notes:'Backup transfer'},
+  {id:9,ico:'🚗',name:'Elevate Luxury Car Service',cat:'transport',catLabel:'Transport',web:'elevatelcs.com',ph:'(850) 499-7374',email:'info@elevatelcs.com',mode:'ref',comm:'TBD',code:'',disc:'',active:false,notes:'High priority backup'},
+  {id:10,ico:'✈️',name:'INVESEO Air — Private Jet Charter',cat:'transport',catLabel:'Transport',web:'30ajetcharter.com',ph:'',email:'',mode:'dir',comm:'',code:'',disc:'',active:false,notes:'Premium tier only'},
+  {id:11,ico:'🛺',name:'30A Gulf Carts',cat:'golf_cart',catLabel:'Golf Cart',web:'30agulfcarts.com',ph:'(850) 753-9162',email:'adam@30agulfcarts.com',mode:'ref',comm:'10%',code:'MY30A',disc:'10% off + free delivery',active:true,notes:'Top priority — contact this week'},
+  {id:12,ico:'🛺',name:'30A Golf Cart Rentals (Beachy Buggy)',cat:'golf_cart',catLabel:'Golf Cart',web:'beachybuggy.com',ph:'(850) 502-0030',email:'Joy@beachybuggy.com',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:'Backup option'},
+  {id:13,ico:'🛺',name:'Joy Ride 30A Golf Carts',cat:'golf_cart',catLabel:'Golf Cart',web:'joyride30a.com',ph:'(850) 665-0002',email:'',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:14,ico:'📸',name:'Randi Doris Photography',cat:'photo',catLabel:'Photography',web:'randidorisphotography.com',ph:'',email:'randi@randidorisphotography.com',mode:'ref',comm:'15%',code:'MY30A',disc:'Free extra 15 min',active:true,notes:'Already active — priority'},
+  {id:15,ico:'📸',name:'Modernmade Photography',cat:'photo',catLabel:'Photography',web:'modernmadephotography.com',ph:'(850) 332-3791',email:'hello@modernmadephotography.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Good backup'},
+  {id:16,ico:'💆',name:'Seaborn Wellness LLC',cat:'wellness',catLabel:'Wellness',web:'seabornwellness.com',ph:'(850) 842-1469',email:'slade@seabornwellness.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Mobile massage — goes to guest home'},
+  {id:17,ico:'💆',name:'The Spa in Seaside',cat:'wellness',catLabel:'Wellness',web:'thespaseasidefl.com',ph:'(850) 213-0036',email:'info@thespaseaside.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:18,ico:'👨‍🍳',name:'Marrow Private Chefs',cat:'chef',catLabel:'Private Chef',web:'marrowprivatechefs.com',ph:'(850) 280-4319',email:'info@marrowprivatechefs.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:19,ico:'👨‍🍳',name:'30A Vacation Chef',cat:'chef',catLabel:'Private Chef',web:'30avacationchef.com',ph:'(850) 305-0624',email:'',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Backup option'},
+  {id:20,ico:'💍',name:"Peach & Pearl Events (Avis)",cat:'events',catLabel:'Events',web:'peachandpearlevents.com',ph:'(850) 231-0007',email:'avis@peachandpearlevents.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'High ticket — weddings'},
+  {id:21,ico:'💍',name:'Destin To Wed Event Planning',cat:'events',catLabel:'Events',web:'destintowed.com',ph:'(850) 687-0076',email:'Sherri@destintowed.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:22,ico:'👶',name:'Angelfish Babysitting Services',cat:'family',catLabel:'Family',web:'angelfishservices.com',ph:'(850) 797-3100',email:'Angelfishservices@gmail.com',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Serves 30A from Destin'},
+  {id:23,ico:'🐾',name:'Happy Tails Pet Care',cat:'family',catLabel:'Pets',web:'',ph:'(850) 502-7502',email:'',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'Booking via Rover or phone'},
+  {id:24,ico:'🚲',name:'Rideit Electric Bike Rentals',cat:'bike',catLabel:'Bike',web:'rideitfl.com',ph:'(850) 366-2524',email:'',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:25,ico:'🚲',name:'30A Bike Rentals',cat:'bike',catLabel:'Bike',web:'30abikerentals.net',ph:'(850) 231-0959',email:'reservations@30Abikerentals.net',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:''},
+  {id:26,ico:'🏄',name:'30A Paddleboard Rentals',cat:'water',catLabel:'Water',web:'30apd.com',ph:'(850) 381-2892',email:'adamgh92@gmail.com',mode:'soon',comm:'10%',code:'MY30A',disc:'',active:false,notes:'Delivers to beach'},
+  {id:27,ico:'⛳',name:'Santa Rosa Golf & Beach Club',cat:'golf',catLabel:'Golf',web:'santarosaclub.com',ph:'(850) 267-2229',email:'Carter@santarosaclub.com',mode:'dir',comm:'',code:'',disc:'',active:false,notes:'Verify visitor access before activating'},
+  {id:28,ico:'🌸',name:'Bouquet at Clay (Florist)',cat:'welcome',catLabel:'Welcome',web:'shop.bouquetatclay.com',ph:'(850) 502-0725',email:'',mode:'soon',comm:'15%',code:'MY30A',disc:'',active:false,notes:'For welcome setup arrangements'},
+];
+
+let filtered=[...PARTNERS];
+let catFilter='all';
+
+function render(){
+  const tbl=document.getElementById('ptable');
+  const hdr=tbl.querySelector('.thdr');
+  tbl.innerHTML='';
+  tbl.appendChild(hdr);
+  filtered.forEach(p=>{
+    const r=document.createElement('div');
+    r.className='trow';
+    r.dataset.id=p.id;
+    r.innerHTML=`
+      <div><div class="pico">${p.ico}</div></div>
+      <div><div class="pnm">${p.name}</div><div class="pmeta">${p.ph||p.email||p.web||'—'}</div></div>
+      <div><div class="pcat">${p.catLabel}</div></div>
+      <div><span class="mbdg m-${p.mode}">${p.mode==='ref'?'Referral':p.mode==='dir'?'Directory':'Soon'}</span></div>
+      <div style="font-size:12px;color:var(--soft);">${p.comm||'—'}${p.code?' · '+p.code:''}</div>
+      <div><div class="tog ${p.active?'on':'off'}" onclick="togglePartner(${p.id})"></div></div>
+      <div class="acts">
+        <button class="ab" onclick="editPartner(${p.id})" title="Edit"><i class="ti ti-edit" style="font-size:13px;"></i></button>
+        <button class="ab" onclick="window.open('https://'+${JSON.stringify(p.web)},'_blank')" title="Visit site"><i class="ti ti-external-link" style="font-size:13px;"></i></button>
+      </div>`;
+    tbl.appendChild(r);
+  });
+  updateStats();
+}
+
+function updateStats(){
+  document.getElementById('sact').textContent=PARTNERS.filter(p=>p.active).length;
+  document.getElementById('soff').textContent=PARTNERS.filter(p=>!p.active&&p.mode!=='soon').length;
+  document.getElementById('ssoon').textContent=PARTNERS.filter(p=>p.mode==='soon').length;
+  document.getElementById('sref').textContent=PARTNERS.filter(p=>p.mode==='ref').length;
+}
+
+function togglePartner(id){
+  const p=PARTNERS.find(x=>x.id===id);
+  if(p){p.active=!p.active;applyFilter();}
+}
+
+function filterCat(el,cat){
+  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');catFilter=cat;applyFilter();
+}
+
+function filterRows(q){applyFilter(q);}
+
+function applyFilter(q){
+  const query=(q||document.getElementById('srch').value).toLowerCase();
+  filtered=PARTNERS.filter(p=>{
+    const matchCat=catFilter==='all'||p.cat===catFilter;
+    const matchQ=!query||p.name.toLowerCase().includes(query)||p.catLabel.toLowerCase().includes(query)||(p.email||'').toLowerCase().includes(query);
+    return matchCat&&matchQ;
+  });
+  render();
+function toggleFee(el,key){
+  el.classList.toggle('on');
+  el.classList.toggle('off');
+  const state=el.classList.contains('on');
+  const labels={rush:'Rush order fee',holiday:'Holiday surcharge',svc:'Concierge services',book:'New bookings'};
+  toast(labels[key]+' — '+(state?'ON ✅':'OFF ❌'));
+}
+}
+
+function openModal(){document.getElementById('modal').classList.add('on');}
+function closeModal(){document.getElementById('modal').classList.remove('on');}
+function savePartner(){
+  const name=document.getElementById('f-name').value.trim();
+  if(!name){alert('Enter a partner name');return;}
+  const p={
+    id:Date.now(),ico:'🤝',
+    name,cat:document.getElementById('f-cat').value,
+    catLabel:document.getElementById('f-cat').options[document.getElementById('f-cat').selectedIndex].text,
+    web:document.getElementById('f-web').value,ph:document.getElementById('f-ph').value,
+    email:document.getElementById('f-em').value,mode:document.getElementById('f-mode').value,
+    comm:document.getElementById('f-comm').value,code:document.getElementById('f-code').value,
+    disc:document.getElementById('f-disc').value,notes:document.getElementById('f-notes').value,
+    active:document.getElementById('f-active').checked,
+  };
+  PARTNERS.unshift(p);applyFilter();closeModal();
+  document.getElementById('f-name').value='';
+}
+function editPartner(id){
+  const p=PARTNERS.find(x=>x.id===id);if(!p)return;
+  document.getElementById('f-name').value=p.name;
+  document.getElementById('f-web').value=p.web;
+  document.getElementById('f-ph').value=p.ph;
+  document.getElementById('f-em').value=p.email;
+  document.getElementById('f-comm').value=p.comm;
+  document.getElementById('f-code').value=p.code;
+  document.getElementById('f-disc').value=p.disc;
+  document.getElementById('f-notes').value=p.notes;
+  document.getElementById('f-active').checked=p.active;
+  openModal();
+}
+render();
+function toggleFee(el,key){
+  el.classList.toggle('on');
+  el.classList.toggle('off');
+  const state=el.classList.contains('on');
+  const labels={rush:'Rush order fee',holiday:'Holiday surcharge',svc:'Concierge services',book:'New bookings'};
+  toast(labels[key]+' — '+(state?'ON ✅':'OFF ❌'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Operations Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--teal:#0d4f45;--tm:#1a7a6a;--gold:#c9a96e;--cream:#faf7f2;--ink:#1a1a18;--soft:#6b6356;--deep:#0a1628;--border:rgba(0,0,0,.08);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-height:100vh;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:220px;background:var(--deep);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh;}
+.sb-logo{padding:22px 18px;border-bottom:1px solid rgba(255,255,255,.06);}
+.sb-brand{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;margin-bottom:1px;}
+.sb-sub{font-size:10.5px;color:rgba(255,255,255,.35);}
+.sb-nav{padding:12px 10px;flex:1;}
+.sbn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;font-size:13px;color:rgba(255,255,255,.45);cursor:pointer;margin-bottom:2px;text-decoration:none;}
+.sbn:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8);}
+.sbn.on{background:rgba(13,79,69,.5);color:#fff;}
+.sbn i{font-size:17px;flex-shrink:0;}
+.sb-foot{padding:14px;border-top:1px solid rgba(255,255,255,.06);}
+.sb-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:12px;color:#fff;font-style:italic;}
+.sb-hn{font-size:12.5px;color:rgba(255,255,255,.7);}
+.main{flex:1;overflow:auto;}
+.top-bar{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.top-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;}
+.top-right{display:flex;align-items:center;gap:10px;}
+.content{padding:20px 24px;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
+.stat{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:9px;}
+.stat-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.stat-n{font-size:20px;font-weight:600;font-family:'Cormorant Garamond',serif;}
+.stat-l{font-size:10.5px;color:var(--soft);}
+
+/* FILTER BAR */
+.filter-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.filters{display:flex;gap:6px;flex-wrap:wrap;}
+.fb{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;color:var(--soft);cursor:pointer;}
+.fb.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+.month-nav{display:flex;align-items:center;gap:10px;}
+.mnb{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;}
+.month-label{font-size:14px;font-weight:500;min-width:120px;text-align:center;}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;}
+.cal-hdr{background:var(--cream);padding:8px;text-align:center;font-size:11px;font-weight:600;color:var(--soft);letter-spacing:.3px;}
+.cal-day{background:#fff;min-height:100px;padding:6px;cursor:pointer;transition:background .1s;position:relative;}
+.cal-day:hover{background:#fdfbf8;}
+.cal-day.other{background:#f9f8f6;opacity:.6;}
+.cal-day.today{background:#e8f5ea;}
+.day-num{font-size:12px;font-weight:500;margin-bottom:4px;color:var(--soft);}
+.cal-day.today .day-num{color:var(--teal);font-weight:600;}
+.ev{border-radius:5px;padding:3px 6px;margin-bottom:3px;font-size:10px;font-weight:500;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ev-transfer{background:#e8f0fb;color:#1a3a8a;border-left:3px solid #1a4a8a;}
+.ev-grocery{background:#e8f5ea;color:#1a5a2a;border-left:3px solid #2a7a3a;}
+.ev-welcome{background:#fef9ec;color:#8a6020;border-left:3px solid #c9a96e;}
+.ev-more{font-size:9px;color:var(--soft);padding:2px 6px;}
+
+/* ORDER DETAIL PANEL */
+.panel-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:100;}
+.panel-bg.on{display:flex;}
+.panel{background:#fff;border-radius:16px;padding:0;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
+.panel-hdr{padding:20px 22px 16px;border-bottom:1px solid var(--border);}
+.panel-body{padding:20px 22px;}
+.prow{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
+.prow:last-child{border:none;}
+.prow i{font-size:16px;color:var(--teal);flex-shrink:0;margin-top:1px;}
+.pl{font-size:11px;color:var(--soft);margin-bottom:1px;}
+.pv{font-size:13px;font-weight:500;color:var(--ink);}
+.status-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.stb{flex:1;padding:10px;border-radius:9px;font-size:12.5px;font-weight:500;cursor:pointer;text-align:center;border:1px solid var(--border);color:var(--soft);font-family:'Inter',sans-serif;}
+.stb.active-s{background:var(--teal);color:#fff;border-color:var(--teal);}
+.stb.pend{background:#fef9ec;color:#8a6020;border-color:#e8c860;}
+.stb.done{background:#e8f5ea;color:#2a7a3a;border-color:#90c8a0;}
+.hold-note{background:#e8f0fb;border-radius:8px;padding:10px 12px;font-size:12px;color:#1a3a6a;margin-top:10px;display:flex;gap:7px;align-items:flex-start;}
+
+/* STRIPE HOLD BADGE */
+.stripe-hold{display:inline-flex;align-items:center;gap:5px;background:#e8f0fb;color:#1a3a8a;font-size:11px;font-weight:500;padding:3px 10px;border-radius:999px;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(6px);background:rgba(15,15,12,.92);color:#fff;font-size:12px;font-weight:500;padding:9px 18px;border-radius:999px;opacity:0;transition:all .22s;z-index:200;white-space:nowrap;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(max-width:860px){.sidebar{display:none;}.stats{grid-template-columns:1fr 1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+  <div class="sb-logo"><div class="sb-brand">My30A Host</div><div class="sb-sub">Operations</div></div>
+  <div class="sb-nav">
+    <a href="admin.html" class="sbn"><i class="ti ti-network"></i>Partners</a>
+    <a href="calendar.html" class="sbn on"><i class="ti ti-calendar"></i>Calendar</a>
+    <a href="host-dashboard.html" class="sbn"><i class="ti ti-layout-dashboard"></i>Host Dashboard</a>
+    <div class="sbn" onclick="toast('Opens in live app')"><i class="ti ti-chart-bar"></i>Revenue</div>
+    <div class="sbn" onclick="toast('Opens in live app')"><i class="ti ti-users"></i>All guests</div>
+  </div>
+  <div class="sb-foot" style="display:flex;align-items:center;gap:8px;">
+    <div class="sb-av">W</div>
+    <div><div class="sb-hn">Welson Santos</div><div style="font-size:10px;color:rgba(255,255,255,.3);">Founder</div></div>
+  </div>
+</div>
+
+<div class="main">
+<div class="top-bar">
+  <div class="top-title">Operations Calendar</div>
+  <div class="top-right">
+    <div class="stripe-hold"><i class="ti ti-lock" style="font-size:11px;"></i>Stripe card hold active</div>
+    <button onclick="openNew()" style="background:linear-gradient(135deg,var(--gold),#b8863c);border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;"><i class="ti ti-plus" style="font-size:14px;"></i>New order</button>
+    <a href="index.html" style="font-size:12px;color:var(--soft);text-decoration:none;border:1px solid var(--border);padding:6px 12px;border-radius:7px;">← Back</a>
+  </div>
+</div>
+
+<div class="content">
+<div class="stats">
+  <div class="stat"><div class="stat-ico" style="background:#e8f0fb;">✈️</div><div><div class="stat-n" style="color:#1a4a8a;" id="ct">0</div><div class="stat-l">Transfers this month</div></div></div>
+  <div class="stat"><div class="stat-ico" style="background:#e8f5ea;">🛒</div><div><div class="stat-n" style="color:#2a7a3a;" id="cg">0</div><div class="stat-l">Grocery orders</div></div></div>
+  <div class="stat"><div class="stat-ico" style="background:#fef9ec;">🌺</div><div><div class="stat-n" style="color:#8a6020;" id="cw">0</div><div class="stat-l">Welcome setups</div></div></div>
+  <div class="stat"><div class="stat-ico" style="background:#fbeae6;">⏳</div><div><div class="stat-n" style="color:#c85a3a;" id="cpend">0</div><div class="stat-l">Pending confirm</div></div></div>
+  <div class="stat"><div class="stat-ico" style="background:#e8f5ea;">✅</div><div><div class="stat-n" style="color:#2a7a3a;" id="cdone">0</div><div class="stat-l">Completed</div></div></div>
+</div>
+
+<div class="filter-bar">
+  <div class="filters">
+    <button class="fb on" onclick="setFilter(this,'all')">All</button>
+    <button class="fb" onclick="setFilter(this,'transfer')">✈️ Transfers</button>
+    <button class="fb" onclick="setFilter(this,'grocery')">🛒 Grocery</button>
+    <button class="fb" onclick="setFilter(this,'welcome')">🌺 Welcome</button>
+    <button class="fb" onclick="setFilter(this,'pending')">⏳ Pending only</button>
+  </div>
+  <div class="month-nav">
+    <div class="mnb" onclick="changeMonth(-1)"><i class="ti ti-chevron-left" style="font-size:13px;"></i></div>
+    <div class="month-label" id="mlbl"></div>
+    <div class="mnb" onclick="changeMonth(1)"><i class="ti ti-chevron-right" style="font-size:13px;"></i></div>
+  </div>
+</div>
+
+<div class="cal-grid" id="cg2">
+  <div class="cal-hdr">SUN</div><div class="cal-hdr">MON</div><div class="cal-hdr">TUE</div>
+  <div class="cal-hdr">WED</div><div class="cal-hdr">THU</div><div class="cal-hdr">FRI</div><div class="cal-hdr">SAT</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ORDER DETAIL PANEL -->
+<div class="panel-bg" id="panel" onclick="closePanelOnBg(event)">
+<div class="panel" id="panelInner">
+  <div class="panel-hdr">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="font-size:11px;color:var(--soft);margin-bottom:2px;" id="p-type-lbl">ORDER</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;" id="p-title">—</p>
+      </div>
+      <button onclick="closePanel()" style="width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ti ti-x" style="font-size:15px;color:var(--soft);"></i></button>
+    </div>
+  </div>
+  <div class="panel-body" id="p-body"></div>
+</div>
+</div>
+
+<div class="toast" id="tst"></div>
+
+<script>
+// ── ORDERS DATA ──
+const ORDERS=[
+  {id:1,type:'transfer',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',airport:'ECP',direction:'Arrival',date:'2026-07-19',time:'2:30 PM',flight:'AA 2847',from:'ECP — Northwest FL Beaches Airport',to:'Rosemary Beach House 12',people:4,bags:6,value:150,paid:true,notes:'They have 1 car seat'},
+  {id:2,type:'grocery',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-18',time:'Morning delivery',items:42,kit:'Full kit',value:349,paid:true,notes:'No pork — Jewish dietary'},
+  {id:3,type:'welcome',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-19',time:'Before 2pm',tier:'Coastal Luxury',value:275,paid:true,notes:'Champagne + flowers + charcuterie'},
+  {id:4,type:'transfer',status:'pending',guest:'Martinez Family',email:'martinez@email.com',phone:'(214) 555-0187',airport:'ECP',direction:'Arrival',date:'2026-07-22',time:'4:15 PM',flight:'DL 3321',from:'ECP — Northwest FL Beaches Airport',to:'Alys Beach Unit 5B',people:6,bags:8,value:150,paid:false,notes:''},
+  {id:5,type:'grocery',status:'pending',guest:'Lee Family',email:'lee@email.com',phone:'(404) 555-0291',date:'2026-07-23',time:'Flexible',items:28,kit:'Small kit',value:189,paid:false,notes:'Gluten free options needed'},
+  {id:6,type:'transfer',status:'completed',guest:'Thompson Couple',email:'thompson@email.com',phone:'(312) 555-0044',airport:'ECP',direction:'Departure',date:'2026-07-14',time:'10:00 AM',flight:'AA 1203',from:'Rosemary Beach',to:'ECP — Northwest FL Beaches Airport',people:2,bags:3,value:150,paid:true,notes:''},
+  {id:7,type:'welcome',status:'pending',guest:'Wilson Family',email:'wilson@email.com',phone:'(713) 555-0339',date:'2026-07-26',time:'Before 4pm',tier:'Warm Welcome',value:145,paid:false,notes:'Birthday — add balloons if possible'},
+  {id:8,type:'grocery',status:'completed',guest:'Davis Family',email:'davis@email.com',phone:'(305) 555-0512',date:'2026-07-12',time:'Morning delivery',items:55,kit:'Full kit',value:421,paid:true,notes:''},
+  {id:9,type:'transfer',status:'pending',guest:'Anderson Family',email:'anderson@email.com',phone:'(206) 555-0667',airport:'VPS',direction:'Arrival',date:'2026-07-28',time:'6:45 PM',flight:'SW 4512',from:'VPS — Destin-Fort Walton Beach Airport',to:'WaterColor Rental Home',people:5,bags:7,value:225,paid:false,notes:''},
+  {id:10,type:'transfer',status:'confirmed',guest:'Brown Couple',email:'brown@email.com',phone:'(415) 555-0782',airport:'ECP',direction:'Arrival',date:'2026-07-31',time:'1:20 PM',flight:'UA 801',from:'ECP — Northwest FL Beaches Airport',to:'Seagrove Beach House',people:2,bags:2,value:150,paid:true,notes:'Anniversary trip'},
+];
+
+let curMonth=6,curYear=2026,curFilter='all';
+
+function renderCal(){
+  const grid=document.getElementById('cg2');
+  // remove all days
+  const hdrs=grid.querySelectorAll('.cal-hdr');
+  grid.innerHTML='';
+  hdrs.forEach(h=>grid.appendChild(h));
+
+  const mlbl=document.getElementById('mlbl');
+  mlbl.textContent=new Date(curYear,curMonth).toLocaleDateString('en-US',{month:'long',year:'numeric'});
+
+  const first=new Date(curYear,curMonth,1).getDay();
+  const days=new Date(curYear,curMonth+1,0).getDate();
+  const today=new Date();
+
+  // pad start
+  for(let i=0;i<first;i++){
+    const d=document.createElement('div');d.className='cal-day other';grid.appendChild(d);
+  }
+
+  const filtered=curFilter==='all'?ORDERS:
+    curFilter==='pending'?ORDERS.filter(o=>o.status==='pending'):
+    ORDERS.filter(o=>o.type===curFilter);
+
+  for(let d=1;d<=days;d++){
+    const cell=document.createElement('div');
+    const isToday=today.getDate()===d&&today.getMonth()===curMonth&&today.getFullYear()===curYear;
+    cell.className='cal-day'+(isToday?' today':'');
+    const num=document.createElement('div');num.className='day-num';num.textContent=d;
+    cell.appendChild(num);
+
+    const ds=String(curYear)+'-'+String(curMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const dayOrders=filtered.filter(o=>o.date===ds);
+    dayOrders.slice(0,3).forEach(o=>{
+      const e=document.createElement('div');
+      const cls=o.type==='transfer'?'ev-transfer':o.type==='grocery'?'ev-grocery':'ev-welcome';
+      const ico=o.type==='transfer'?'✈️':o.type==='grocery'?'🛒':'🌺';
+      e.className=`ev ${cls}`;
+      e.textContent=`${ico} ${o.guest.split(' ')[0]}`;
+      if(o.status==='pending')e.style.opacity='.7';
+      e.onclick=(ev)=>{ev.stopPropagation();openOrder(o.id);};
+      cell.appendChild(e);
+    });
+    if(dayOrders.length>3){
+      const m=document.createElement('div');m.className='ev-more';m.textContent=`+${dayOrders.length-3} more`;cell.appendChild(m);
+    }
+    grid.appendChild(cell);
+  }
+
+  // update stats
+  const mo=ORDERS.filter(o=>o.date.startsWith(`${curYear}-${String(curMonth+1).padStart(2,'0')}`));
+  document.getElementById('ct').textContent=mo.filter(o=>o.type==='transfer').length;
+  document.getElementById('cg').textContent=mo.filter(o=>o.type==='grocery').length;
+  document.getElementById('cw').textContent=mo.filter(o=>o.type==='welcome').length;
+  document.getElementById('cpend').textContent=mo.filter(o=>o.status==='pending').length;
+  document.getElementById('cdone').textContent=mo.filter(o=>o.status==='completed').length;
+}
+
+function changeMonth(d){curMonth+=d;if(curMonth>11){curMonth=0;curYear++;}if(curMonth<0){curMonth=11;curYear--;}renderCal();}
+function setFilter(el,f){document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));el.classList.add('on');curFilter=f;renderCal();}
+
+function openOrder(id){
+  const o=ORDERS.find(x=>x.id===id);if(!o)return;
+  const typeLabel=o.type==='transfer'?'✈️ AIRPORT TRANSFER':o.type==='grocery'?'🛒 GROCERY ORDER':'🌺 WELCOME SETUP';
+  const title=o.guest;
+  document.getElementById('p-type-lbl').textContent=typeLabel;
+  document.getElementById('p-title').textContent=title;
+  let rows='';
+  if(o.type==='transfer'){
+    rows=`
+      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Date & time</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-plane${o.direction==='Arrival'?'-arrival':'-departure'}"></i><div><div class="pl">Direction</div><div class="pv">${o.direction} · Flight ${o.flight}</div></div></div>
+      <div class="prow"><i class="ti ti-map-pin"></i><div><div class="pl">Pickup → Dropoff</div><div class="pv">${o.from}<br>→ ${o.to}</div></div></div>
+      <div class="prow"><i class="ti ti-users"></i><div><div class="pl">Passengers & bags</div><div class="pv">${o.people} people · ${o.bags} bags</div></div></div>
+      <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
+      ${o.notes?`<div class="prow"><i class="ti ti-note"></i><div><div class="pl">Notes</div><div class="pv">${o.notes}</div></div></div>`:''}
+      <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Value & payment</div><div class="pv">$${o.value} · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — not yet captured</span>'}</div></div></div>`;
+  }else if(o.type==='grocery'){
+    rows=`
+      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Delivery date</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-list"></i><div><div class="pl">Order size</div><div class="pv">${o.kit} · ${o.items} items</div></div></div>
+      <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
+      ${o.notes?`<div class="prow"><i class="ti ti-alert-triangle"></i><div><div class="pl">Dietary notes</div><div class="pv" style="color:#c85a3a;font-weight:500;">${o.notes}</div></div></div>`:''}
+      <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Estimated value & payment</div><div class="pv">$${o.value} est. · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — awaiting final receipt</span>'}</div></div></div>`;
+  }else{
+    rows=`
+      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Setup date & deadline</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-star"></i><div><div class="pl">Package</div><div class="pv">${o.tier}</div></div></div>
+      <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
+      ${o.notes?`<div class="prow"><i class="ti ti-note"></i><div><div class="pl">Special request</div><div class="pv" style="color:#8a6020;">${o.notes}</div></div></div>`:''}
+      <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Value & payment</div><div class="pv">$${o.value} · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — not yet captured</span>'}</div></div></div>`;
+  }
+  document.getElementById('p-body').innerHTML=rows+`
+    <div class="hold-note"><i class="ti ti-credit-card" style="font-size:14px;flex-shrink:0;margin-top:1px;"></i><div><strong>Stripe card hold:</strong> the guest's card is authorized and held. Charge is captured when you confirm, or released if you decline. Guest is protected — no surprise charges.</div></div>
+    <div class="status-row">
+      <button class="stb ${o.status==='pending'?'pend':''}" onclick="setStatus(${id},'pending')">⏳ Pending</button>
+      <button class="stb ${o.status==='confirmed'?'active-s':''}" onclick="setStatus(${id},'confirmed')">✅ Confirm</button>
+      <button class="stb ${o.status==='completed'?'done':''}" onclick="setStatus(${id},'completed')">✔ Done</button>
+    </div>`;
+  document.getElementById('panel').classList.add('on');
+}
+
+function setStatus(id,s){
+  const o=ORDERS.find(x=>x.id===id);if(o){o.status=s;if(s==='confirmed'){o.paid=true;}renderCal();openOrder(id);toast(s==='confirmed'?'Order confirmed — card captured':'Status updated');}
+}
+function closePanel(){document.getElementById('panel').classList.remove('on');}
+function closePanelOnBg(e){if(e.target===document.getElementById('panel'))closePanel();}
+function openNew(){toast('New order form opens in the live app');}
+
+let tt;
+function toast(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2500);}
+
+renderCal();
+</script>
+</body>
+</html>

@@ -1,5 +1,12 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
+    { "source": "/app", "destination": "/app.html" },
+    { "source": "/hosts", "destination": "/for-hosts.html" },
+    { "source": "/dashboard", "destination": "/host-dashboard.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/calendar", "destination": "/calendar.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/developer", "destination": "/developer-brief.html" },
+    { "source": "/watersound", "destination": "/watersound-inn.html" }
   ]
 }
