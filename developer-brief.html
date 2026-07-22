@@ -317,6 +317,40 @@ td strong{color:var(--ink);}
 
 <!-- CONTACTS -->
 <div class="sec">
+  <div class="sec-hdr"><i class="ti ti-chart-bar" style="font-size:20px;color:var(--teal);"></i><h2>Analytics — track everything from day 1</h2></div>
+  <div class="sec-body">
+    <p style="font-size:13px;color:var(--soft);margin-bottom:12px;">Every user action must be saved in Supabase for future valuation and partner subscription pitches. This data is the company's most valuable asset.</p>
+    <div class="schema">
+<span class="cm">-- 6. ANALYTICS EVENTS — every action tracked</span><br>
+<span class="kw">CREATE TABLE</span> analytics_events (<br>
+&nbsp;&nbsp;id <span class="ty">UUID PRIMARY KEY DEFAULT gen_random_uuid()</span>,<br>
+&nbsp;&nbsp;user_email <span class="ty">TEXT</span>, <span class="cm">-- null for anonymous visitors</span><br>
+&nbsp;&nbsp;session_id <span class="ty">TEXT NOT NULL</span>, <span class="cm">-- track anonymous users too</span><br>
+&nbsp;&nbsp;event_type <span class="ty">TEXT NOT NULL</span>, <span class="cm">-- see event types below</span><br>
+&nbsp;&nbsp;event_data <span class="ty">JSONB DEFAULT '{}'</span>, <span class="cm">-- partner_name, category, value, etc</span><br>
+&nbsp;&nbsp;property_id <span class="ty">UUID REFERENCES properties(id)</span>,<br>
+&nbsp;&nbsp;community <span class="ty">TEXT</span>, <span class="cm">-- Rosemary Beach, WaterColor, etc</span><br>
+&nbsp;&nbsp;created_at <span class="ty">TIMESTAMPTZ DEFAULT NOW()</span><br>
+);<br><br>
+<span class="cm">-- Event types to track:</span><br>
+<span class="cm">-- app_open | chat_message | partner_view | partner_click</span><br>
+<span class="cm">-- service_started | service_completed | order_paid</span><br>
+<span class="cm">-- tip_added | rating_submitted | loyalty_upgraded</span>
+    </div>
+    <p style="font-size:11px;font-weight:600;color:var(--soft);letter-spacing:.5px;text-transform:uppercase;margin:14px 0 7px;">Key metrics to expose in admin.html dashboard</p>
+    <table>
+      <tr><th>Metric</th><th>How to calculate</th><th>Why it matters</th></tr>
+      <tr><td><strong>Total users</strong></td><td>COUNT(DISTINCT user_email) FROM guests</td><td>Number of registered users — for partner pitches</td></tr>
+      <tr><td><strong>MAU</strong></td><td>COUNT(DISTINCT user_email) WHERE created_at > now()-30days</td><td>Monthly active users — valuation metric</td></tr>
+      <tr><td><strong>Partner views</strong></td><td>COUNT(*) WHERE event_type='partner_view' GROUP BY event_data->>'partner_name'</td><td>Show partners how many people viewed them</td></tr>
+      <tr><td><strong>Partner clicks</strong></td><td>COUNT(*) WHERE event_type='partner_click'</td><td>Strongest argument for partner subscription</td></tr>
+      <tr><td><strong>Conversion rate</strong></td><td>COUNT(orders) / COUNT(DISTINCT sessions)</td><td>Product health — for investor/buyer data room</td></tr>
+    </table>
+    <div class="highlight green" style="margin-top:12px;"><p><strong>Partner pitch logic:</strong> When admin taps "Pitch now", generate email: "This month, X guests viewed your listing and Y clicked through. Featured tier puts you first for $999/yr." This data-driven pitch converts much better than cold outreach.</p></div>
+  </div>
+</div>
+
+<div class="sec">
   <div class="sec-hdr"><i class="ti ti-users" style="font-size:20px;color:var(--soft);"></i><h2>Key contacts & accounts</h2></div>
   <div class="sec-body">
     <table>
