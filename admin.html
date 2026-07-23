@@ -234,7 +234,25 @@ body{font-family:'Inter',sans-serif;background:#f0ede8;color:var(--ink);min-heig
 <!-- TABS NAV -->
 <div class="tab-nav">
   <div class="tab on" id="tab-analytics" onclick="showTab('analytics')"><i class="ti ti-chart-bar" style="font-size:14px;"></i>Analytics</div>
-  <div class="tab" id="tab-partners" onclick="showTab('partners')"><i class="ti ti-network" style="font-size:14px;"></i>Partners</div>
+  <div class="tab" id="tab-partners" onclick="showTab('partners')">
+        <!-- PENDING APPROVALS SECTION -->
+        <div id="pending-section" style="margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:15px;font-weight:600;margin:0;">Partner requests</h3>
+              <p style="font-size:12px;color:var(--soft);margin:2px 0 0;" id="pending-count">Loading...</p>
+            </div>
+            <button onclick="loadPending()" style="font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:7px;background:var(--cream);cursor:pointer;"><i class="ti ti-refresh" style="font-size:12px;"></i> Refresh</button>
+          </div>
+          <div id="pending-list">
+            <div style="text-align:center;padding:20px;color:var(--soft);font-size:12px;">
+              <i class="ti ti-loader" style="font-size:20px;display:block;margin:0 auto 8px;"></i>
+              Loading pending requests...
+            </div>
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--border);margin-bottom:20px;">
+<i class="ti ti-network" style="font-size:14px;"></i>Partners</div>
   <div class="tab" id="tab-subscriptions" onclick="showTab('subscriptions')"><i class="ti ti-credit-card" style="font-size:14px;"></i>Subscriptions</div>
   <div class="tab" id="tab-settings" onclick="showTab('settings')"><i class="ti ti-settings" style="font-size:14px;"></i>Settings</div>
 </div>
@@ -304,11 +322,11 @@ body{font-family:'Inter',sans-serif;background:#f0ede8;color:var(--ink);min-heig
     <div class="card-h"><h3><i class="ti ti-trophy"></i>Top clicked partners this month</h3><span style="font-size:11.5px;color:var(--teal);cursor:pointer;font-weight:500;">Export pitch report →</span></div>
     <table style="font-size:12.5px;width:100%;border-collapse:collapse;">
       <tr style="background:var(--cream);"><th style="padding:8px 12px;text-align:left;font-size:11px;color:var(--soft);border-bottom:2px solid var(--border);">Partner</th><th style="padding:8px 12px;font-size:11px;color:var(--soft);border-bottom:2px solid var(--border);">Category</th><th style="padding:8px 12px;font-size:11px;color:var(--soft);border-bottom:2px solid var(--border);">Views</th><th style="padding:8px 12px;font-size:11px;color:var(--soft);border-bottom:2px solid var(--border);">Tier</th><th style="padding:8px 12px;font-size:11px;color:var(--soft);border-bottom:2px solid var(--border);">Action</th></tr>
-      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🍽️ Gallion's Rosemary Beach</td><td style="padding:8px 12px;color:var(--soft);">Fine Dining</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">234</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for Gallion\\'s — 234 views this month')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
-      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🚤 Shallow Minded Fishing</td><td style="padding:8px 12px;color:var(--soft);">Water</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">198</td><td style="padding:8px 12px;"><span class="tier t-featured">Featured</span></td><td style="padding:8px 12px;"><span style="font-size:11px;color:var(--soft);">Active sub</span></td></tr>
-      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🛺 30A Gulf Carts</td><td style="padding:8px 12px;color:var(--soft);">Golf Cart</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">176</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for 30A Gulf Carts — 176 views')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
-      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">📸 Randi Doris Photography</td><td style="padding:8px 12px;color:var(--soft);">Photography</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">143</td><td style="padding:8px 12px;"><span class="tier t-featured">Featured</span></td><td style="padding:8px 12px;"><span style="font-size:11px;color:var(--soft);">Active sub</span></td></tr>
-      <tr><td style="padding:8px 12px;font-weight:500;">🍽️ Pescado Seafood Grill</td><td style="padding:8px 12px;color:var(--soft);">Dining</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">127</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for Pescado — 127 views')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
+      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🍽️ Gallion's Rosemary Beach</td><td style="padding:8px 12px;color:var(--soft);">Fine Dining</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">234</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><input type="text" placeholder="logo URL" style="font-size:10px;padding:3px 6px;border:1px solid var(--border);border-radius:5px;width:90px;color:var(--soft);" onclick="this.select()"></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for Gallion\\'s — 234 views this month')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
+      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🚤 Shallow Minded Fishing</td><td style="padding:8px 12px;color:var(--soft);">Water</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">198</td><td style="padding:8px 12px;"><span class="tier t-featured">Featured</span></td><td style="padding:8px 12px;"><input type="text" placeholder="logo URL" style="font-size:10px;padding:3px 6px;border:1px solid var(--border);border-radius:5px;width:90px;color:var(--soft);" onclick="this.select()"></td><td style="padding:8px 12px;"><span style="font-size:11px;color:var(--soft);">Active sub</span></td></tr>
+      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">🛺 30A Gulf Carts</td><td style="padding:8px 12px;color:var(--soft);">Golf Cart</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">176</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><input type="text" placeholder="logo URL" style="font-size:10px;padding:3px 6px;border:1px solid var(--border);border-radius:5px;width:90px;color:var(--soft);" onclick="this.select()"></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for 30A Gulf Carts — 176 views')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
+      <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">📸 Randi Doris Photography</td><td style="padding:8px 12px;color:var(--soft);">Photography</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">143</td><td style="padding:8px 12px;"><span class="tier t-featured">Featured</span></td><td style="padding:8px 12px;"><input type="text" placeholder="logo URL" style="font-size:10px;padding:3px 6px;border:1px solid var(--border);border-radius:5px;width:90px;color:var(--soft);" onclick="this.select()"></td><td style="padding:8px 12px;"><span style="font-size:11px;color:var(--soft);">Active sub</span></td></tr>
+      <tr><td style="padding:8px 12px;font-weight:500;">🍽️ Pescado Seafood Grill</td><td style="padding:8px 12px;color:var(--soft);">Dining</td><td style="padding:8px 12px;font-weight:600;color:var(--teal);">127</td><td style="padding:8px 12px;"><span class="tier t-free">Free</span></td><td style="padding:8px 12px;"><input type="text" placeholder="logo URL" style="font-size:10px;padding:3px 6px;border:1px solid var(--border);border-radius:5px;width:90px;color:var(--soft);" onclick="this.select()"></td><td style="padding:8px 12px;"><button onclick="toast('Pitch email drafted for Pescado — 127 views')" style="font-size:11px;color:var(--teal);background:none;border:1px solid var(--teal);padding:3px 8px;border-radius:5px;cursor:pointer;">Pitch now</button></td></tr>
     </table>
   </div>
 </div>
@@ -471,6 +489,10 @@ body{font-family:'Inter',sans-serif;background:#f0ede8;color:var(--ink);min-heig
 <div class="toast" id="toast"></div>
 
 <script>
+// ── SUPABASE CONFIG ──
+const SUPA_URL = 'YOUR_SUPABASE_URL';
+const SUPA_KEY = 'YOUR_SUPABASE_SERVICE_KEY'; // service key for admin operations
+
 // ── PARTNER DATABASE — 80+ vendors across all 30A communities ──
 const PARTNERS = [
 // DINING — ROSEMARY BEACH
@@ -540,7 +562,7 @@ const PARTNERS = [
 {id:53,ico:'🌸',name:'Bouquet at Clay',cat:'events',catLabel:'Florist',area:'Santa Rosa Beach',phone:'(850) 502-0725',web:'shop.bouquetatclay.com',email:'',desc:'Local florist for welcome arrangements, event florals, and gifts.',tier:'free',active:false,notes:'Welcome setup partner'},
 {id:54,ico:'🌿',name:'Clay Garden & Gifts',cat:'events',catLabel:'Florist/Gifts',area:'Santa Rosa Beach',phone:'(850) 231-2150',web:'clay30a.com',email:'',desc:'Colorful garden center and gift shop. Plants, blessings, and unique gifts.',tier:'free',active:false,notes:''},
 // GOLF
-{id:55,ico:'⛳',name:'Santa Rosa Golf & Beach Club',cat:'golf',catLabel:'Golf',area:'Santa Rosa Beach',phone:'(850) 267-2229',web:'santarosaclub.com',email:'Carter@santarosaclub.com',desc:'Championship Audubon-certified course. Visitor access — call to confirm.',tier:'free',active:false,notes:'Directory only — no commission'},
+{id:55,ico:'⛳',name:'Santa Rosa Golf & Beach Club',cat:'golf',catLabel:'Golf',area:'Santa Rosa Beach',phone:'(850) 267-2229',web:'santarosaclub.com',email:'Carter@santarosaclub.com',desc:'Championship Audubon-certified course. Visitor access — call to confirm.',tier:'free',active:false,notes:'Directory only — no subscription fee'},
 {id:56,ico:'⛳',name:"Shark's Tooth Golf Club",cat:'golf',catLabel:'Golf',area:'Santa Rosa Beach',phone:'(850) 835-0200',web:'sharkstoothgolf.com',email:'',desc:'Links-style championship golf. One of the best courses in the Florida panhandle.',tier:'free',active:false,notes:''},
 // SHOPPING
 {id:57,ico:'📚',name:'Sundog Books',cat:'shopping',catLabel:'Books',area:'Seaside',phone:'(850) 231-5481',web:'sundogbooks.com',email:'',desc:'Beloved independent bookstore in Seaside. Books, gifts, greeting cards for all ages.',tier:'free',active:false,notes:''},
@@ -869,6 +891,90 @@ renderFilters();
 applyFilter();
 updateSidebarCount();
 buildMonthlyChart();
+
+
+// ── ADMIN: Load pending partner requests from Supabase ──
+async function loadPending(){
+  if(SUPA_URL === 'YOUR_SUPABASE_URL'){ 
+    document.getElementById('pending-count').textContent = 'Connect Supabase to see requests';
+    document.getElementById('pending-list').innerHTML = pendingPlaceholder();
+    return; 
+  }
+  try {
+    const res = await fetch(`${SUPA_URL}/rest/v1/partners?status=eq.pending&order=created_at.desc`, {
+      headers:{ 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` }
+    });
+    const data = await res.json();
+    const count = data.length;
+    document.getElementById('pending-count').textContent = count ? `${count} pending request${count>1?'s':''}` : 'No pending requests';
+    document.getElementById('pending-list').innerHTML = count ? data.map(renderPendingCard).join('') : '<p style="font-size:12px;color:var(--soft);padding:12px;text-align:center;">All caught up — no pending requests.</p>';
+  } catch(e) {
+    document.getElementById('pending-list').innerHTML = '<p style="color:red;font-size:12px;padding:8px;">Error loading from Supabase. Check your keys.</p>';
+  }
+}
+
+function renderPendingCard(p){
+  const logo = p.logo_url ? `<img src="${p.logo_url}" style="width:38px;height:38px;border-radius:8px;object-fit:contain;border:1px solid var(--border);" onerror="this.src='';this.style.display='none'">` : `<div style="width:38px;height:38px;border-radius:8px;background:#1a4a8a;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;">${p.name.substring(0,2).toUpperCase()}</div>`;
+  return `<div style="background:#fff;border:1px solid var(--border);border-radius:11px;padding:13px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;">
+    ${logo}
+    <div style="flex:1;min-width:0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+        <span style="font-size:13px;font-weight:600;">${p.name}</span>
+        <span style="font-size:10px;background:#e8f0fb;color:#1a4a8a;padding:2px 7px;border-radius:999px;">${p.category}</span>
+      </div>
+      <p style="font-size:11px;color:var(--soft);margin:0 0 2px;">${p.description || ''}</p>
+      <p style="font-size:11px;color:var(--soft);margin:0 0 6px;">📞 ${p.phone || '—'} · 🌐 ${p.website || '—'} · 📍 ${p.area || '—'}</p>
+      <p style="font-size:10px;color:var(--soft);margin:0 0 8px;">Contact: <strong>${p.contact_name}</strong> · ${p.contact_email} · Applied ${new Date(p.created_at).toLocaleDateString()}</p>
+      <div style="display:flex;gap:8px;">
+        <button onclick="approvePartner('${p.id}','${p.name}')" style="padding:6px 14px;background:#1a6a4a;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;">✅ Approve</button>
+        <button onclick="rejectPartner('${p.id}','${p.name}')" style="padding:6px 14px;background:#fff;color:#c03a2a;border:1px solid #f0c0b0;border-radius:7px;font-size:12px;cursor:pointer;">❌ Reject</button>
+        <button onclick="window.open('mailto:${p.contact_email}?subject=Your My30A Host listing&body=Hi ${p.contact_name},')" style="padding:6px 14px;background:#fff;color:var(--soft);border:1px solid var(--border);border-radius:7px;font-size:12px;cursor:pointer;">✉️ Email</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+async function approvePartner(id, name){
+  if(!confirm(`Approve ${name} and add to Local guide?`)) return;
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
+      method:'PATCH',
+      headers:{ 'apikey':SUPA_KEY, 'Authorization':`Bearer ${SUPA_KEY}`, 'Content-Type':'application/json' },
+      body: JSON.stringify({ status:'approved', approved_at: new Date().toISOString() })
+    });
+    toast(`✅ ${name} approved — now live in the app`);
+    loadPending();
+  } catch(e){ alert('Error approving. Check Supabase connection.'); }
+}
+
+async function rejectPartner(id, name){
+  const reason = prompt(`Reason for rejecting ${name} (optional):`);
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
+      method:'PATCH',
+      headers:{ 'apikey':SUPA_KEY, 'Authorization':`Bearer ${SUPA_KEY}`, 'Content-Type':'application/json' },
+      body: JSON.stringify({ status:'rejected' })
+    });
+    toast(`${name} rejected`);
+    loadPending();
+  } catch(e){ alert('Error rejecting.'); }
+}
+
+function pendingPlaceholder(){
+  return ['Beach Setup Co.','Gulf Breeze Photography','30A Surfboards'].map(name=>`
+    <div style="background:#fff;border:1px dashed var(--border);border-radius:11px;padding:13px;margin-bottom:10px;opacity:.5;">
+      <div style="display:flex;gap:10px;align-items:center;">
+        <div style="width:38px;height:38px;border-radius:8px;background:#e5ddd0;"></div>
+        <div><p style="font-size:13px;font-weight:500;color:var(--soft);margin:0;">${name}</p><p style="font-size:11px;color:var(--soft);margin:3px 0 0;">Example — connect Supabase to see real requests</p></div>
+      </div>
+    </div>`).join('');
+}
+
+// Auto-load pending when partners tab opens
+document.addEventListener('DOMContentLoaded', ()=>{ 
+  setTimeout(()=>{ if(document.getElementById('pending-list')) loadPending(); }, 500); 
+});
+
 </script>
 </body>
 </html>

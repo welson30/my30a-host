@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partner with My30A Host</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--deep:#0a1628;--teal:#1a6a4a;--gold:#c9a84c;--cream:#f5f0e8;--border:#e5ddd0;--soft:#6b6560;--ink:#1a1714;}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
+/* NAV */
+.topnav{background:var(--deep);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+.brand{font-family:'Cormorant Garamond',serif;color:#fff;font-size:20px;font-weight:500;text-decoration:none;}
+.nav-back{color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:4px;}
+/* HERO */
+.hero{background:linear-gradient(160deg,#0a1628 0%,#0d3a20 100%);padding:40px 20px 36px;text-align:center;}
+.hero-eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;font-weight:500;line-height:1.2;margin-bottom:10px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;max-width:320px;margin:0 auto;}
+/* TIERS */
+.section{padding:28px 20px;}
+.section-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+.tier-card{border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;position:relative;}
+.tier-card.featured{border-color:var(--gold);background:#fffdf5;}
+.tier-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;}
+.badge-free{background:#e8f5ed;color:var(--teal);}
+.badge-basic{background:#e8f0fb;color:#1a4a8a;}
+.badge-feat{background:#fff3e0;color:#8a4a00;}
+.badge-prio{background:linear-gradient(135deg,#c9a84c,#b87333);color:#fff;}
+.tier-name{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.tier-price{font-size:13px;color:var(--soft);margin-bottom:12px;}
+.tier-feature{font-size:12px;color:var(--soft);display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;line-height:1.5;}
+.tier-feature i{font-size:13px;color:var(--teal);margin-top:1px;flex-shrink:0;}
+/* HOW IT WORKS */
+.steps{padding:0 20px 28px;}
+.step{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.step-num{width:28px;height:28px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;}
+.step-text{font-size:13px;color:var(--soft);line-height:1.6;}
+.step-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+/* DISCLAIMER */
+.disclaimer{background:var(--cream);border-radius:12px;padding:14px 16px;margin:0 20px 20px;border:1px solid var(--border);}
+.disclaimer p{font-size:11px;color:var(--soft);line-height:1.7;}
+/* FORM */
+.form-section{padding:24px 20px;background:var(--cream);}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.form-sub{font-size:12px;color:var(--soft);margin-bottom:20px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:11px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block;}
+.form-input{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:'Inter',sans-serif;color:var(--ink);background:#fff;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--teal);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.cat-opt{position:relative;}
+.cat-opt input{display:none;}
+.cat-opt label{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;color:var(--soft);background:#fff;transition:all .15s;}
+.cat-opt input:checked + label{border-color:var(--teal);background:#e8f5ed;color:var(--teal);font-weight:500;}
+.form-select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:'Inter',sans-serif;color:var(--ink);background:#fff;outline:none;-webkit-appearance:none;appearance:none;}
+.char-count{font-size:10px;color:var(--soft);text-align:right;margin-top:3px;}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--teal),#0d5a38);color:#fff;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.submit-btn:hover{opacity:.93;}
+.form-note{font-size:11px;color:var(--soft);text-align:center;margin-top:10px;line-height:1.6;}
+/* CONFIRM */
+.confirm{display:none;padding:40px 20px;text-align:center;}
+.confirm-icon{font-size:48px;margin-bottom:16px;}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.confirm-sub{font-size:13px;color:var(--soft);line-height:1.7;max-width:300px;margin:0 auto 20px;}
+.confirm-note{background:var(--cream);border-radius:10px;padding:14px;font-size:12px;color:var(--soft);line-height:1.7;border:1px solid var(--border);}
+/* METRICS PREVIEW */
+.metrics-preview{background:var(--deep);border-radius:14px;padding:20px;margin:0 20px 24px;}
+.mp-title{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.mp-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.mp-row:last-child{border:none;}
+.mp-label{font-size:12px;color:rgba(255,255,255,.6);}
+.mp-value{font-size:14px;font-weight:600;color:#fff;}
+.mp-value.gold{color:var(--gold);}
+.locked{filter:blur(4px);pointer-events:none;user-select:none;}
+.lock-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,.4);margin-top:8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.disc-opt{position:relative;}
+.disc-opt input{display:none;}
+.disc-opt span{display:block;padding:8px 6px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;text-align:center;color:var(--soft);background:#fff;transition:all .15s;}
+.disc-opt input:checked + span{border-color:#1a6a4a;background:#e3f0ec;color:#0d5a38;font-weight:600;}
+.disc-opt:hover span{border-color:#a0d4b8;background:#f0faf5;}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="/" class="brand">My30A Host</a>
+  <a href="/hosts" class="nav-back"><i class="ti ti-arrow-left"></i> For hosts</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">For local businesses</div>
+  <div class="hero-title">Reach every 30A guest<br>before they arrive</div>
+  <div class="hero-sub">Get listed in My30A Host — the concierge app guests open the moment they land at the airport.</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="section-label">How it works</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text"><div class="step-title">Submit your listing</div>Fill out the form below. We review every partner manually to ensure quality.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text"><div class="step-title">Vitoria connects guests to you</div>When guests ask for a service in your category, Vitoria shows your name, phone, and website — they contact you directly.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><div class="step-title">You handle everything</div>Payment, booking, and delivery is 100% between you and the guest. My30A Host is the connector only — no commission, ever.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text"><div class="step-title">See your visibility</div>Once approved, you'll receive access to your partner dashboard showing views, contacts, and engagement.</div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS PREVIEW -->
+<div class="metrics-preview">
+  <div class="mp-title">Your future partner dashboard</div>
+  <div class="mp-row"><span class="mp-label">Profile views this month</span><span class="mp-value locked">847</span></div>
+  <div class="mp-row"><span class="mp-label">Guests who contacted you</span><span class="mp-value locked">63</span></div>
+  <div class="mp-row"><span class="mp-label">Category rank</span><span class="mp-value gold locked">#1 Featured</span></div>
+  <div class="lock-badge"><i class="ti ti-lock" style="font-size:11px;"></i> Available after approval</div>
+</div>
+
+<!-- TIERS -->
+<div class="section" style="padding-top:4px;">
+  <div style="background:linear-gradient(135deg,#0a1628,#0d3a20);border-radius:14px;padding:16px 18px;margin-bottom:18px;">
+    <p style="font-size:13px;font-weight:600;color:#c9a84c;margin-bottom:5px;">🎉 Early partner program</p>
+    <p style="font-size:12.5px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:0;">Listing is <strong style="color:#fff;">free for all early partners</strong>. Premium visibility features — including Featured badge and partner analytics — are coming as the platform grows. Early partners get priority access when those features launch.</p>
+  </div>
+  <div class="section-label">What's included</div>
+  
+  <div class="tier-card">
+    <span class="tier-badge badge-free">Free</span>
+    <div class="tier-name">Standard listing</div>
+    <div class="tier-price">Free forever — no credit card needed</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Listed in Local guide by category</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Phone and website shown to guests</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Vitoria mentions you when asked about your category</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>No commission — ever</div>
+  </div>
+
+  <div class="tier-card featured">
+    <span class="tier-badge badge-feat">⭐ Featured</span>
+    <div class="tier-name">Featured listing</div>
+    <div class="tier-price">Coming as the platform grows — early partners get priority access</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Everything in Standard</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>⭐ Featured badge — appears first in your category</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Partner dashboard: views, contacts, engagement</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Vitoria proactively suggests you when relevant</div>
+  </div>
+
+  <div class="tier-card">
+    <span class="tier-badge badge-prio">🏆 Priority</span>
+    <div class="tier-name">Priority partner</div>
+    <div class="tier-price">Coming as the platform grows — early partners get priority access</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Everything in Featured</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Vitoria recommends you by name, not just category</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Co-branded content in guest welcome message</div>
+    <div class="tier-feature"><i class="ti ti-check"></i>Dedicated contact with My30A Host team</div>
+  </div>
+</div>
+
+<!-- LEGAL DISCLAIMER -->
+<div class="disclaimer">
+  <p><strong style="color:var(--ink);">Important:</strong> My30A Host is a connector platform only. We are not responsible for the services, pricing, availability, or conduct of our partners. Payment and booking happen directly between the guest and the partner. By submitting this form, you confirm that your business is licensed and insured to operate in Walton County, Florida.</p>
+</div>
+
+<!-- FORM -->
+<div class="form-section" id="form-section">
+  <div class="form-title">List your business</div>
+  <div class="form-sub">Free to join · No credit card · Reviewed within 48h</div>
+  
+  <div class="form-group">
+    <label class="form-label">Business name *</label>
+    <input type="text" class="form-input" id="biz-name" placeholder="e.g. 30A Gulf Carts" maxlength="60">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Category *</label>
+    <div class="cat-grid">
+      <div class="cat-opt"><input type="radio" name="cat" id="c1" value="Golf carts"><label for="c1"><i class="ti ti-car" style="font-size:12px;"></i>Golf carts</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c2" value="Beach setup"><label for="c2"><i class="ti ti-umbrella" style="font-size:12px;"></i>Beach setup</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c3" value="Photography"><label for="c3"><i class="ti ti-camera" style="font-size:12px;"></i>Photography</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c4" value="Bikes"><label for="c4"><i class="ti ti-bike" style="font-size:12px;"></i>Bikes</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c5" value="Water"><label for="c5"><i class="ti ti-sailboat" style="font-size:12px;"></i>Water / fishing</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c6" value="Wellness"><label for="c6"><i class="ti ti-spa" style="font-size:12px;"></i>Wellness / spa</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c7" value="Baby gear"><label for="c7"><i class="ti ti-baby-carriage" style="font-size:12px;"></i>Baby gear</label></div>
+      <div class="cat-opt"><input type="radio" name="cat" id="c8" value="Other"><label for="c8"><i class="ti ti-dots" style="font-size:12px;"></i>Other</label></div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Phone *</label>
+      <input type="tel" class="form-input" id="biz-phone" placeholder="(850) 555-0000">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Website</label>
+      <input type="url" class="form-input" id="biz-url" placeholder="yourbusiness.com">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Service area *</label>
+    <select class="form-select" id="biz-area">
+      <option value="">Select area...</option>
+      <option>All 30A communities</option>
+      <option>Rosemary Beach</option>
+      <option>Alys Beach</option>
+      <option>WaterColor</option>
+      <option>Seaside</option>
+      <option>Grayton Beach</option>
+      <option>Blue Mountain Beach</option>
+      <option>Santa Rosa Beach</option>
+      <option>Inlet Beach</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Short description * <span class="char-count" id="desc-count">0 / 100</span></label>
+    <textarea class="form-input" id="biz-desc" rows="3" maxlength="100" placeholder="What you offer in one or two sentences. This is what guests see in the app." oninput="document.getElementById('desc-count').textContent=this.value.length+' / 100'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Exclusive offer for My30A Host guests <span style="font-size:10px;color:var(--soft);font-weight:400;text-transform:none;">(optional — 100% your choice)</span></label>
+    <div id="discount-options" style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:8px;">
+      <label class="disc-opt"><input type="radio" name="discount" value="" checked><span>No offer</span></label>
+      <label class="disc-opt"><input type="radio" name="discount" value="5%"><span>5% off</span></label>
+      <label class="disc-opt"><input type="radio" name="discount" value="10%"><span>10% off</span></label>
+      <label class="disc-opt"><input type="radio" name="discount" value="15%"><span>15% off</span></label>
+      <label class="disc-opt"><input type="radio" name="discount" value="20%"><span>20% off</span></label>
+      <label class="disc-opt"><input type="radio" name="discount" value="custom" id="disc-custom-radio"><span>Custom ✏️</span></label>
+    </div>
+    <input type="text" class="form-input" id="disc-custom-text" placeholder='e.g. "Free delivery included" or "First rental free"' style="display:none;margin-bottom:6px;" maxlength="60">
+    <div id="discount-preview" style="display:none;background:#e3f0ec;border:1px solid #a0d4b8;border-radius:8px;padding:9px 12px;font-size:12px;color:#0d5a38;">
+      <strong>Preview:</strong> guests will see this on your card in the app → <span id="disc-preview-text"></span>
+    </div>
+    <p style="font-size:10.5px;color:var(--soft);margin-top:6px;line-height:1.6;">Guests redeem by showing the app screen — no code needed. By offering a discount, you confirm you'll honor it for all My30A Host guests. You can update this anytime by contacting us.</p>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Contact name *</label>
+    <input type="text" class="form-input" id="contact-name" placeholder="Your name">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Contact email *</label>
+    <input type="email" class="form-input" id="contact-email" placeholder="you@yourbusiness.com">
+  </div>
+
+  <div class="form-group" style="margin-top:8px;">
+    <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
+      <input type="checkbox" id="agree-terms" style="margin-top:2px;flex-shrink:0;">
+      <span style="font-size:11.5px;color:var(--soft);line-height:1.6;">I confirm this business is licensed and insured to operate in Walton County, FL. I understand My30A Host is a connector only and not liable for guest interactions or service delivery.</span>
+    </label>
+  </div>
+
+  <button class="submit-btn" onclick="submitForm()">
+    <i class="ti ti-send" style="font-size:15px;"></i>
+    Submit listing request
+  </button>
+  <div class="form-note">Free listing · No payment required · We'll review and respond within 48 hours</div>
+</div>
+
+<!-- CONFIRMATION -->
+<div class="confirm" id="confirm">
+  <div class="confirm-icon">🎉</div>
+  <div class="confirm-title">Application received!</div>
+  <div class="confirm-sub">We'll review your listing and get back to you at your email within 48 hours.</div>
+  <div class="confirm-note">
+    <strong>What happens next:</strong><br>
+    1. We verify your business information<br>
+    2. We add you to the Local guide in the app<br>
+    3. You receive a partner welcome email with your dashboard login<br><br>
+    <strong>Questions?</strong> Text or call Welson: <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a>
+  </div>
+</div>
+
+<script>
+// ── CONFIG — replace with your actual keys ──
+const SUPA_URL = 'YOUR_SUPABASE_URL';
+const SUPA_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const RESEND_NOTIFY_EMAIL = 'welson@my30ahost.com';
+
+function handleDiscount(){
+  const val = document.querySelector('input[name="discount"]:checked')?.value || '';
+  const customInput = document.getElementById('disc-custom-text');
+  const preview = document.getElementById('discount-preview');
+  const previewText = document.getElementById('disc-preview-text');
+  
+  if(val === 'custom'){
+    customInput.style.display = 'block';
+    customInput.focus();
+    const custom = customInput.value.trim();
+    if(custom){
+      preview.style.display = 'block';
+      previewText.textContent = '"' + custom + ' · Show this screen"';
+    } else {
+      preview.style.display = 'none';
+    }
+  } else if(val){
+    customInput.style.display = 'none';
+    preview.style.display = 'block';
+    previewText.textContent = '"' + val + ' off · Show this screen"';
+  } else {
+    customInput.style.display = 'none';
+    preview.style.display = 'none';
+  }
+}
+
+// Wire discount options
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('input[name="discount"]').forEach(r=>{
+    r.addEventListener('change', handleDiscount);
+  });
+  document.getElementById('disc-custom-text')?.addEventListener('input', handleDiscount);
+});
+
+function previewLogo(val){
+  const preview = document.getElementById('logo-preview');
+  if(!preview) return;
+  if(!val || !val.includes('.')) { preview.innerHTML = 'Logo'; return; }
+  const domain = val.replace(/https?:\/\//,'').replace(/\/.*$/,'').trim();
+  if(!domain) return;
+  preview.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = 'https://logo.clearbit.com/' + domain;
+  img.style = 'width:100%;height:100%;object-fit:contain;border-radius:10px;';
+  img.onerror = function(){ 
+    preview.innerHTML = '<span style="font-size:10px;color:var(--soft);">No logo</span>';
+  };
+  preview.appendChild(img);
+}
+function submitForm(){
+  const required = {
+    'biz-name': 'Business name',
+    'biz-phone': 'Phone number',
+    'biz-area': 'Service area',
+    'biz-desc': 'Description',
+    'contact-name': 'Contact name',
+    'contact-email': 'Contact email'
+  };
+  
+  // Check category
+  const cat = document.querySelector('input[name="cat"]:checked');
+  if(!cat){ alert('Please select a category'); return; }
+  
+  // Check required fields
+  for(const [id, label] of Object.entries(required)){
+    if(!document.getElementById(id).value.trim()){
+      alert(`Please fill in: ${label}`);
+      document.getElementById(id).focus();
+      return;
+    }
+  }
+  
+  // Check agreement
+  if(!document.getElementById('agree-terms').checked){
+    alert('Please confirm the terms to proceed');
+    return;
+  }
+  
+  // ── Collect data ──
+  const website = document.getElementById('biz-url').value.trim();
+  const domain = website.replace(/https?:\/\//,'').replace(/\/.*$/,'').trim();
+  
+  const partner = {
+    name:          document.getElementById('biz-name').value.trim(),
+    category:      cat.value,
+    phone:         document.getElementById('biz-phone').value.trim(),
+    website:       website,
+    area:          document.getElementById('biz-area').value,
+    description:   document.getElementById('biz-desc').value.trim(),
+    contact_name:  document.getElementById('contact-name').value.trim(),
+    contact_email: document.getElementById('contact-email').value.trim(),
+    logo_url:      domain ? `https://logo.clearbit.com/${domain}` : null,
+    status:        'pending',
+    discount_offer: (()=>{
+      const val = document.querySelector('input[name="discount"]:checked')?.value || '';
+      if(val === 'custom') return document.getElementById('disc-custom-text').value.trim() || null;
+      return val || null;
+    })(),
+    tier:          'free',
+    is_featured:   false,
+  };
+
+  // ── Show loading state ──
+  const btn = document.querySelector('.submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="ti ti-loader" style="font-size:15px;animation:spin 1s linear infinite;"></i> Submitting...';
+
+  try {
+    // ── 1. Save to Supabase ──
+    const res = await fetch(`${SUPA_URL}/rest/v1/partners`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(partner)
+    });
+
+    if(!res.ok) throw new Error('Supabase error: ' + res.status);
+
+    // ── 2. Send email notification to Welson via Resend ──
+    // This runs via a Supabase Edge Function or Vercel serverless function
+    // The endpoint below is a Vercel function you'll create (see developer-brief)
+    fetch('/api/notify-partner', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: RESEND_NOTIFY_EMAIL,
+        partner_name: partner.name,
+        category: partner.category,
+        contact_email: partner.contact_email,
+        website: partner.website
+      })
+    }).catch(() => {}); // non-blocking — don't fail if email fails
+
+    // ── 3. Show confirmation ──
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('confirm').style.display = 'block';
+    window.scrollTo(0, 0);
+
+  } catch(err) {
+    console.error(err);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-send" style="font-size:15px;"></i> Submit listing request';
+    alert('Something went wrong. Please try again or text Welson at (850) 450-2152.');
+  }
+}
+</script>
+</body>
+</html>
