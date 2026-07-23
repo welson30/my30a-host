@@ -166,13 +166,13 @@ body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-heig
 <script>
 // ── ORDERS DATA ──
 const ORDERS=[
-  {id:1,type:'transfer',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',airport:'ECP',direction:'Arrival',date:'2026-07-19',time:'2:30 PM',flight:'AA 2847',from:'ECP — Northwest FL Beaches Airport',to:'Rosemary Beach House 12',people:4,bags:6,value:150,paid:true,notes:'They have 1 car seat'},
-  {id:2,type:'grocery',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-18',time:'Morning delivery',items:42,kit:'Full kit',value:349,paid:true,notes:'No pork — Jewish dietary'},
-  {id:3,type:'welcome',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-19',time:'Before 2pm',tier:'Coastal Luxury',value:275,paid:true,notes:'Champagne + flowers + charcuterie'},
+  {id:1,type:'transfer',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',airport:'ECP',direction:'Arrival',date:'2026-07-19',time:'2:30 PM',flight:'AA 2847',from:'ECP — Northwest FL Beaches Airport',to:'Rosemary Beach House 12',people:4,bags:6,value:150,paid:true,car_seat:true,notes:'Meet at baggage claim — sign ready'},
+  {id:2,type:'grocery',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-18',time:'Morning delivery',items:42,kit:'Full kit',value:349,paid:true,delivery_pref:'🧺 Full kitchen organization',address:'42 Rosemary Beach Blvd, Rosemary Beach FL 32461',access:'Lockbox code 4821 — side door',notes:'No pork — Jewish dietary'},
+  {id:3,type:'welcome',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-19',time:'Before 2pm',tier:'Coastal Luxury',value:275,paid:true,address:'42 Rosemary Beach Blvd, Rosemary Beach FL 32461',access:'Lockbox 4821 · side door',check_in:'July 19 · 3pm',notes:'Champagne + flowers + charcuterie',address:'30A Property — confirm with guest',access:'TBD'},
   {id:4,type:'transfer',status:'pending',guest:'Martinez Family',email:'martinez@email.com',phone:'(214) 555-0187',airport:'ECP',direction:'Arrival',date:'2026-07-22',time:'4:15 PM',flight:'DL 3321',from:'ECP — Northwest FL Beaches Airport',to:'Alys Beach Unit 5B',people:6,bags:8,value:150,paid:false,notes:''},
   {id:5,type:'grocery',status:'pending',guest:'Lee Family',email:'lee@email.com',phone:'(404) 555-0291',date:'2026-07-23',time:'Flexible',items:28,kit:'Small kit',value:189,paid:false,notes:'Gluten free options needed'},
   {id:6,type:'transfer',status:'completed',guest:'Thompson Couple',email:'thompson@email.com',phone:'(312) 555-0044',airport:'ECP',direction:'Departure',date:'2026-07-14',time:'10:00 AM',flight:'AA 1203',from:'Rosemary Beach',to:'ECP — Northwest FL Beaches Airport',people:2,bags:3,value:150,paid:true,notes:''},
-  {id:7,type:'welcome',status:'pending',guest:'Wilson Family',email:'wilson@email.com',phone:'(713) 555-0339',date:'2026-07-26',time:'Before 4pm',tier:'Warm Welcome',value:145,paid:false,notes:'Birthday — add balloons if possible'},
+  {id:7,type:'welcome',status:'pending',guest:'Wilson Family',email:'wilson@email.com',phone:'(713) 555-0339',date:'2026-07-26',time:'Before 4pm',tier:'Warm Welcome',value:145,paid:false,address:'7 Alys Ave, Alys Beach FL 32461',access:'Smart lock code 9934',check_in:'July 26 · 4pm',notes:'Birthday — add balloons if possible',address:'30A Property — confirm with guest',access:'TBD'},
   {id:8,type:'grocery',status:'completed',guest:'Davis Family',email:'davis@email.com',phone:'(305) 555-0512',date:'2026-07-12',time:'Morning delivery',items:55,kit:'Full kit',value:421,paid:true,notes:''},
   {id:9,type:'transfer',status:'pending',guest:'Anderson Family',email:'anderson@email.com',phone:'(206) 555-0667',airport:'VPS',direction:'Arrival',date:'2026-07-28',time:'6:45 PM',flight:'SW 4512',from:'VPS — Destin-Fort Walton Beach Airport',to:'WaterColor Rental Home',people:5,bags:7,value:225,paid:false,notes:''},
   {id:10,type:'transfer',status:'confirmed',guest:'Brown Couple',email:'brown@email.com',phone:'(415) 555-0782',airport:'ECP',direction:'Arrival',date:'2026-07-31',time:'1:20 PM',flight:'UA 801',from:'ECP — Northwest FL Beaches Airport',to:'Seagrove Beach House',people:2,bags:2,value:150,paid:true,notes:'Anniversary trip'},
@@ -252,23 +252,29 @@ function openOrder(id){
       <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Date & time</div><div class="pv">${o.date} · ${o.time}</div></div></div>
       <div class="prow"><i class="ti ti-plane${o.direction==='Arrival'?'-arrival':'-departure'}"></i><div><div class="pl">Direction</div><div class="pv">${o.direction} · Flight ${o.flight}</div></div></div>
       <div class="prow"><i class="ti ti-map-pin"></i><div><div class="pl">Pickup → Dropoff</div><div class="pv">${o.from}<br>→ ${o.to}</div></div></div>
-      <div class="prow"><i class="ti ti-users"></i><div><div class="pl">Passengers & bags</div><div class="pv">${o.people} people · ${o.bags} bags</div></div></div>
+      <div class="prow"><i class="ti ti-users"></i><div><div class="pl">Passengers & bags</div><div class="pv">${o.people} people · ${o.bags} bags${o.car_seat?' · <span style="color:#1a4a8a;font-weight:600;">🪑 Car seat requested (+$25)</span>':''}</div></div></div>
       <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
       ${o.notes?`<div class="prow"><i class="ti ti-note"></i><div><div class="pl">Notes</div><div class="pv">${o.notes}</div></div></div>`:''}
       <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Value & payment</div><div class="pv">$${o.value} · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — not yet captured</span>'}</div></div></div>`;
   }else if(o.type==='grocery'){
     rows=`
-      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Delivery date</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Delivery date & time</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-home"></i><div><div class="pl">Delivery address</div><div class="pv" style="font-weight:500;">${o.address||'<span style=\"color:#c85a3a;\">Address not provided</span>'}</div></div></div>
+      <div class="prow"><i class="ti ti-lock-open"></i><div><div class="pl">Property access</div><div class="pv">${o.access||'Contact guest for entry instructions'}</div></div></div>
       <div class="prow"><i class="ti ti-list"></i><div><div class="pl">Order size</div><div class="pv">${o.kit} · ${o.items} items</div></div></div>
+      <div class="prow"><i class="ti ti-truck-delivery"></i><div><div class="pl">Delivery preference</div><div class="pv" style="font-weight:500;">${o.delivery_pref||'Leave in bags'}</div></div></div>
       <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
-      ${o.notes?`<div class="prow"><i class="ti ti-alert-triangle"></i><div><div class="pl">Dietary notes</div><div class="pv" style="color:#c85a3a;font-weight:500;">${o.notes}</div></div></div>`:''}
+      ${o.notes?`<div class="prow"><i class="ti ti-alert-triangle"></i><div><div class="pl">Dietary / allergy notes</div><div class="pv" style="color:#c85a3a;font-weight:600;">${o.notes}</div></div></div>`:''}
       <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Estimated value & payment</div><div class="pv">$${o.value} est. · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — awaiting final receipt</span>'}</div></div></div>`;
   }else{
     rows=`
-      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Setup date & deadline</div><div class="pv">${o.date} · ${o.time}</div></div></div>
-      <div class="prow"><i class="ti ti-star"></i><div><div class="pl">Package</div><div class="pv">${o.tier}</div></div></div>
+      <div class="prow"><i class="ti ti-calendar-event"></i><div><div class="pl">Setup date & time</div><div class="pv">${o.date} · ${o.time}</div></div></div>
+      <div class="prow"><i class="ti ti-home"></i><div><div class="pl">Property address</div><div class="pv" style="font-weight:500;">${o.address||'<span style=\"color:#c85a3a;\">Address not provided</span>'}</div></div></div>
+      <div class="prow"><i class="ti ti-lock-open"></i><div><div class="pl">Property access</div><div class="pv">${o.access||'Contact guest for entry instructions'}</div></div></div>
+      <div class="prow"><i class="ti ti-star"></i><div><div class="pl">Package</div><div class="pv" style="font-weight:500;">${o.tier}</div></div></div>
       <div class="prow"><i class="ti ti-phone"></i><div><div class="pl">Contact</div><div class="pv">${o.phone} · <a href="mailto:${o.email}" style="color:var(--teal);">${o.email}</a></div></div></div>
-      ${o.notes?`<div class="prow"><i class="ti ti-note"></i><div><div class="pl">Special request</div><div class="pv" style="color:#8a6020;">${o.notes}</div></div></div>`:''}
+      ${o.check_in?`<div class="prow"><i class="ti ti-door-enter"></i><div><div class="pl">Guest check-in</div><div class="pv">${o.check_in} — setup must be done before</div></div></div>`:''}
+      ${o.notes?`<div class="prow"><i class="ti ti-note"></i><div><div class="pl">Special request</div><div class="pv" style="color:#8a6020;font-weight:500;">${o.notes}</div></div></div>`:''}
       <div class="prow"><i class="ti ti-currency-dollar"></i><div><div class="pl">Value & payment</div><div class="pv">$${o.value} · ${o.paid?'<span style="color:#2a7a3a;font-weight:500;">Paid via Stripe</span>':'<span style="color:#c85a3a;">Card hold — not yet captured</span>'}</div></div></div>`;
   }
   document.getElementById('p-body').innerHTML=rows+`
