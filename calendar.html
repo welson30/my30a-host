@@ -57,7 +57,7 @@ body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-heig
 .ev{border-radius:5px;padding:3px 6px;margin-bottom:3px;font-size:10px;font-weight:500;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ev-transfer{background:#e8f0fb;color:#1a3a8a;border-left:3px solid #1a4a8a;}
 .ev-grocery{background:#e8f5ea;color:#1a5a2a;border-left:3px solid #2a7a3a;}
-.ev-welcome{background:#fef9ec;color:#8a6020;border-left:3px solid #c9a96e;}
+
 .ev-more{font-size:9px;color:var(--soft);padding:2px 6px;}
 
 /* ORDER DETAIL PANEL */
@@ -114,10 +114,9 @@ body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-heig
 </div>
 
 <div class="content">
-<div class="stats">
-  <div class="stat"><div class="stat-ico" style="background:#e8f0fb;">✈️</div><div><div class="stat-n" style="color:#1a4a8a;" id="ct">0</div><div class="stat-l">Transfers this month</div></div></div>
-  <div class="stat"><div class="stat-ico" style="background:#e8f5ea;">🛒</div><div><div class="stat-n" style="color:#2a7a3a;" id="cg">0</div><div class="stat-l">Grocery orders</div></div></div>
-  <div class="stat"><div class="stat-ico" style="background:#fef9ec;">🌺</div><div><div class="stat-n" style="color:#8a6020;" id="cw">0</div><div class="stat-l">Welcome setups</div></div></div>
+
+  <div class="stat"><div class="stat-ico" style="background:#e8f0fb;">✈️</div><div><div class="stat-n" style="color:#1a3a8a;" id="ct">0</div><div class="stat-l">Transfers this month</div></div></div>
+  <div class="stat"><div class="stat-ico" style="background:#e8f5ea;">🛒</div><div><div class="stat-n" style="color:#1a5a2a;" id="cg">0</div><div class="stat-l">Grocery orders</div></div></div>
   <div class="stat"><div class="stat-ico" style="background:#fbeae6;">⏳</div><div><div class="stat-n" style="color:#c85a3a;" id="cpend">0</div><div class="stat-l">Pending confirm</div></div></div>
   <div class="stat"><div class="stat-ico" style="background:#e8f5ea;">✅</div><div><div class="stat-n" style="color:#2a7a3a;" id="cdone">0</div><div class="stat-l">Completed</div></div></div>
 </div>
@@ -127,7 +126,6 @@ body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-heig
     <button class="fb on" onclick="setFilter(this,'all')">All</button>
     <button class="fb" onclick="setFilter(this,'transfer')">✈️ Transfers</button>
     <button class="fb" onclick="setFilter(this,'grocery')">🛒 Grocery</button>
-    <button class="fb" onclick="setFilter(this,'welcome')">🌺 Welcome</button>
     <button class="fb" onclick="setFilter(this,'pending')">⏳ Pending only</button>
   </div>
   <div class="month-nav">
@@ -168,11 +166,9 @@ body{font-family:'Inter',sans-serif;background:#f4f2ee;color:var(--ink);min-heig
 const ORDERS=[
   {id:1,type:'transfer',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',airport:'ECP',direction:'Arrival',date:'2026-07-19',time:'2:30 PM',flight:'AA 2847',from:'ECP — Northwest FL Beaches Airport',to:'Rosemary Beach House 12',people:4,bags:6,value:150,paid:true,car_seat:true,notes:'Meet at baggage claim — sign ready'},
   {id:2,type:'grocery',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-18',time:'Morning delivery',items:42,kit:'Full kit',value:349,paid:true,delivery_pref:'🧺 Full kitchen organization',address:'42 Rosemary Beach Blvd, Rosemary Beach FL 32461',access:'Lockbox code 4821 — side door',notes:'No pork — Jewish dietary'},
-  {id:3,type:'welcome',status:'confirmed',guest:'Johnson Family',email:'johnson@email.com',phone:'(617) 555-0123',date:'2026-07-19',time:'Before 2pm',tier:'Coastal Luxury',value:275,paid:true,address:'42 Rosemary Beach Blvd, Rosemary Beach FL 32461',access:'Lockbox 4821 · side door',check_in:'July 19 · 3pm',notes:'Champagne + flowers + charcuterie',address:'30A Property — confirm with guest',access:'TBD'},
   {id:4,type:'transfer',status:'pending',guest:'Martinez Family',email:'martinez@email.com',phone:'(214) 555-0187',airport:'ECP',direction:'Arrival',date:'2026-07-22',time:'4:15 PM',flight:'DL 3321',from:'ECP — Northwest FL Beaches Airport',to:'Alys Beach Unit 5B',people:6,bags:8,value:150,paid:false,notes:''},
   {id:5,type:'grocery',status:'pending',guest:'Lee Family',email:'lee@email.com',phone:'(404) 555-0291',date:'2026-07-23',time:'Flexible',items:28,kit:'Small kit',value:189,paid:false,notes:'Gluten free options needed'},
   {id:6,type:'transfer',status:'completed',guest:'Thompson Couple',email:'thompson@email.com',phone:'(312) 555-0044',airport:'ECP',direction:'Departure',date:'2026-07-14',time:'10:00 AM',flight:'AA 1203',from:'Rosemary Beach',to:'ECP — Northwest FL Beaches Airport',people:2,bags:3,value:150,paid:true,notes:''},
-  {id:7,type:'welcome',status:'pending',guest:'Wilson Family',email:'wilson@email.com',phone:'(713) 555-0339',date:'2026-07-26',time:'Before 4pm',tier:'Warm Welcome',value:145,paid:false,address:'7 Alys Ave, Alys Beach FL 32461',access:'Smart lock code 9934',check_in:'July 26 · 4pm',notes:'Birthday — add balloons if possible',address:'30A Property — confirm with guest',access:'TBD'},
   {id:8,type:'grocery',status:'completed',guest:'Davis Family',email:'davis@email.com',phone:'(305) 555-0512',date:'2026-07-12',time:'Morning delivery',items:55,kit:'Full kit',value:421,paid:true,notes:''},
   {id:9,type:'transfer',status:'pending',guest:'Anderson Family',email:'anderson@email.com',phone:'(206) 555-0667',airport:'VPS',direction:'Arrival',date:'2026-07-28',time:'6:45 PM',flight:'SW 4512',from:'VPS — Destin-Fort Walton Beach Airport',to:'WaterColor Rental Home',people:5,bags:7,value:225,paid:false,notes:''},
   {id:10,type:'transfer',status:'confirmed',guest:'Brown Couple',email:'brown@email.com',phone:'(415) 555-0782',airport:'ECP',direction:'Arrival',date:'2026-07-31',time:'1:20 PM',flight:'UA 801',from:'ECP — Northwest FL Beaches Airport',to:'Seagrove Beach House',people:2,bags:2,value:150,paid:true,notes:'Anniversary trip'},
@@ -214,7 +210,7 @@ function renderCal(){
     const dayOrders=filtered.filter(o=>o.date===ds);
     dayOrders.slice(0,3).forEach(o=>{
       const e=document.createElement('div');
-      const cls=o.type==='transfer'?'ev-transfer':o.type==='grocery'?'ev-grocery':'ev-welcome';
+      const cls=o.type==='transfer'?'ev-transfer':o.type==='grocery'?'ev-grocery':'ev-transfer';
       const ico=o.type==='transfer'?'✈️':o.type==='grocery'?'🛒':'🌺';
       e.className=`ev ${cls}`;
       e.textContent=`${ico} ${o.guest.split(' ')[0]}`;
@@ -232,7 +228,7 @@ function renderCal(){
   const mo=ORDERS.filter(o=>o.date.startsWith(`${curYear}-${String(curMonth+1).padStart(2,'0')}`));
   document.getElementById('ct').textContent=mo.filter(o=>o.type==='transfer').length;
   document.getElementById('cg').textContent=mo.filter(o=>o.type==='grocery').length;
-  document.getElementById('cw').textContent=mo.filter(o=>o.type==='welcome').length;
+  
   document.getElementById('cpend').textContent=mo.filter(o=>o.status==='pending').length;
   document.getElementById('cdone').textContent=mo.filter(o=>o.status==='completed').length;
 }
@@ -242,7 +238,7 @@ function setFilter(el,f){document.querySelectorAll('.fb').forEach(b=>b.classList
 
 function openOrder(id){
   const o=ORDERS.find(x=>x.id===id);if(!o)return;
-  const typeLabel=o.type==='transfer'?'✈️ AIRPORT TRANSFER':o.type==='grocery'?'🛒 GROCERY ORDER':'🌺 WELCOME SETUP';
+  const typeLabel=o.type==='transfer'?'✈️ AIRPORT TRANSFER':o.type==='grocery'?'🛒 GROCERY ORDER':'🛒 GROCERY ORDER';
   const title=o.guest;
   document.getElementById('p-type-lbl').textContent=typeLabel;
   document.getElementById('p-title').textContent=title;

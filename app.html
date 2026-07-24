@@ -75,7 +75,19 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 .pxbtn{display:block;width:100%;background:#005a2b;color:#fff;border:none;border-radius:7px;padding:9px;font-size:12.5px;font-weight:500;cursor:pointer;margin-top:7px;font-family:'Inter',sans-serif;text-align:center;}
 .pxshare{display:flex;gap:6px;margin-top:6px;}
 .pxsb{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:6px;padding:6px;font-size:10.5px;color:rgba(255,255,255,.65);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px;font-family:'Inter',sans-serif;}
-.vcard{background:rgba(255,255,255,.05);border:1px solid var(--bg2);border-radius:11px;overflow:hidden;margin-left:31px;}
+.vcard{background:#fff;border:1px solid var(--border);border-radius:11px;padding:11px 13px;margin-bottom:8px;}
+.vcard-top{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.vlogo-wrap{width:38px;height:38px;flex-shrink:0;position:relative;}
+.vlogo{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;}
+.vcard-info{flex:1;min-width:0;}
+.vcard-nm{font-size:13px;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;}
+.vcard-area{font-size:11px;color:var(--soft);margin-bottom:4px;}
+.vcard-desc{font-size:12px;color:var(--soft);line-height:1.5;margin-bottom:7px;}
+.vcard-btns{display:flex;gap:6px;}
+.vb{flex:1;padding:6px 8px;border:1px solid var(--border);border-radius:7px;background:#fff;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:4px;text-decoration:none;}
+.vb:hover{background:var(--cream);}
+.vbadge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap;flex-shrink:0;}
+.vb-feat{background:#e3f0ec;color:var(--teal);}
 .vci{height:80px;display:flex;align-items:center;justify-content:center;font-size:32px;}
 .vcb{padding:10px 11px;}
 .vcn{font-family:'Cormorant Garamond',serif;font-size:14px;color:#fff;font-weight:500;margin-bottom:1px;}
@@ -324,11 +336,11 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 
     <!-- SERVICES TAB -->
     <div class="tp" id="t-svc">
-      <div class="svchr"><h2>Before you arrive</h2><p>Managed by your hosts · Paid securely in advance</p></div>
+      <div class="svchr"><h2>Our concierge services</h2><p>Grocery delivery & airport transfer · Paid securely in advance</p></div>
       <div class="svlist">
         <p class="slbl">Concierge — we handle everything</p>
         <div class="srow" onclick="od('grocery')"><div class="sico" style="background:#f0f8f4;">🛒</div><div style="flex:1;"><div class="snm">Grocery delivery</div><div class="sds">Shop via Publix cart · we deliver</div></div><div><div class="spr">From $199</div><div class="spn">service + items</div></div></div>
-        <div class="srow" onclick="od('welcome')"><div class="sico" style="background:#fef9ec;">🌺</div><div style="flex:1;"><div class="snm">Welcome setup</div><div class="sds">Flowers · champagne · charcuterie</div></div><div><div class="spr">$145–450</div></div></div>
+        <div><div class="spr">$145–450</div></div></div>
         <div class="srow" onclick="od('transfer')"><div class="sico" style="background:#f0f4fa;">🚗</div><div style="flex:1;"><div class="snm">Airport transfer</div><div class="sds">ECP · VPS · PNS — private ride</div></div><div><div class="spr">$150–299</div></div></div>
 
         
@@ -336,7 +348,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
                         
                                                 
                       </div>
-        <div style="margin-top:16px;background:var(--cream);border-radius:12px;padding:14px 16px;text-align:center;"><p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;">Need something else?</p><p style="font-size:12px;color:var(--soft);margin-bottom:10px;">Golf carts · bikes · beach · water · photography · wellness and more</p><button onclick="switchTab(\'chat\')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:14px;"></i>Ask Vitoria</button></div>
+        <div style="margin-top:16px;background:var(--cream);border-radius:12px;padding:14px 16px;text-align:center;"><p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;">Need something else?</p><p style="font-size:12px;color:var(--soft);margin-bottom:10px;">Welcome setup · golf carts · beach · photography · wellness and more</p><button onclick="switchTab(\'chat\')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:14px;"></i>Ask Vitoria</button></div>
     </div>
     <!-- EXPLORE TAB -->
     <div class="tp" id="t-exp">
@@ -389,9 +401,9 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <i class="ti ti-chevron-right" style="font-size:16px;color:rgba(255,255,255,.4);"></i>
   </div>
 </div>
-<div class="mbanner" onclick="toast('3D satellite map opens in the live app')">
+<div class="mbanner" onclick="toast('Opens in Google Maps')">
         <i class="ti ti-map-2"></i>
-        <div><p style="font-size:12.5px;font-weight:500;color:#fff;margin:0;">30A Interactive Map</p><span style="font-size:10px;color:rgba(255,255,255,.5);">Tap to open 3D satellite view →</span></div>
+        <div><p style="font-size:12.5px;font-weight:500;color:#fff;margin:0;">30A Interactive Map</p><span style="font-size:10px;color:rgba(255,255,255,.5);">Tap to open in Google Maps →</span></div>
       </div>
       <div class="evbanner" onclick="window.open('https://30a.com/events/','_blank')">
         <div class="evtit"><i class="ti ti-calendar-event" style="color:var(--glt);"></i>Events on 30A this week</div>
@@ -442,7 +454,182 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
         <p class="slbl" style="font-size:10px;font-weight:700;letter-spacing:1px;margin-top:14px;">👶 BABY & FAMILY GEAR</p>
         <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/vacationbaby.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#4a6a1a;display:none;">VB</div></div><div class="vcard-info"><span class="vcard-nm">Vacation Baby 30A</span></div></div><div class="vcard-area">vacationbaby.com · Delivered before arrival</div><div class="vcard-desc">Cribs, strollers, high chairs, car seats — clean and sanitized.</div><div class="vcard-btns"><button class="vb" onclick="toast('vacationbaby.com')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button></div></div>
         <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/babyquip.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#5a7a2a;display:none;">BQ</div></div><div class="vcard-info"><span class="vcard-nm">BabyQuip 30A</span></div></div><div class="vcard-area">babyquip.com · Delivered to your rental</div><div class="vcard-desc">Quality baby equipment. Beach wagons, toys, bouncers and more.</div><div class="vcard-btns"><button class="vb" onclick="toast('babyquip.com')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button></div></div>
-        <div style="margin-top:18px;background:var(--cream);border-radius:12px;padding:14px 16px;text-align:center;border:1px solid var(--border);"><p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;">Don&#39;t see what you need?</p><p style="font-size:11.5px;color:var(--soft);margin-bottom:10px;">Vitoria knows every vendor, restaurant, and experience on 30A</p><button onclick="switchTab('chat')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:15px;"></i>Ask Vitoria anything</button></div>
+        
+      
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/cribconnection.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#5a3a7a;display:none;">CC</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">The Crib Connection</span>
+          </div>
+        </div>
+        <div class="vcard-area">(850) 225-0353 · cribconnection.com · 30A & Destin</div>
+        <div class="vcard-desc">Cribs, strollers, high chairs, pack-n-plays, baby gear delivered to your rental. Family-owned since 1999.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8502250353"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://cribconnection.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button>
+        </div>
+      </div>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/beachbabycribs.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#3a6a5a;display:none;">BB</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">Beach Baby Cribs</span>
+          </div>
+        </div>
+        <div class="vcard-area">beachbabycribs.com · All 30A</div>
+        <div class="vcard-desc">Baby gear rentals for 30A vacations — cribs, high chairs, bouncers, and more delivered to your door.</div>
+        <div class="vcard-btns">
+          <button class="vb" onclick="window.open('https://beachbabycribs.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button>
+        </div>
+      </div>
+
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/30acoastalcarts.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#4a7a3a;display:none;">CC</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">30A Coastal Carts</span>
+          </div>
+        </div>
+        <div class="vcard-area">(850) 461-8945 · 30acoastalcarts.com · Seagrove / Santa Rosa</div>
+        <div class="vcard-desc">Gas-powered golf cart rentals. Lowest price guarantee on 30A. Free delivery to your rental home.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8504618945"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://30acoastalcarts.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Website</button>
+        </div>
+      </div>
+
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/heritageexcursionsfl.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#1a4a7a;display:none;">HE</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">Heritage Excursions</span>
+          </div>
+        </div>
+        <div class="vcard-area">(850) 387-6265 · heritageexcursionsfl.com · Gulf Coast</div>
+        <div class="vcard-desc">Dolphin tours, guided jet ski tours, pontoon rentals and fishing charters. Book online or by phone.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8503876265"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://heritageexcursionsfl.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button>
+        </div>
+      </div>
+
+<p class="slbl">🌺 WELCOME SETUP & HOME DÉCOR</p>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/vacayzen.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#2a6a5a;display:none;">VA</div>
+          </div>
+          <div class="vcard-info">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+              <span class="vcard-nm">Vacayzen / La Dolce Vita</span>
+              <span class="vbadge vb-feat">⭐ Featured</span>
+            </div>
+          </div>
+        </div>
+        <div class="vcard-area">(888) 750-7606 · vacayzen.com · All 30A</div>
+        <div class="vcard-desc">Welcome setups, flowers, charcuterie boards, balloons, personalized arrival experiences. Full concierge service across all of 30A.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8887507606"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://vacayzen.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Website</button>
+        </div>
+      </div>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/exclusive30a.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#1a4a6a;display:none;">E3</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">Exclusive 30A Concierge</span>
+          </div>
+        </div>
+        <div class="vcard-area">exclusive30a.com · All 30A</div>
+        <div class="vcard-desc">Premium arrival setups, welcome gifts, in-home décor and curated vacation experiences. Contact via website.</div>
+        <div class="vcard-btns">
+          <button class="vb" onclick="window.open('https://exclusive30a.com/concierge-services/30a-lifestyle-concierge','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button>
+        </div>
+      </div>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/30avacationchef.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#6a2a1a;display:none;">CH</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">30A Vacation Chef</span>
+          </div>
+        </div>
+        <div class="vcard-area">(850) 305-0624 · 30avacationchef.com · All 30A</div>
+        <div class="vcard-desc">Custom charcuterie boards, private chef dinners and breakfast drop-off for your vacation rental.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8503050624"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://30avacationchef.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Website</button>
+        </div>
+      </div>
+
+      
+
+      <p class="slbl">👶 BABYSITTERS & CHILDCARE</p>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/30aandcoastalbabysitters.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#1a5a4a;display:none;">3A</div>
+          </div>
+          <div class="vcard-info">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+              <span class="vcard-nm">30A Babysitters</span>
+              <span class="vbadge vb-feat">⭐ Featured</span>
+            </div>
+          </div>
+        </div>
+        <div class="vcard-area">(850) 909-9290 · 30ababysitters.com · All 30A</div>
+        <div class="vcard-desc">CPR certified, background-checked vacation babysitters. Evening care, daytime nannies, pool supervision. Since 2014.</div>
+        <div class="vcard-btns">
+          <a class="vb" href="tel:8509099290"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a>
+          <button class="vb" onclick="window.open('https://30ababysitters.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button>
+        </div>
+      </div>
+
+      <div class="vcard">
+        <div class="vcard-top">
+          <div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;">
+            <img src="https://logo.clearbit.com/beachsidebabysitting30a.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="vlogo" style="background:#2a4a7a;display:none;">BS</div>
+          </div>
+          <div class="vcard-info">
+            <span class="vcard-nm">Beachside Babysitting 30A</span>
+          </div>
+        </div>
+        <div class="vcard-area">beachsidebabysitting30a.com · Santa Rosa Beach</div>
+        <div class="vcard-desc">Trusted local babysitters for vacation families. From $30/hr for 1 child. Book online or email.</div>
+        <div class="vcard-btns">
+          <button class="vb" onclick="window.open('https://beachsidebabysitting30a.com/book-a-sitter','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book a sitter</button>
+        </div>
+      </div>
+
+<div style="margin-top:18px;background:var(--cream);border-radius:12px;padding:14px 16px;text-align:center;border:1px solid var(--border);"><p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;">Don&#39;t see what you need?</p><p style="font-size:11.5px;color:var(--soft);margin-bottom:10px;">Vitoria knows every vendor, restaurant, and experience on 30A</p><button onclick="switchTab('chat')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:15px;"></i>Ask Vitoria anything</button></div>
       </div>
     </div>
 
@@ -477,7 +664,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <div class="tactn">
       <a href="https://www.publix.com/shop-online/delivery-or-curbside-pickup" target="_blank" class="tbtn grn"><i class="ti ti-external-link" style="font-size:15px;"></i>Open Publix Watersound →</a>
       <button class="tbtn out" onclick="toast('Screenshot upload opens in the live app')"><i class="ti ti-upload" style="font-size:15px;"></i>Upload my cart screenshot</button>
-      <button class="tbtn out" onclick="toast('Sends cart list to dealsconnectllc@gmail.com')"><i class="ti ti-mail" style="font-size:15px;"></i>Share list by email</button>
+      <button class="tbtn out" onclick="toast('Sends cart list to hello@my30ahost.com')"><i class="ti ti-mail" style="font-size:15px;"></i>Share list by email</button>
     </div>
   </div>
 </div>
@@ -663,7 +850,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <div class="tactn">
       <a href="https://www.publix.com/shop-online/delivery-or-curbside-pickup" target="_blank" class="tbtn grn"><i class="ti ti-external-link" style="font-size:15px;"></i>Open Publix Watersound →</a>
       <button class="tbtn out" onclick="toast('Screenshot upload opens in the live app')"><i class="ti ti-upload" style="font-size:15px;"></i>Upload my cart screenshot</button>
-      <button class="tbtn out" onclick="toast('Sends cart list to dealsconnectllc@gmail.com')"><i class="ti ti-mail" style="font-size:15px;"></i>Share list by email</button>
+      <button class="tbtn out" onclick="toast('Sends cart list to hello@my30ahost.com')"><i class="ti ti-mail" style="font-size:15px;"></i>Share list by email</button>
     </div>
   </div>
 </div>
@@ -836,8 +1023,8 @@ const PLACES=[
 
   const SVCS={
   grocery:{ico:'🛒',bg:'linear-gradient(135deg,#1a4a30,#0d3020)',bdg:'We deliver',tit:'Grocery delivery',sub:'We shop, unpack, and stock your kitchen before you arrive',feats:['One flat fee for our service — you pay the exact Publix receipt on top','Food-safe gloves used when handling and stocking everything','We message you during shopping for any substitution — you approve before we buy','Photo of your stocked kitchen sent right after delivery','Available on holidays — we stay open when other services close'],tiers:[{l:'Starter Kit — 15 curated breakfast items',v:'$199 all-in · no extras'},{l:'Essentials — up to 30 items · service fee',v:'$175 + Publix items'},{l:'Full Pack — 31–70 items · service fee',v:'$229 + Publix items'},{l:'Large Pack — 71–120 items · service fee',v:'$299 + Publix items'},{l:'Premium Pack — 121–200 items · service fee',v:'$379 + Publix items'},{l:'Orders above $1,000 in items',v:'$299 per $1,000 block'},{l:'Rush order · add to any pack',v:'+$50'},{l:'Holiday surcharge · add to any pack',v:'+$75'}],note:'Your total = our service fee + the exact Publix receipt. No averages, no estimates. For orders above $1,000 in groceries, one service fee applies per $1,000 block — we handle it transparently.',cta:'See how to order →',act:()=>go('stut')},
-  welcome:{ico:'🌺',bg:'linear-gradient(135deg,#4a2a1a,#3a1a10)',bdg:'By us or partner',tit:'Welcome setup',sub:'Everything ready when you open the door',feats:['Simple setups done by us (Warm & Coastal)','VIP packages via our trusted partner — you contact them directly','Local flowers, handwritten notes, champagne on ice'],tiers:[{l:'Warm Welcome — flowers + note',v:'$145'},{l:'Coastal Luxury — champagne + fruits + chocolates',v:'$275'},{l:'VIP Arrival — full decoration via partner',v:'$450'}],note:'Warm and Coastal setups: we handle. VIP: we connect you with our partner — you pay them, we connect you directly.',cta:'Book welcome setup'},
-  transfer:{ico:'🚗',bg:'linear-gradient(135deg,#1a2a4a,#0d1a3a)',bdg:'We drive',tit:'Airport transfer',sub:'Private ride — we meet you at baggage claim',feats:['ECP (Northwest FL Beaches) — closest, ~40 min','VPS (Destin-Fort Walton) — ~1h15 with traffic','PNS (Pensacola) — ~2h','Backup transport partners available'],tiers:[{l:'ECP → 30A (~40 min)',v:'$150'},{l:'VPS → 30A (~1h15)',v:'$225'},{l:'PNS → 30A (~2h)',v:'$299'},{l:'Car seat add-on (Nuna RAVA)',v:'+$25/trip'}],note:'Round trip available — 15% discount. We drive or arrange a trusted backup partner if unavailable.',cta:'Book airport transfer'},
+  welcome:{ico:'🌺',bg:'linear-gradient(135deg,#4a2a1a,#3a1a10)',bdg:'Via local partner',tit:'Welcome setup',sub:'Everything ready when you open the door',feats:['Simple setups done by us (Warm & Coastal)','VIP packages via our trusted partner — you contact them directly','Local flowers, handwritten notes, champagne on ice'],tiers:[{l:'Warm Welcome — flowers + note',v:'$145'},{l:'Coastal Luxury — champagne + fruits + chocolates',v:'$275'},{l:'VIP Arrival — via partner (you pay them)',v:'From $450'}],note:'Warm Welcome and Coastal Luxury: we handle everything. VIP Arrival ($450): we connect you with our trusted décor partner — you book and pay them directly. We coordinate the details.',cta:'Book welcome setup'},
+  transfer:{ico:'🚗',bg:'linear-gradient(135deg,#1a2a4a,#0d1a3a)',bdg:'We drive',tit:'Airport transfer',sub:'Private ride — we meet you at baggage claim',feats:['ECP (Northwest FL Beaches) — closest, ~40 min','VPS (Destin-Fort Walton) — ~1h15 with traffic','PNS (Pensacola) — ~2h','Backup transport partners available'],tiers:[{l:'ECP → 30A (~40 min)',v:'$150'},{l:'VPS → 30A (~1h15)',v:'$225'},{l:'PNS → 30A (~2h)',v:'$299'},{l:'Car seat add-on (Nuna RAVA)',v:'+$25/trip'}],note:'Round trip available — 15% discount. We drive or arrange a trusted backup partner if unavailable.',cta:'Request transfer',act:()=>{showTransferRequest()}},
 
   golfcart:{ico:'🛺',bg:'linear-gradient(135deg,#2a1a4a,#3a2060)',bdg:'Partner',tit:'Golf cart rental',sub:'Delivered to your property — the most popular 30A activity',feats:['Delivery and pickup at your address','4-seat and 6-seat carts available','Vitoria arranges delivery to your property'],tiers:[{l:'Daily rental (4-seat)',v:'~$120–150/day'},{l:'Daily rental (6-seat)',v:'~$150–180/day'},{l:'Weekly rate',v:'Ask for quote'}],note:'We work with 30A Gulf Carts and Beachy Buggy. Availability varies — request early during peak season.',cta:'Request via Vitoria'},
   bike:{ico:'🚲',bg:'linear-gradient(135deg,#1a3a1a,#0d2a0d)',bdg:'Partner',tit:'Bike & e-bike rental',sub:'Delivered to your property — explore every beach town',feats:['Standard and electric bikes available','Delivery and pickup at your address','Helmets and locks included'],tiers:[{l:'Standard bike (per day)',v:'~$30–40'},{l:'E-bike (per day)',v:'~$60–80'},{l:'Weekly rate',v:'Better value — ask us'}],note:'We work with Rideit Electric and 30A Bike Rentals. Great complement to golf cart for families.',cta:'Request via Vitoria'},
@@ -869,10 +1056,19 @@ const DEMOS={
 };
 
 let gname='';
+function handleSvcBtn(el){
+  const cta = el.getAttribute('data-cta');
+  const isOurs = el.getAttribute('data-ours') === 'true';
+  if(isOurs) checkPolicy(cta);
+  else toast('Contact info shown in the live app');
+}
+
 function checkPolicy(cta,act){
   const cb=document.getElementById('pol-check');
   if(cb&&!cb.checked){toast('Please read and accept the cancellation policy first');return;}
-  if(act)act();else toast('Opens secure payment in the live app');
+  if(cta==='Request transfer'){showTransferRequest();}
+  else if(act)act();
+  else toast('Opens secure payment in the live app');
 }
 
 function enterApp(){
@@ -944,7 +1140,7 @@ function od(k){
     <label style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;margin-bottom:5px;background:#fff;"><input type="radio" name="del-pref" value="cold"> <div><div style="font-size:12.5px;font-weight:500;">🧊 Refrigerated items only</div><div style="font-size:11px;color:var(--soft);">We'll store cold items — leave the rest in bags</div></div></label>
   </div>`:'';
   
-  document.getElementById('db').innerHTML=`<p class="dttit">${d.tit}</p><p class="dtsub">${d.sub}</p>${d.feats.map(f=>`<div class="dtft"><i class="ti ti-check"></i><span>${f}</span></div>`).join('')}<div style="margin:12px 0;">${d.tiers.map((t,i)=>`<div class="ptier"><span class="ptl">${t.l}</span><span class="ptv${i===d.tiers.length-1?' hl':''}">${t.v}</span></div>`).join('')}</div><div class="dtnote">${d.note}</div>${deliveryPref}${cancelBlock}${isOurs?'<div style="text-align:center;font-size:10px;color:var(--soft);margin:0 0 5px;"><i class=\"ti ti-shield-check\" style=\"font-size:11px;color:#2a7a3a;\"></i> Secure payment via Stripe | PCI compliant | Card never stored</div>':'' }<button class="dtcta" onclick="${isOurs?`checkPolicy('${d.cta?d.cta:''}',${d.act?'()=>'+d.act.toString():'null'})`:`toast('Opening partner contact in live app')`}"><i class="ti ti-${isOurs?'lock':'external-link'}" style="font-size:14px;"></i>${d.cta||'Contact partner →'}</button>`;
+  document.getElementById('db').innerHTML=`<p class="dttit">${d.tit}</p><p class="dtsub">${d.sub}</p>${d.feats.map(f=>`<div class="dtft"><i class="ti ti-check"></i><span>${f}</span></div>`).join('')}<div style="margin:12px 0;">${d.tiers.map((t,i)=>`<div class="ptier"><span class="ptl">${t.l}</span><span class="ptv${i===d.tiers.length-1?' hl':''}">${t.v}</span></div>`).join('')}</div><div class="dtnote">${d.note}</div>${deliveryPref}${cancelBlock}${isOurs?'<div style="text-align:center;font-size:10px;color:var(--soft);margin:0 0 5px;"><i class=\"ti ti-shield-check\" style=\"font-size:11px;color:#2a7a3a;\"></i> Secure payment via Stripe | PCI compliant | Card never stored</div>':'' }<button class="dtcta" data-cta="${d.cta||''}" data-ours="${isOurs}" onclick="handleSvcBtn(this)"><i class="ti ti-${isOurs?'lock':'external-link'}" style="font-size:14px;"></i>${d.cta||'Contact partner →'}</button>`;
   go('sdet');
 }
 function rp(f){
@@ -999,6 +1195,247 @@ function getCancelBlock(s){var o=['grocery','transfer','welcome'];if(o.indexOf(s
 function deliveryPrefBlock(s){if(s!=='grocery')return '';return '<div style="margin:10px 0;background:var(--cream);border-radius:10px;padding:12px 13px;"><p style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;">How would you like your groceries?</p><label style="display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border:1.5px solid var(--teal);border-radius:8px;cursor:pointer;margin-bottom:5px;background:#fff;"><input type="radio" name="dp" value="bags" checked> <div><div style="font-size:12.5px;font-weight:500;">Leave in bags</div><div style="font-size:11px;color:var(--soft);">We leave everything in bags by the kitchen</div></div></label><label style="display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border:1px solid var(--border);border-radius:8px;cursor:pointer;margin-bottom:5px;background:#fff;"><input type="radio" name="dp" value="org"> <div><div style="font-size:12.5px;font-weight:500;">Full kitchen organization</div><div style="font-size:11px;color:var(--soft);">We put everything away - fridge, pantry and cabinets</div></div></label><label style="display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:#fff;"><input type="radio" name="dp" value="cold"> <div><div style="font-size:12.5px;font-weight:500;">Refrigerated items only</div><div style="font-size:11px;color:var(--soft);">Cold items stored - rest left in bags</div></div></label></div>';}
 var curSvc='';
 let tt;
+// Transfer price calculation
+const TR_PRICES = {'ECP — Northwest FL Beaches (~40 min)':150,'VPS — Destin-Fort Walton (~1h15)':225,'PNS — Pensacola (~2h)':299};
+let trCarSeat = false;
+
+function toggleCarSeat(){
+  trCarSeat = !trCarSeat;
+  const sw = document.getElementById('carseat-switch');
+  if(sw){
+    const thumb = sw.querySelector('div');
+    if(trCarSeat){ sw.style.background='#1a6a4a'; if(thumb) thumb.style.left='20px'; }
+    else { sw.style.background='#e5ddd0'; if(thumb) thumb.style.left='2px'; }
+  }
+  updateTransferPrice();
+}
+
+function updateTransferPrice(){
+  const dir = document.querySelector('input[name="tr-dir"]:checked')?.value || 'arrival';
+  const isArrival = dir === 'arrival';
+  const airportSel = isArrival
+    ? document.getElementById('tr-pickup')?.value
+    : document.getElementById('tr-dropoff')?.value;
+  const base = TR_PRICES[airportSel] || 150;
+  const total = base + (trCarSeat ? 25 : 0);
+  const el = document.getElementById('tr-price-display');
+  if(el) el.textContent = '$' + total;
+}
+
+function showTransferRequest(){
+  // Create full-screen transfer request modal
+  const m=document.createElement('div');
+  m.id='tr-modal';
+  m.style='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;display:flex;align-items:flex-end;';
+  m.innerHTML=`
+    <div style="background:#fff;border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:92vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <p style="font-size:16px;font-weight:600;color:var(--ink);">Request airport transfer</p>
+        <button onclick="document.getElementById('tr-modal').remove()" style="border:none;background:none;font-size:22px;cursor:pointer;color:var(--soft);line-height:1;">×</button>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px;">Direction</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <label style="cursor:pointer;"><input type="radio" name="tr-dir" value="arrival" checked onchange="toggleTransferDir()"> <span style="font-size:13px;">✈️ → 🏠 Arrival<br><small style='color:var(--soft);font-size:10px;'>Airport → Your stay</small></span></label>
+          <label style="cursor:pointer;"><input type="radio" name="tr-dir" value="departure" onchange="toggleTransferDir()"> <span style="font-size:13px;">🏠 → ✈️ Departure<br><small style='color:var(--soft);font-size:10px;'>Your stay → Airport</small></span></label>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;" id="tr-pickup-lbl">📍 Pickup — Airport</label>
+        <select id="tr-pickup" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+          <option>ECP — Northwest FL Beaches (~40 min)</option>
+          <option>VPS — Destin-Fort Walton (~1h15)</option>
+          <option>PNS — Pensacola (~2h)</option>
+        </select>
+        <input type="text" id="tr-pickup-addr" placeholder="Your rental address (e.g. 42 Rosemary Beach Blvd)" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;margin-top:6px;display:none;">
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;" id="tr-dropoff-lbl">🏠 Dropoff — Your rental address</label>
+        <input type="text" id="tr-dropoff-addr" placeholder="Your rental address (e.g. 42 Rosemary Beach Blvd)" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+        <select id="tr-dropoff" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;margin-top:6px;display:none;">
+          <option>ECP — Northwest FL Beaches</option>
+          <option>VPS — Destin-Fort Walton</option>
+          <option>PNS — Pensacola</option>
+        </select>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div>
+          <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Date & Time</label>
+          <input type="datetime-local" id="tr-dt" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+        </div>
+        <div>
+          <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Flight #</label>
+          <input type="text" id="tr-flight2" placeholder="AA 2847" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div>
+          <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Passengers</label>
+          <select id="tr-pax" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Bags</label>
+          <select id="tr-bags" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Your name & email</label>
+        <input type="text" id="tr-name2" placeholder="Maria Santos" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;margin-bottom:6px;">
+        <input type="email" id="tr-email2" placeholder="maria@email.com" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;margin-bottom:6px;">
+        <input type="tel" id="tr-phone2" placeholder="(850) 555-0100" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;">
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Add-ons</label>
+        <label id="carseat-toggle" onclick="toggleCarSeat()" style="display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:20px;">🪑</span>
+            <div>
+              <p style="font-size:13px;font-weight:500;color:var(--ink);margin:0;">Car seat (Nuna RAVA)</p>
+              <p style="font-size:11px;color:var(--soft);margin:0;">Safe for infants &amp; toddlers up to 65 lb</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:12px;font-weight:600;color:var(--teal);">+$25</span>
+            <div id="carseat-switch" style="width:40px;height:22px;background:#e5ddd0;border-radius:999px;position:relative;transition:background .2s;">
+              <div style="width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;">Notes (optional)</label>
+        <textarea id="tr-notes2" placeholder="Large luggage, special requests..." rows="2" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:9px;font-size:13px;font-family:Inter,sans-serif;background:#fff;resize:none;"></textarea>
+      </div>
+
+      <!-- Live price display -->
+      <div style="background:#f5f0e8;border-radius:10px;padding:12px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:12px;color:var(--soft);">Estimated total</span>
+        <div style="text-align:right;">
+          <span style="font-size:20px;font-weight:700;color:var(--ink);" id="tr-price-display">$150</span>
+          <p style="font-size:10px;color:var(--soft);margin:0;">Card held after confirmation · not charged now</p>
+        </div>
+      </div>
+
+      <div style="background:#e3f0ec;border-radius:10px;padding:12px;margin-bottom:14px;font-size:12px;color:#0d5a38;line-height:1.6;">
+        ✅ We confirm availability within 1 hour — no card needed now.<br>
+        💳 After confirmation, you will receive a secure Stripe link to authorize your card. It is held only — never charged until your ride is complete.<br>
+        💬 Questions before paying? Chat with Vitoria or email <a href="mailto:hello@my30ahost.com" style="color:#0d5a38;">hello@my30ahost.com</a><br>
+        ❌ Cancel 48h+: full release · 24–48h: $50 · Same day: $75
+      </div>
+
+      <button onclick="submitTransferRequest()" style="width:100%;background:linear-gradient(135deg,#1a6a4a,#0d5a38);color:#fff;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer;">
+        Send transfer request →
+      </button>
+    </div>`;
+  document.body.appendChild(m);
+}
+
+function toggleTransferDir(){
+  const dir = document.querySelector('input[name="tr-dir"]:checked')?.value;
+  const isArrival = dir === 'arrival';
+  // Pickup
+  document.getElementById('tr-pickup-lbl').textContent = isArrival ? '📍 Pickup — Airport' : '📍 Pickup — Your address';
+  document.getElementById('tr-pickup').style.display = isArrival ? 'block' : 'none';
+  document.getElementById('tr-pickup-addr').style.display = isArrival ? 'none' : 'block';
+  // Dropoff
+  document.getElementById('tr-dropoff-lbl').textContent = isArrival ? '🏠 Dropoff — Your rental address' : '✈️ Dropoff — Airport';
+  document.getElementById('tr-dropoff-addr').style.display = isArrival ? 'block' : 'none';
+  document.getElementById('tr-dropoff').style.display = isArrival ? 'none' : 'block';
+  updateTransferPrice();
+}
+
+function submitTransferRequest(){
+  const dir = document.querySelector('input[name="tr-dir"]:checked')?.value || 'arrival';
+  const isArrival = dir === 'arrival';
+  const dt   = document.getElementById('tr-dt')?.value;
+  const name = document.getElementById('tr-name2')?.value?.trim();
+  const email= document.getElementById('tr-email2')?.value?.trim();
+  const phone= document.getElementById('tr-phone2')?.value?.trim();
+  if(!dt){ toast('Please select date and time'); return; }
+  if(!name||!email||!phone){ toast('Please fill in your name, email and phone'); return; }
+
+  const pickup   = isArrival ? document.getElementById('tr-pickup')?.value : document.getElementById('tr-pickup-addr')?.value;
+  const dropoff  = isArrival ? document.getElementById('tr-dropoff-addr')?.value : document.getElementById('tr-dropoff')?.value;
+  const flight   = document.getElementById('tr-flight2')?.value?.trim();
+  const pax      = document.getElementById('tr-pax')?.value;
+  const bags     = document.getElementById('tr-bags')?.value;
+  const notes    = document.getElementById('tr-notes2')?.value?.trim();
+
+  const SUPA_URL = 'YOUR_SUPABASE_URL';
+  const SUPA_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  const order = {
+    type:'transfer', status:'pending',
+    direction: isArrival ? 'Arrival' : 'Departure',
+    pickup, dropoff, flight,
+    date: dt.split('T')[0],
+    time: dt.split('T')[1]?.slice(0,5),
+    people: parseInt(pax)||1,
+    bags: bags,
+    guest_name: name, guest_email: email, guest_phone: phone,
+    notes: notes||null,
+    car_seat: carSeat,
+    value: total,
+    created_at: new Date().toISOString()
+  };
+
+  const btn = document.querySelector('#tr-modal button:last-child');
+  if(btn){ btn.disabled=true; btn.textContent='Sending...'; }
+
+  if(SUPA_URL !== 'YOUR_SUPABASE_URL'){
+    fetch(SUPA_URL+'/rest/v1/orders',{
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body: JSON.stringify(order)
+    }).then(r=>{
+      if(!r.ok) throw new Error('Supabase error');
+      fetch('/api/notify-partner',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({to:'hello@my30ahost.com',partner_name:name,category:'Transfer request',contact_email:email,website:''})
+      }).catch(()=>{});
+      showTransferConfirm(name, dt, isArrival, total, carSeat);
+    }).catch(e=>{ if(btn){btn.disabled=false;btn.textContent='Send transfer request →';} toast('Error sending. Text (850) 450-2152'); });
+  } else {
+    // Demo mode
+    showTransferConfirm(name, dt, isArrival, total, carSeat);
+  }
+}
+
+function showTransferConfirm(name, dt, isArrival, total, carSeat){
+  document.getElementById('tr-modal')?.remove();
+  const confirm = document.createElement('div');
+  confirm.id='tr-confirm-modal';
+  confirm.style='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  const dtStr = dt ? new Date(dt).toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
+  confirm.innerHTML=`
+    <div style="background:#fff;border-radius:16px;padding:28px;max-width:380px;width:100%;text-align:center;">
+      <div style="font-size:36px;margin-bottom:12px;">✅</div>
+      <p style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:8px;">Request received, ${name.split(' ')[0]}!</p>
+      <p style="font-size:13px;color:var(--soft);line-height:1.7;margin-bottom:16px;">
+        ${isArrival ? 'Airport pickup' : 'Departure ride'} on <strong>${dtStr}</strong><br>
+        We will confirm within 1 hour. Once confirmed, you will receive a secure link to authorize your card — nothing is charged until the ride is complete.
+      </p>
+      <div style="background:#e3f0ec;border-radius:10px;padding:12px;margin-bottom:16px;font-size:12px;color:#0d5a38;text-align:left;">
+        📱 Check your email <strong>${document.getElementById('tr-email2')?.value||'provided'}</strong> for confirmation.<br>
+        📞 Questions? Text <a href="tel:8504502152" style="color:#0d5a38;">(850) 450-2152</a>
+      </div>
+      <button onclick="document.getElementById('tr-confirm-modal').remove()" style="width:100%;background:var(--deep);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer;">Done</button>
+    </div>`;
+  document.body.appendChild(confirm);
+}
+
+
 function toast(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2500);}
 </script>
 </body>
