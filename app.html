@@ -822,7 +822,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <div class="nt on" id="n-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
     <div class="nt" id="n-svc" onclick="switchTab('svc')"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
     <div class="nt" id="n-exp" onclick="switchTab('exp')"><i class="ti ti-map"></i><span>Explore</span></div>
-    <div class="nt" id="n-deals" onclick="switchTab('deals')"><i class="ti ti-ticket"></i><span>Deals</span></div>
+    <div class="nt" id="n-deals" onclick="switchTab('deals')"><i class="ti ti-ticket"></i><span>Local</span></div>
     <div class="nt" id="n-prof" onclick="switchTab('prof')"><i class="ti ti-user-circle"></i><span>Profile</span></div>
   </div>
 </div>
@@ -1073,7 +1073,8 @@ function enterApp(){
   const n=document.getElementById('wname').value.trim();
   if(n){gname=n;document.getElementById('pnm').textContent=n;document.getElementById('pav').textContent=n[0].toUpperCase();}
   const g=gname?`Hi <strong>${gname}!</strong> 👋`:'Hi there! 👋';
-  ar(`<div class="mv"><div class="avsm">V</div><div class="bv">${g} I'm <strong>Vitoria</strong>, your personal 30A host. Whether it's groceries stocked before you arrive, a table at Gallion's, or a golf cart at your door — I handle everything. What can I help with?</div></div>`);
+  if(n) ar(`<div class="mv"><div class="avsm">V</div><div class="bv">Hi <strong>${n}</strong>! 👋 Welcome to 30A. I'm Vitoria — what can I help you with?</div></div>`);
+  
   go('sa');
 }
 function go(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
