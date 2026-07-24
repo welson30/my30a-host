@@ -49,10 +49,10 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 .vnm{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#fff;}
 .vst{font-size:9.5px;color:var(--gold);display:flex;align-items:center;gap:3px;}
 .vdot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
-.tc{flex:1;overflow:visible;position:relative;}
+.tc{flex:1;min-height:0;overflow:hidden;position:relative;}
 .tp{position:absolute;top:0;left:0;right:0;bottom:62px;overflow-y:auto;display:none;flex-direction:column;}
 .tp.on{display:flex;}
-.bnav{display:flex;flex-shrink:0;background:rgba(10,22,40,.98);border-top:1px solid rgba(255,255,255,.05);padding:6px 0 max(18px, env(safe-area-inset-bottom, 18px));}
+.bnav{display:flex;flex-shrink:0;position:relative;z-index:10;background:rgba(10,22,40,.98);border-top:1px solid rgba(255,255,255,.05);padding:6px 0 max(18px, env(safe-area-inset-bottom, 18px));}
 .nt{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:9px;color:rgba(255,255,255,.28);cursor:pointer;padding:4px 0;}
 .nt i{font-size:19px;}
 .nt.on{color:var(--gold);}
@@ -810,7 +810,8 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
         </div>
       </div>
     </div>
-  </div>
+  
+  <div class="tc"></div>
   <div class="bnav">
     <div class="nt on" id="n-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
     <div class="nt" id="n-svc" onclick="switchTab('svc')"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
@@ -818,6 +819,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <div class="nt" id="n-deals" onclick="switchTab('deals')"><i class="ti ti-ticket"></i><span>Local</span></div>
     <div class="nt" id="n-prof" onclick="switchTab('prof')"><i class="ti ti-user-circle"></i><span>Profile</span></div>
   </div>
+</div>
 </div>
 
 <!-- SERVICE DETAIL -->

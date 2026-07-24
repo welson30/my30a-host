@@ -276,13 +276,74 @@ footer{background:var(--deep);border-top:1px solid rgba(255,255,255,.06);padding
 <!-- WHO IS IT FOR -->
 <section class="pricing-section" id="pricing">
   <div class="section-inner">
-    <p class="section-label">Getting started</p>
-    <h2 class="section-h2">Ready to set up your property?</h2>
-    <p class="section-sub" style="max-width:520px;margin:0 auto 32px;">We're currently onboarding 30A host properties during our launch phase. Get in touch and We will personally walk you through setup — no sales calls, no pressure.</p>
-    <div style="text-align:center;">
-      <a href="mailto:hello@my30ahost.com?subject=I want to list my property on My30A Host" class="price-cta featured-cta" style="display:inline-block;padding:14px 36px;font-size:15px;border-radius:10px;text-decoration:none;background:#c9a84c;color:#0a1628;font-weight:700;">Email us to get started →</a>
-      <p style="font-size:12px;color:var(--soft);margin-top:12px;">We respond within 24 hours · hello@my30ahost.com</p>
+    <p class="section-label">Simple pricing</p>
+    <h2 class="section-h2">One plan per property.<br>Cancel anytime.</h2>
+    <p class="section-sub">No setup fees. No long-term contracts. Start free and upgrade when you're ready.</p>
+
+    <div class="price-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:36px;">
+
+      <div class="price-card" style="background:#fff;border:1.5px solid #e5ddd0;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+        <div class="price-plan" style="font-size:13px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;">Free guide</div>
+        <div style="display:flex;align-items:flex-end;gap:4px;">
+          <span style="font-size:36px;font-weight:700;color:var(--ink);">$0</span>
+        </div>
+        <p style="font-size:12px;color:var(--soft);">Public, no branding</p>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--ink);">✓ General 30A recommendations</li>
+          <li style="font-size:13px;color:var(--ink);">✓ Interactive local map</li>
+          <li style="font-size:13px;color:#c85a3a;">✗ May suggest competitors</li>
+        </ul>
+        <a href="mailto:hello@my30ahost.com?subject=Free plan" class="price-cta" style="margin-top:auto;display:block;text-align:center;padding:11px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;background:transparent;">Get started free</a>
+      </div>
+
+      <div class="price-card" style="background:#fff;border:1.5px solid #e5ddd0;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+        <div class="price-plan" style="font-size:13px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;">Starter</div>
+        <div style="display:flex;align-items:flex-end;gap:4px;">
+          <span style="font-size:36px;font-weight:700;color:var(--ink);">$29</span>
+          <span style="font-size:13px;color:var(--soft);margin-bottom:6px;">/mo per property</span>
+        </div>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--ink);">✓ WiFi, check-in, house rules</li>
+          <li style="font-size:13px;color:var(--ink);">✓ 5 curated local picks</li>
+          <li style="font-size:13px;color:var(--ink);">✓ Never suggests a competitor</li>
+        </ul>
+        <a href="mailto:hello@my30ahost.com?subject=Starter plan" class="price-cta" style="margin-top:auto;display:block;text-align:center;padding:11px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;background:transparent;">Get started</a>
+      </div>
+
+      <div class="price-card" style="background:var(--deep);border:1.5px solid var(--deep);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;position:relative;">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--deep);font-size:10px;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.5px;white-space:nowrap;">MOST POPULAR</div>
+        <div class="price-plan" style="font-size:13px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;">Growth</div>
+        <div style="display:flex;align-items:flex-end;gap:4px;">
+          <span style="font-size:36px;font-weight:700;color:#fff;">$59</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:6px;">/mo per property</span>
+        </div>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:#fff;">✓ Unlimited curated picks</li>
+          <li style="font-size:13px;color:#fff;">✓ Guest analytics dashboard</li>
+          <li style="font-size:13px;color:#fff;">✓ Booking integrations</li>
+          <li style="font-size:13px;color:#fff;">✓ Priority support</li>
+        </ul>
+        <a href="mailto:hello@my30ahost.com?subject=Growth plan" class="price-cta featured-cta" style="margin-top:auto;display:block;text-align:center;padding:12px;border-radius:9px;font-size:13px;font-weight:700;color:var(--deep);text-decoration:none;background:var(--gold);">Get started</a>
+      </div>
+
+      <div class="price-card" style="background:#fff;border:1.5px solid #e5ddd0;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+        <div class="price-plan" style="font-size:13px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.5px;">Portfolio</div>
+        <div style="display:flex;align-items:flex-end;gap:4px;">
+          <span style="font-size:36px;font-weight:700;color:var(--ink);">$39</span>
+          <span style="font-size:13px;color:var(--soft);margin-bottom:6px;">/mo per property</span>
+        </div>
+        <p style="font-size:12px;color:var(--soft);">5+ properties</p>
+        <ul style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:7px;">
+          <li style="font-size:13px;color:var(--ink);">✓ Everything in Growth</li>
+          <li style="font-size:13px;color:var(--ink);">✓ Multi-property dashboard</li>
+          <li style="font-size:13px;color:var(--ink);">✓ Volume discount</li>
+        </ul>
+        <a href="mailto:hello@my30ahost.com?subject=Portfolio plan" class="price-cta" style="margin-top:auto;display:block;text-align:center;padding:11px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;background:transparent;">Get started</a>
+      </div>
+
     </div>
+
+    <p style="text-align:center;font-size:12px;color:var(--soft);margin-top:24px;">All plans include a 14-day free trial · No credit card required to start · We respond within 24 hours</p>
   </div>
 </section>
 
