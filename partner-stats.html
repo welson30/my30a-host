@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partner Dashboard — My30A Host</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--deep:#0a1628;--teal:#1a6a4a;--gold:#c9a84c;--cream:#f5f0e8;--border:#e5ddd0;--soft:#6b6560;--ink:#1a1714;}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;}
+.header{background:var(--deep);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}
+.brand{font-family:'Cormorant Garamond',serif;color:#fff;font-size:20px;font-weight:500;}
+.badge{font-size:10px;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.15);padding:3px 8px;border-radius:999px;}
+.page{max-width:480px;margin:0 auto;padding:20px 16px 40px;}
+.partner-hero{background:linear-gradient(135deg,var(--deep),#0d3a20);border-radius:14px;padding:20px;margin-bottom:16px;display:flex;align-items:center;gap:14px;}
+.partner-logo{width:52px;height:52px;border-radius:12px;object-fit:contain;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.partner-logo img{width:52px;height:52px;border-radius:12px;object-fit:contain;}
+.partner-logo-fallback{width:52px;height:52px;border-radius:12px;background:#1a4a8a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;flex-shrink:0;}
+.partner-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:500;margin-bottom:3px;}
+.partner-cat{font-size:11px;color:rgba(255,255,255,.5);}
+.month-badge{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;display:flex;align-items:center;gap:4px;}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.metric-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;}
+.metric-label{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin-bottom:8px;}
+.metric-num{font-size:28px;font-weight:600;color:var(--ink);line-height:1;}
+.metric-sub{font-size:11px;color:var(--soft);margin-top:4px;}
+.metric-full{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;}
+.rank-badge{display:inline-flex;align-items:center;gap:5px;background:#e3f0ec;color:var(--teal);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;margin-top:8px;}
+.disc-badge{display:inline-flex;align-items:center;gap:5px;background:#e3f0ec;color:var(--teal);padding:6px 12px;border-radius:8px;font-size:13px;font-weight:500;margin-top:6px;}
+.section-title{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin:20px 0 10px;}
+.tip-card{background:#fff8e1;border:1px solid #ffd060;border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+.tip-title{font-size:12px;font-weight:600;color:#7a5a00;margin-bottom:4px;}
+.tip-text{font-size:12px;color:#7a5a00;line-height:1.6;}
+.action-btn{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:var(--ink);}
+.action-icon{width:36px;height:36px;border-radius:9px;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.action-text{flex:1;}
+.action-title{font-size:13px;font-weight:500;}
+.action-sub{font-size:11px;color:var(--soft);margin-top:1px;}
+.action-arrow{color:var(--soft);}
+.loading{text-align:center;padding:60px 20px;color:var(--soft);}
+.error-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="brand">My30A Host</span>
+  <span class="badge">Partner Dashboard</span>
+</div>
+
+<div class="page">
+  <div id="loading" class="loading">
+    <i class="ti ti-loader" style="font-size:24px;display:block;margin:0 auto 12px;animation:spin 1s linear infinite;"></i>
+    Loading your dashboard...
+  </div>
+  <div id="content" style="display:none;"></div>
+  <div id="error" class="error-card" style="display:none;">
+    <i class="ti ti-alert-circle" style="font-size:32px;color:#c85a3a;display:block;margin:0 auto 12px;"></i>
+    <p style="font-size:14px;font-weight:500;margin-bottom:6px;">Dashboard not found</p>
+    <p style="font-size:12px;color:var(--soft);">This link may have expired or is invalid. Text Welson at <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a> for a new link.</p>
+  </div>
+</div>
+
+<style>
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+<script>
+const SUPA_URL = 'YOUR_SUPABASE_URL';
+const SUPA_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get('token');
+
+async function loadDashboard() {
+  if(!token) { showError(); return; }
+
+  try {
+    // Fetch partner by token
+    const res = await fetch(`${SUPA_URL}/rest/v1/partners?token=eq.${token}&status=eq.approved`, {
+      headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` }
+    });
+    const data = await res.json();
+    if(!data.length) { showError(); return; }
+    render(data[0]);
+
+    // Increment view count (analytics)
+    fetch(`${SUPA_URL}/rest/v1/rpc/increment_partner_views`, {
+      method: 'POST',
+      headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ partner_id: data[0].id })
+    }).catch(()=>{});
+  } catch(e) {
+    showError();
+  }
+}
+
+function render(p) {
+  document.getElementById('loading').style.display = 'none';
+
+  const logoHtml = p.logo_url
+    ? `<div class="partner-logo"><img src="${p.logo_url}" onerror="this.parentElement.innerHTML='<div class=\\'partner-logo-fallback\\'>${(p.name||'?').substring(0,2).toUpperCase()}</div>'"></div>`
+    : `<div class="partner-logo-fallback">${(p.name||'?').substring(0,2).toUpperCase()}</div>`;
+
+  const discHtml = p.discount_offer
+    ? `<div class="disc-badge"><i class="ti ti-tag" style="font-size:13px;"></i>${p.discount_offer} off · show app</div>`
+    : '';
+
+  const rankNum = p.is_featured ? '#1 Featured' : 'Standard listing';
+  const now = new Date();
+  const monthName = now.toLocaleString('default',{month:'long'});
+
+  const views = p.views_count || 0;
+  const clicks = p.clicks_count || 0;
+  const rate = views > 0 ? Math.round(clicks/views*100) : 0;
+
+  const tipHtml = p.is_featured
+    ? `<div class="tip-card"><div class="tip-title">⭐ You have the Featured badge</div><div class="tip-text">You appear first in your category. Guests see your name before any other ${p.category} provider.</div></div>`
+    : `<div class="tip-card"><div class="tip-title">💡 Increase your visibility</div><div class="tip-text">Add a guest offer (10–20% off, free delivery, etc.) to get the green discount badge — guests filter for deals.</div></div>`;
+
+  const editLink = `${window.location.origin}/partner/edit?token=${token}`;
+
+  document.getElementById('content').innerHTML = `
+    <div class="partner-hero">
+      ${logoHtml}
+      <div>
+        <div class="partner-name">${p.name}</div>
+        <div class="partner-cat">${p.category} · ${p.area||'All 30A'}</div>
+        <div class="month-badge"><i class="ti ti-calendar" style="font-size:11px;"></i>${monthName} ${now.getFullYear()}</div>
+        ${discHtml}
+      </div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Profile views</div>
+        <div class="metric-num">${views.toLocaleString()}</div>
+        <div class="metric-sub">This month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Contact clicks</div>
+        <div class="metric-num">${clicks.toLocaleString()}</div>
+        <div class="metric-sub">Call + Website</div>
+      </div>
+    </div>
+
+    <div class="metric-full">
+      <div class="metric-label">Click-through rate</div>
+      <div class="metric-num">${rate}%</div>
+      <div class="metric-sub">Guests who viewed and then clicked to contact you</div>
+      <div class="rank-badge"><i class="ti ti-trophy" style="font-size:12px;"></i>${rankNum}</div>
+    </div>
+
+    ${tipHtml}
+
+    <div class="section-title">Manage your listing</div>
+
+    <a href="${editLink}" class="action-btn">
+      <div class="action-icon"><i class="ti ti-edit" style="font-size:16px;color:var(--teal);"></i></div>
+      <div class="action-text">
+        <div class="action-title">Update my listing</div>
+        <div class="action-sub">Phone, website, description, guest offer</div>
+      </div>
+      <i class="ti ti-chevron-right action-arrow"></i>
+    </a>
+
+    <a href="tel:8504502152" class="action-btn">
+      <div class="action-icon"><i class="ti ti-phone" style="font-size:16px;color:var(--soft);"></i></div>
+      <div class="action-text">
+        <div class="action-title">Talk to Welson</div>
+        <div class="action-sub">Questions? (850) 450-2152</div>
+      </div>
+      <i class="ti ti-chevron-right action-arrow"></i>
+    </a>
+
+    <p style="font-size:10px;color:var(--soft);text-align:center;margin-top:20px;">My30A Host · Partner dashboard · <a href="https://my30ahost.com" style="color:var(--soft);">my30ahost.com</a></p>
+  `;
+  document.getElementById('content').style.display = 'block';
+}
+
+function showError() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('error').style.display = 'block';
+}
+
+if(SUPA_URL !== 'YOUR_SUPABASE_URL') {
+  loadDashboard();
+} else {
+  // Demo mode (before Supabase configured)
+  setTimeout(() => {
+    render({
+      name: '30A Gulf Carts',
+      category: 'Golf carts',
+      area: 'All 30A',
+      logo_url: 'https://logo.clearbit.com/30agulfcarts.com',
+      is_featured: true,
+      discount_offer: '10%',
+      views_count: 847,
+      clicks_count: 63,
+    });
+  }, 600);
+}
+</script>
+</body>
+</html>

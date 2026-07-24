@@ -901,7 +901,7 @@ async function loadPending(){
     return; 
   }
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/partners?status=eq.pending&order=created_at.desc`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/partners?status=in.(pending,pending_update)&order=created_at.desc`, {
       headers:{ 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` }
     });
     const data = await res.json();
@@ -926,23 +926,50 @@ function renderPendingCard(p){
       <p style="font-size:11px;color:var(--soft);margin:0 0 6px;">📞 ${p.phone || '—'} · 🌐 ${p.website || '—'} · 📍 ${p.area || '—'}</p>
       <p style="font-size:10px;color:var(--soft);margin:0 0 8px;">Contact: <strong>${p.contact_name}</strong> · ${p.contact_email} · Applied ${new Date(p.created_at).toLocaleDateString()}</p>
       <div style="display:flex;gap:8px;">
+        ${p.status==='pending_update'?`
+        <div style="background:#e8f0fb;border-radius:6px;padding:7px 10px;margin-bottom:8px;font-size:11px;color:#1a3a6a;"><strong>✏️ Update request:</strong> ${p.update_notes||'No notes'}</div>
+        <button onclick="approveEdit('${p.id}','${p.name}')" style="padding:6px 14px;background:#1a4a8a;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;">✅ Approve edit</button>
+        <button onclick="rejectPartner('${p.id}','${p.name}')" style="padding:6px 14px;background:#fff;color:#c03a2a;border:1px solid #f0c0b0;border-radius:7px;font-size:12px;cursor:pointer;">❌ Reject</button>`:`
         <button onclick="approvePartner('${p.id}','${p.name}')" style="padding:6px 14px;background:#1a6a4a;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;">✅ Approve</button>
         <button onclick="rejectPartner('${p.id}','${p.name}')" style="padding:6px 14px;background:#fff;color:#c03a2a;border:1px solid #f0c0b0;border-radius:7px;font-size:12px;cursor:pointer;">❌ Reject</button>
-        <button onclick="window.open('mailto:${p.contact_email}?subject=Your My30A Host listing&body=Hi ${p.contact_name},')" style="padding:6px 14px;background:#fff;color:var(--soft);border:1px solid var(--border);border-radius:7px;font-size:12px;cursor:pointer;">✉️ Email</button>
+        <button onclick="window.open('mailto:${p.contact_email}?subject=Your My30A Host listing&body=Hi ${p.contact_name},')" style="padding:6px 14px;background:#fff;color:var(--soft);border:1px solid var(--border);border-radius:7px;font-size:12px;cursor:pointer;">✉️ Email</button>`}
       </div>
     </div>
   </div>`;
 }
 
+function genToken(name){
+  const slug = name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').substring(0,20);
+  const rand = Math.random().toString(36).substring(2,9);
+  return slug+'-'+rand;
+}
+
 async function approvePartner(id, name){
   if(!confirm(`Approve ${name} and add to Local guide?`)) return;
+  const token = genToken(name);
   try {
-    await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
+    // 1. Update Supabase
+    const res = await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
       method:'PATCH',
-      headers:{ 'apikey':SUPA_KEY, 'Authorization':`Bearer ${SUPA_KEY}`, 'Content-Type':'application/json' },
-      body: JSON.stringify({ status:'approved', approved_at: new Date().toISOString() })
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json','Prefer':'return=representation'},
+      body: JSON.stringify({ status:'approved', approved_at: new Date().toISOString(), token })
     });
-    toast(`✅ ${name} approved — now live in the app`);
+    const updated = await res.json();
+    const partner = updated[0]||{};
+
+    // 2. Send approval email with metrics + edit links
+    fetch('/api/approve-partner',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name, token,
+        contact_name: partner.contact_name||name,
+        contact_email: partner.contact_email||'',
+        category: partner.category||''
+      })
+    }).catch(()=>{});
+
+    toast(`✅ ${name} approved — email sent with dashboard link`);
     loadPending();
   } catch(e){ alert('Error approving. Check Supabase connection.'); }
 }
@@ -952,12 +979,25 @@ async function rejectPartner(id, name){
   try {
     await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
       method:'PATCH',
-      headers:{ 'apikey':SUPA_KEY, 'Authorization':`Bearer ${SUPA_KEY}`, 'Content-Type':'application/json' },
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},
       body: JSON.stringify({ status:'rejected' })
     });
     toast(`${name} rejected`);
     loadPending();
   } catch(e){ alert('Error rejecting.'); }
+}
+
+async function approveEdit(id, name){
+  if(!confirm(`Approve update for ${name}?`)) return;
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/partners?id=eq.${id}`, {
+      method:'PATCH',
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},
+      body: JSON.stringify({ status:'approved', update_notes: null })
+    });
+    toast(`✅ ${name} listing updated and live`);
+    loadPending();
+  } catch(e){ alert('Error approving edit.'); }
 }
 
 function pendingPlaceholder(){

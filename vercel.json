@@ -35,6 +35,14 @@
   ],
   "routes": [
     {
+      "src": "/partner/edit",
+      "dest": "/partner-edit.html"
+    },
+    {
+      "src": "/partner/stats",
+      "dest": "/partner-stats.html"
+    },
+    {
       "src": "/",
       "dest": "/index.html"
     },
