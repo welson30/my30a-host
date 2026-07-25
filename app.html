@@ -337,15 +337,8 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
       <div class="svlist">
         <p class="slbl">Concierge — we handle everything</p>
         <div class="srow" onclick="od('grocery')"><div class="sico" style="background:#f0f8f4;">🛒</div><div style="flex:1;"><div class="snm">Grocery delivery</div><div class="sds">Shop via Publix cart · we deliver</div></div><div><div class="spr">From $199</div><div class="spn">service + items</div></div></div>
-        <div><div class="spr">$145–450</div></div></div>
         <div class="srow" onclick="od('transfer')"><div class="sico" style="background:#f0f4fa;">🚗</div><div style="flex:1;"><div class="snm">Airport transfer</div><div class="sds">ECP · VPS · PNS — private ride</div></div><div><div class="spr">$150–299</div></div></div>
-
-        
-                        
-                        
-                                                
-                      </div>
-        
+      </div>
     </div>
     <!-- EXPLORE TAB -->
     <div class="tp" id="t-exp">
@@ -630,73 +623,6 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
       </div>
     </div>
 
-  </div>
-  
-</div>
-
-<!-- SERVICE DETAIL -->
-<div class="scr" id="sdet">
-  <div class="bk" onclick="go('sa');switchTab('svc')"><i class="ti ti-arrow-left"></i><span>Back to services</span></div>
-  <div class="dthero" id="dh"></div>
-  <div class="dtbody" id="db"></div>
-</div>
-
-<!-- PUBLIX TUTORIAL -->
-<div class="scr" id="stut">
-  <div class="bk" onclick="go('sa');switchTab('chat')"><i class="ti ti-arrow-left"></i><span>Back</span></div>
-  <div class="thero"><h2>How to order groceries</h2><p>Publix Watersound Town Center · Inlet Beach, FL</p></div>
-  <div class="tbody">
-    <div class="twarn"><i class="ti ti-alert-triangle" style="font-size:15px;flex-shrink:0;color:#e6a000;margin-top:1px;"></i><div><strong>Important:</strong> Add items to your Publix cart but <u>do not checkout</u> on the Publix website. We do the shopping and delivery — you pay us, not Publix.</div></div>
-    <div class="tstep"><div class="tsn">1</div><div><div class="tstitl">Open Publix Watersound</div><div class="tsdesc">Tap the button below — opens directly at our local Publix, Watersound Town Center, Inlet Beach. Confirm the right store is selected.</div></div></div>
-    <div class="tstep"><div class="tsn">2</div><div><div class="tstitl">Add items to your cart</div><div class="tsdesc">Search any product. You'll see the real photo, name, size, and current Publix price. No account needed.</div></div></div>
-    <div class="tstep"><div class="tsn">3</div><div><div class="tstitl">Cart → Review Order → View Details</div><div class="tsdesc">Tap the cart icon → "Review Order" → "View Details" to see all items with photos and prices on one screen.</div></div></div>
-    <div class="tstep"><div class="tsn">4</div><div><div class="tstitl">Screenshot & send to us</div><div class="tsdesc">Screenshot that page and upload here, or share your cart list by email. We confirm the total + service fee and send a payment link.</div></div></div>
-    <div class="tstep"><div class="tsn">5</div><div><div class="tstitl">We shop, pack & deliver</div><div class="tsdesc">You pay via Stripe. We shop and stock your kitchen before check-in. Real receipt sent after — any price difference automatically refunded or charged.</div></div></div>
-    <div class="tactn">
-      <a href="https://www.publix.com/shop-online/delivery-or-curbside-pickup" target="_blank" class="tbtn grn"><i class="ti ti-external-link" style="font-size:15px;"></i>Open Publix Watersound →</a>
-      <button class="tbtn out" onclick="toast('Screenshot upload opens in the live app')"><i class="ti ti-upload" style="font-size:15px;"></i>Upload my cart screenshot</button>
-      <button class="tbtn out" onclick="toast('Sends cart list to hello@my30ahost.com')"><i class="ti ti-mail" style="font-size:15px;"></i>Share list by email</button>
-    </div>
-  </div>
-</div>
-
-<!-- HOST DASHBOARD -->
-<div class="scr" id="shost">
-  <div class="bk" onclick="go('sa')"><i class="ti ti-arrow-left"></i><span>Back to app</span></div>
-  <div class="hhero"><h2>Host Dashboard</h2><p>Rosemary Beach House 12 · Growth plan active</p></div>
-  <div class="hbody">
-    <div class="hsgrid">
-      <div class="hsbox"><div class="hsn">47</div><div class="hsl">Guests/month</div></div>
-      <div class="hsbox"><div class="hsn">183</div><div class="hsl">Chats handled</div></div>
-      <div class="hsbox"><div class="hsn">4.8★</div><div class="hsl">Satisfaction</div></div>
-    </div>
-    <div class="hcard">
-      <h3><i class="ti ti-wifi" style="color:var(--teal);font-size:14px;"></i>Property info</h3>
-      <div class="hfield"><label class="hlbl">WiFi network</label><input class="hinp" value="RosemaryBeach12"></div>
-      <div class="hfield"><label class="hlbl">WiFi password</label><input class="hinp" value="SunsetVibes2026" type="password"></div>
-      <div class="hfield"><label class="hlbl">Check-in</label><input class="hinp" value="4:00 PM"></div>
-      <div class="hfield"><label class="hlbl">Check-out</label><input class="hinp" value="10:00 AM"></div>
-    </div>
-    <div class="hcard">
-      <h3><i class="ti ti-settings" style="color:var(--teal);font-size:14px;"></i>Concierge settings</h3>
-      <div class="htog"><div><div class="htl">Authorize early access</div><div class="hts">Allow My30A Host in before check-in for grocery delivery</div></div><div class="tsw"></div></div>
-      <div class="htog" style="border:none;"><div><div class="htl">Suggest property re-stays</div><div class="hts">Vitoria may suggest booking again next year</div></div><div class="tsw"></div></div>
-    </div>
-    <div class="hcard">
-      <h3><i class="ti ti-star" style="color:var(--teal);font-size:14px;"></i>Curated picks</h3>
-      <div style="background:var(--cream);border-radius:7px;padding:8px;margin-bottom:5px;font-size:12.5px;color:var(--ink);">Gallion's — date night dinner</div>
-      <div style="background:var(--cream);border-radius:7px;padding:8px;margin-bottom:5px;font-size:12.5px;color:var(--ink);">Amavida Coffee — best morning coffee</div>
-      <div style="background:var(--cream);border-radius:7px;padding:8px;font-size:12.5px;color:var(--soft);">+ Add a favorite spot…</div>
-    </div>
-    <div class="hcard">
-      <h3><i class="ti ti-chart-bar" style="color:var(--teal);font-size:14px;"></i>Top guest questions</h3>
-      <div class="hq"><span>WiFi password</span><strong>32%</strong></div>
-      <div class="hq"><span>Best restaurant nearby</span><strong>24%</strong></div>
-      <div class="hq" style="border:none;"><span>Closest beach access</span><strong>18%</strong></div>
-    </div>
-  </div>
-</div>
-
 <div class="tp" id="t-prof">
       <div class="phero"><div class="pav" id="pav">G</div><div class="pnm2" id="pnm">Guest</div><div class="psb">Member since 2025 · 3 stays on 30A</div></div>
       <div class="pbody">
@@ -810,8 +736,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
         </div>
       </div>
     </div>
-  
-  <div class="tc"></div>
+  </div><!-- /tc -->
   <div class="bnav">
     <div class="nt on" id="n-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
     <div class="nt" id="n-svc" onclick="switchTab('svc')"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
@@ -819,8 +744,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     <div class="nt" id="n-deals" onclick="switchTab('deals')"><i class="ti ti-ticket"></i><span>Local</span></div>
     <div class="nt" id="n-prof" onclick="switchTab('prof')"><i class="ti ti-user-circle"></i><span>Profile</span></div>
   </div>
-</div>
-</div>
+</div><!-- /sa -->
 
 <!-- SERVICE DETAIL -->
 <div class="scr" id="sdet">
@@ -882,9 +806,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
       <div class="hq"><span>Best restaurant nearby</span><strong>24%</strong></div>
       <div class="hq" style="border:none;"><span>Closest beach access</span><strong>18%</strong></div>
     </div>
-    </div>
   </div>
-    <div class="toast" id="tst"></div>
 </div>
 
 <!-- DINING DISCOVERY SCREEN -->
