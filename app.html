@@ -49,10 +49,10 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 .vnm{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:#fff;}
 .vst{font-size:9.5px;color:var(--gold);display:flex;align-items:center;gap:3px;}
 .vdot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
-.tc{flex:1;min-height:0;overflow:hidden;position:relative;}
+.tc{flex:1;min-height:0;overflow:hidden;position:relative;display:flex;flex-direction:column;}
 .tp{position:absolute;top:0;left:0;right:0;bottom:62px;overflow-y:auto;display:none;flex-direction:column;}
 .tp.on{display:flex;}
-.bnav{display:flex;flex-shrink:0;position:relative;z-index:10;background:rgba(10,22,40,.98);border-top:1px solid rgba(255,255,255,.05);padding:6px 0 max(18px, env(safe-area-inset-bottom, 18px));}
+.bnav{display:flex;position:absolute;bottom:0;left:0;right:0;z-index:10;background:rgba(10,22,40,.98);border-top:1px solid rgba(255,255,255,.05);padding:6px 0 max(18px, env(safe-area-inset-bottom, 18px));}
 .nt{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:9px;color:rgba(255,255,255,.28);cursor:pointer;padding:4px 0;}
 .nt i{font-size:19px;}
 .nt.on{color:var(--gold);}
