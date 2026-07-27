@@ -281,7 +281,7 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
     1. We verify your business information<br>
     2. We add you to the Local guide in the app<br>
     3. You receive a partner welcome email with your dashboard login<br><br>
-    <strong>Questions?</strong> Text or call Welson: <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a>
+    <strong>Questions?</strong> Text or call our team: <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a>
   </div>
 </div>
 
@@ -289,7 +289,7 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
 // ── CONFIG — replace with your actual keys ──
 const SUPA_URL = 'YOUR_SUPABASE_URL';
 const SUPA_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const RESEND_NOTIFY_EMAIL = 'welson@my30ahost.com';
+const RESEND_NOTIFY_EMAIL = 'hello@my30ahost.com';
 
 function handleDiscount(){
   const val = document.querySelector('input[name="discount"]:checked')?.value || '';
@@ -413,7 +413,7 @@ function submitForm(){
 
     if(!res.ok) throw new Error('Supabase error: ' + res.status);
 
-    // ── 2. Send email notification to Welson via Resend ──
+    // ── 2. Send email notification to our team via Resend ──
     // This runs via a Supabase Edge Function or Vercel serverless function
     // The endpoint below is a Vercel function you'll create (see developer-brief)
     fetch('/api/notify-partner', {
@@ -437,7 +437,7 @@ function submitForm(){
     console.error(err);
     btn.disabled = false;
     btn.innerHTML = '<i class="ti ti-send" style="font-size:15px;"></i> Submit listing request';
-    alert('Something went wrong. Please try again or text Welson at (850) 450-2152.');
+    alert('Something went wrong. Please try again or text our team at (850) 450-2152.');
   }
 }
 </script>

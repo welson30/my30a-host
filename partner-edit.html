@@ -113,7 +113,7 @@ textarea.form-input{resize:vertical;min-height:70px;}
     <div class="confirm-sub">We'll review your changes and update your listing within 24 hours.</div>
     <div class="confirm-note">
       <strong>What happens next:</strong><br>
-      Welson reviews your changes → approves → your listing updates live<br><br>
+      our team reviews your changes → approves → your listing updates live<br><br>
       Questions? Text <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a>
     </div>
   </div>
@@ -137,7 +137,7 @@ async function loadPartner() {
            style="background:var(--teal);color:#fff;padding:10px 20px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:500;display:inline-block;margin-bottom:10px;">
            Email hello@my30ahost.com
         </a>
-        <br><a href="tel:8504502152" style="font-size:12px;color:var(--teal);">Or text Welson: (850) 450-2152</a>
+        <br><a href="tel:8504502152" style="font-size:12px;color:var(--teal);">Or text our team: (850) 450-2152</a>
       </div>`; return; }
   if(SUPA_URL==='YOUR_SUPABASE_URL'){
     // Demo mode
@@ -152,7 +152,7 @@ async function loadPartner() {
     if(!data.length){ document.getElementById('loading').innerHTML=`
       <div style="text-align:center;padding:20px;">
         <p style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px;">Listing not found</p>
-        <p style="font-size:12px;color:var(--soft);">Your listing may still be pending review. Text Welson at <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a></p>
+        <p style="font-size:12px;color:var(--soft);">Your listing may still be pending review. Text our team at <a href="tel:8504502152" style="color:var(--teal);">(850) 450-2152</a></p>
       </div>`; return; }
     prefill(data[0]);
   } catch(e){
@@ -219,7 +219,7 @@ async function submitEdit() {
         headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json'},
         body: JSON.stringify(updates)
       });
-      // Notify Welson
+      // Notify our team
       fetch('/api/notify-partner-edit',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -237,7 +237,7 @@ async function submitEdit() {
   } catch(e){
     btn.disabled=false;
     btn.innerHTML='<i class="ti ti-send"></i> Submit update request';
-    alert('Something went wrong. Text Welson at (850) 450-2152.');
+    alert('Something went wrong. Text our team at (850) 450-2152.');
   }
 }
 
