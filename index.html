@@ -333,42 +333,122 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
 <section class="services-section" id="services">
   <div class="section-inner">
     <p class="section-label">What Vitoria arranges</p>
-    <h2 class="section-h2">Everything your stay needs</h2>
-    <p class="section-sub">Some we handle personally. Others we connect you with the best local partners — always vetted, always premium.</p>
+    <h2 class="section-h2">Every experience your stay deserves</h2>
+    <p class="section-sub">Some services we handle directly. For everything else, we connect guests with the top vetted providers on 30A — the ones locals actually use. One contact. Everything arranged.</p>
+
+    <!-- WHO BENEFITS -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 32px;">
+      <div style="flex:1;min-width:180px;background:linear-gradient(135deg,#0d3a2a,#0d5a38);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:18px;margin-bottom:6px;">🏖️</div>
+        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">Guests</div>
+        <div style="font-size:13px;color:#fff;line-height:1.5;">One message to Vitoria — fridge stocked, ride booked, experiences arranged before you even land.</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:linear-gradient(135deg,#0a1e3a,#0d3a60);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:18px;margin-bottom:6px;">🏠</div>
+        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">Hosts</div>
+        <div style="font-size:13px;color:#fff;line-height:1.5;">Zero guest texts at 10pm. Vitoria handles every question, every request, every booking — on your behalf.</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:linear-gradient(135deg,#2a1a0a,#5a3a0d);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:18px;margin-bottom:6px;">🤝</div>
+        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">Local Partners</div>
+        <div style="font-size:13px;color:#fff;line-height:1.5;">Direct referrals from a platform guests trust. No commissions taken — we grow together.</div>
+      </div>
+    </div>
+
     <div class="services-grid">
-      <div class="service-card" onclick="window.location.href='app.html#services'">
+
+      <!-- WE DO IT -->
+      <div class="service-card" onclick="window.location.href='/app'">
         <div class="svc-icon-wrap" style="background:#f0f8f4;">🛒</div>
-        
-      <div class="service-card" onclick="window.location.href='app.html#services'">
+        <div class="svc-card-name">Grocery delivery <span class="badge-us">We do it</span></div>
+        <div class="svc-card-desc">We shop Publix Watersound, stock your fridge, and put everything away — before you arrive. Food-safe gloves, photo confirmation.</div>
+        <div class="svc-card-price">From $175 + items</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
         <div class="svc-icon-wrap" style="background:#f0f4fa;">🚗</div>
         <div class="svc-card-name">Airport transfer <span class="badge-us">We do it</span></div>
-        <div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim.</div>
+        <div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim with a sign.</div>
         <div class="svc-card-price">$150–299</div>
       </div>
-      <div class="service-card" onclick="window.location.href='app.html#services'">
+
+      <div class="service-card" onclick="window.location.href='/app'">
         <div class="svc-icon-wrap" style="background:#fef0ee;">🍽️</div>
-        <div class="svc-card-name">Restaurant recommendations <span class="badge-us" style="background:#e8f5ea;color:#1a5a2a;">Free via Vitoria</span></div>
-        <div class="svc-card-desc">Vitoria recommends and links directly — including tables at Gallion's, Pescado, and 'drome during peak season.</div>
-        <div class="svc-card-price"></div>
+        <div class="svc-card-name">Dining & reservations <span class="badge-us" style="background:#e8f5ea;color:#1a5a2a;">Free via Vitoria</span></div>
+        <div class="svc-card-desc">Vitoria recommends and books directly — Gallion's, Pescado, Havana Beach, 'drome. Tells you what locals actually order.</div>
+        <div class="svc-card-price">Free</div>
       </div>
-      <div class="service-card" onclick="window.location.href='app.html#services'">
+
+      <!-- PARTNER SERVICES -->
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#f4f0fa;">🛺</div>
+        <div class="svc-card-name">Golf cart rental <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Delivered to your rental. We connect you with the best cart companies on 30A — street-legal, full weekend availability.</div>
+        <div class="svc-card-price">From $150/day</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
         <div class="svc-icon-wrap" style="background:#e8f4fb;">🚤</div>
         <div class="svc-card-name">On the water <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Boat charter, fishing, dolphin tour, kayak. We connect you with curated local captains.</div>
+        <div class="svc-card-desc">Boat charter, fishing, dolphin tour, kayak, paddleboard. Curated local captains with proven guest reviews.</div>
         <div class="svc-card-price">From $400</div>
       </div>
-      <div class="service-card" onclick="window.location.href='app.html#services'">
+
+      <div class="service-card" onclick="window.location.href='/app'">
         <div class="svc-icon-wrap" style="background:#fbeaf0;">📸</div>
-        <div class="svc-card-name">Special moments <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Sunset photoshoots, proposals, anniversary setups. Our photographer partner handles the magic.</div>
+        <div class="svc-card-name">Photography <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Sunset sessions, family portraits, proposals, anniversary setups on the beach. Our photographers know every perfect spot.</div>
         <div class="svc-card-price">From $300</div>
       </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#fdf4e8;">🔥</div>
+        <div class="svc-card-name">Beach bonfire <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Permitted bonfire setup on the beach — wood, seating, s'mores kit. We handle all permit coordination.</div>
+        <div class="svc-card-price">From $350</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#f0f8fd;">🚲</div>
+        <div class="svc-card-name">Bike rentals <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Beach cruisers, e-bikes, and kids bikes delivered to your door. Explore the 30A Scenic Corridor trail.</div>
+        <div class="svc-card-price">From $35/day</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#f5f0fb;">👶</div>
+        <div class="svc-card-name">Baby & family gear <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Cribs, high chairs, strollers, pack-n-plays delivered and set up before you arrive. Travel light — we have it covered.</div>
+        <div class="svc-card-price">From $45/stay</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#fef5f0;">👧</div>
+        <div class="svc-card-name">Babysitters <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Trusted, background-checked sitters on 30A. Date night, beach day for adults, or early morning arrival coverage.</div>
+        <div class="svc-card-price">From $25/hr</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#f0fbf5;">💆</div>
+        <div class="svc-card-name">Wellness & spa <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">In-home massages, yoga, IV hydration. Our wellness partners come to your rental — no driving required.</div>
+        <div class="svc-card-price">From $120</div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-icon-wrap" style="background:#f8f0f5;">🌺</div>
+        <div class="svc-card-name">Welcome setup <span class="badge-partner">Partner</span></div>
+        <div class="svc-card-desc">Balloon arches, floral arrangements, welcome baskets, charcuterie boards. Turn your rental into an arrival experience.</div>
+        <div class="svc-card-price">From $150</div>
+      </div>
+
     </div>
+
     <div style="text-align:center;margin-top:36px;">
-      <a href="/app" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;padding:13px 28px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;">See all services in the app <i class="ti ti-arrow-right"></i></a>
+      <a href="/app" style="display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;padding:13px 28px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;">Explore all services with Vitoria <i class="ti ti-arrow-right"></i></a>
     </div>
   </div>
-  </div><!-- /section-inner services -->
 </section>
 
 <!-- PRICING (for hosts) -->
@@ -393,51 +473,83 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:36px 0;">
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">🍽️</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"What's the best restaurant? Can you get us a table this Saturday?"</p>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"What's the best restaurant on 30A? Can you get us a table this Saturday?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">🏖️</span>
         <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where is the nearest public beach access with parking?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:20px;flex-shrink:0;">📸</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Who does sunset photography sessions on the beach?"</p>
+        <span style="font-size:20px;flex-shrink:0;">🛒</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"We land at 11pm. Can someone stock our fridge before we get there?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">🛺</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where do we rent a golf cart? Can they deliver it to us?"</p>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where do we rent a golf cart? Can they deliver it to our rental?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🚗</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"We're landing at ECP at midnight — is there a private transfer to 30A?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">📸</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Who does sunset photography sessions on the beach? Family-friendly?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">🎣</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Which fishing captain is good with kids? How do we book?"</p>
-      </div>
-      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:20px;flex-shrink:0;">🏖️</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Is there a company that sets up beach chairs and umbrellas?"</p>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Which fishing captain is good with kids? How do we book for tomorrow?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">🔥</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Can we do a bonfire on the beach? Who handles the permits?"</p>
-      </div>
-      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:20px;flex-shrink:0;">🛒</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"We land at 11pm. Can someone stock our fridge before we get there?"</p>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Can we do a bonfire on the beach? Is it legal? Who handles the permit?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">👶</span>
         <p style="font-size:13px;color:#1a1714;line-height:1.5;">"What are the best spots for families with small kids on 30A?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:20px;flex-shrink:0;">🗺️</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where exactly IS Seaside? How do we get to Alys Beach from here?"</p>
-      </div>
-      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
-        <span style="font-size:20px;flex-shrink:0;">🚗</span>
-        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"We're landing at ECP at midnight — is there a private transfer?"</p>
+        <span style="font-size:20px;flex-shrink:0;">🏖️</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Is there a company that delivers and sets up beach chairs and umbrellas?"</p>
       </div>
       <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:20px;flex-shrink:0;">💆</span>
         <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Is there a massage therapist who comes to the rental house?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🗺️</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where exactly IS Seaside? How far is Alys Beach from our rental?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🐕</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Can we bring our dog to the beach? Which beaches are pet-friendly?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🚕</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Is Uber or Lyft available here? Do we need to rent a car?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🛍️</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Is there a Whole Foods or Trader Joe's nearby? What about a farmer's market?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🌅</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"What's the best spot to watch the sunset with young kids?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">✈️</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where can we watch the Blue Angels practice? When do they fly?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🌊</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"What time is low tide this week? Which days are best for shelling?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🍺</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Where do locals actually eat and drink — not the tourist traps?"</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e5ddd0;border-radius:11px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;">
+        <span style="font-size:20px;flex-shrink:0;">🚲</span>
+        <p style="font-size:13px;color:#1a1714;line-height:1.5;">"Can we rent bikes? Is there a trail we can ride along the water?"</p>
       </div>
     </div>
 
