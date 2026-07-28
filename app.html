@@ -983,6 +983,7 @@ function checkPolicy(cta,act){
   const cb=document.getElementById('pol-check');
   if(cb&&!cb.checked){toast('Please read and accept the cancellation policy first');return;}
   if(cta==='Request transfer'){showTransferRequest();}
+  else if(cta==='See how to order →'){go('stut');}
   else if(act)act();
   else toast('Opens secure payment in the live app');
 }
