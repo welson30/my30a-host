@@ -87,9 +87,13 @@ section{padding:80px 24px;}
 /* SERVICES */
 .services-section{background:var(--white);}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
-.service-card{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);padding:20px;transition:transform .2s,box-shadow .2s;cursor:pointer;}
-.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.08);}
-.svc-icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px;}
+.service-card{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
+.svc-photo{height:120px;position:relative;overflow:hidden;background:#e5ddd0;}
+.svc-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.service-card:hover .svc-photo img{transform:scale(1.05);}
+.svc-body{padding:14px;}
+.svc-icon-wrap{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:8px;}
 .svc-card-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px;}
 .svc-card-desc{font-size:13px;color:var(--soft);line-height:1.5;}
 .svc-card-price{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--teal);margin-top:10px;}
@@ -442,66 +446,146 @@ function showCom(id){
           <div><p style="font-size:13.5px;font-weight:500;color:white;margin-bottom:2px;">Remembers you next year</p><p style="font-size:12.5px;color:rgba(255,255,255,0.5);">Come back in 2026 and Vitoria already knows your family, your preferences, your usual spots.</p></div>
         </div>
       </div>
-      <a href="/app" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:12px 24px;border-radius:999px;font-size:13.5px;font-weight:600;text-decoration:none;"><i class="ti ti-sparkles" style="font-size:14px;"></i>Chat with Vitoria</a>
-    </div>
-    <div class="phones-visual">
-      <div class="mock-phone">
-        <div class="mock-header">
-          <div class="mock-av">V</div>
-          <div><div class="mock-name">Vitoria</div><div class="mock-status">● Your 30A host</div></div>
-        </div>
-        <div class="mock-body" style="background:#0a1628;min-height:240px;">
-          <div class="mock-bubble-v" style="margin-top:8px;">Hi Sarah! 👋 I remember you loved Gallion's last summer. Shall I book your usual table for Saturday?</div>
-          <div class="mock-bubble-g">Yes please! And we need groceries before Thursday</div>
-          <div class="mock-bubble-v">Perfect — I'll arrange both. Tell me your list and I'll have everything ready when you arrive. 🛒</div>
-          <div class="mock-card" style="margin-top:8px;">
-            <div class="mock-card-img">🍷</div>
-            <div class="mock-card-name">Gallion's Rosemary Beach</div>
-            <div class="mock-card-meta">★ 4.7 · Fine dining · 5 min away</div>
-            <button class="mock-card-btn">Reserve for Saturday</button>
-          </div>
-        </div>
-        <div class="mock-nav">
-          <div class="mock-nav-t a"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
-          <div class="mock-nav-t"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
-          <div class="mock-nav-t"><i class="ti ti-map"></i><span>Explore</span></div>
-          <div class="mock-nav-t"><i class="ti ti-user-circle"></i><span>Profile</span></div>
-        </div>
+
+      <!-- Tab indicators -->
+      <div style="margin-top:32px;display:flex;gap:8px;flex-wrap:wrap;">
+        <div class="vtab-btn active" id="vt0" onclick="vSwitch(0)" style="display:flex;align-items:center;gap:6px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.35);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:12px;color:#c9a96e;font-weight:500;">💬 Chat</div>
+        <div class="vtab-btn" id="vt1" onclick="vSwitch(1)" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:12px;color:rgba(255,255,255,.5);">🛒 Services</div>
+        <div class="vtab-btn" id="vt2" onclick="vSwitch(2)" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:12px;color:rgba(255,255,255,.5);">🗺️ Explore</div>
+        <div class="vtab-btn" id="vt3" onclick="vSwitch(3)" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:12px;color:rgba(255,255,255,.5);">🤝 Local</div>
       </div>
-      <div class="mock-phone offset">
-        <div style="background:linear-gradient(160deg,var(--deep),var(--teal));padding:28px 12px 14px;">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;font-weight:500;">Before you arrive</p>
-          <p style="font-size:9px;color:rgba(255,255,255,0.5);">Paid securely in advance</p>
+
+      <a href="/app" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;background:linear-gradient(135deg,var(--gold),#b8863c);color:var(--deep);padding:12px 24px;border-radius:999px;font-size:13.5px;font-weight:600;text-decoration:none;"><i class="ti ti-sparkles" style="font-size:14px;"></i>Chat with Vitoria</a>
+    </div>
+
+    <!-- ANIMATED PHONE -->
+    <div style="display:flex;justify-content:center;align-items:center;">
+      <div style="width:260px;background:#0a1628;border-radius:32px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);position:relative;">
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg,#0d4f45,#0a1628);padding:20px 12px 10px;display:flex;align-items:center;gap:8px;">
+          <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#1a7a6a,#c9a96e);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:12px;color:#fff;font-style:italic;">V</div>
+          <div><div style="font-size:12px;font-weight:500;color:#fff;">Vitoria</div><div style="font-size:8px;color:#c9a96e;">● Your 30A host</div></div>
         </div>
-        <div style="background:#faf7f2;padding:10px;min-height:240px;">
-          <p style="font-size:8.5px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#6b6356;margin-bottom:8px;">Concierge services</p>
-          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
-            <span style="font-size:18px;">🛒</span>
-            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">Grocery delivery</p><p style="font-size:9px;color:#6b6356;">$175–299 + items</p></div>
+
+        <!-- Screen container -->
+        <div style="position:relative;overflow:hidden;min-height:320px;">
+
+          <!-- SCREEN 0: Chat -->
+          <div class="vscreen" id="vs0" style="position:absolute;inset:0;background:#0a1628;padding:10px;transition:opacity .4s,transform .4s;opacity:1;transform:translateX(0);">
+            <div style="background:rgba(255,255,255,.07);border-radius:3px 10px 10px 10px;padding:8px 10px;font-size:9.5px;color:rgba(255,255,255,.85);line-height:1.5;margin-bottom:6px;">Hi Sarah! 👋 I remember you loved Gallion's last summer. Shall I book your usual table for Saturday?</div>
+            <div style="background:linear-gradient(135deg,#0d4f45,#1a7a6a);border-radius:10px 3px 10px 10px;padding:8px 10px;font-size:9.5px;color:rgba(255,255,255,.9);margin-bottom:6px;margin-left:20px;">Yes! And we need groceries before Thursday 🛒</div>
+            <div style="background:rgba(255,255,255,.07);border-radius:3px 10px 10px 10px;padding:8px 10px;font-size:9.5px;color:rgba(255,255,255,.85);line-height:1.5;margin-bottom:8px;">Perfect — I'll arrange both. What's on your list? I'll have everything ready when you arrive. ✨</div>
+            <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,169,110,.2);border-radius:8px;padding:8px;">
+              <div style="font-size:18px;margin-bottom:4px;">🍷</div>
+              <div style="font-size:9.5px;font-weight:500;color:#fff;">Gallion's Rosemary Beach</div>
+              <div style="font-size:8.5px;color:#c9a96e;margin-bottom:6px;">★ 4.7 · Fine dining · 5 min</div>
+              <div style="background:linear-gradient(135deg,#c9a96e,#b8863c);border-radius:4px;padding:5px;text-align:center;font-size:8.5px;font-weight:600;color:#0a1628;">Reserve for Saturday</div>
+            </div>
           </div>
-          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
-            <span style="font-size:18px;">🌺</span>
-            v>
-          <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;">
-            <span style="font-size:18px;">🚗</span>
-            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">Airport transfer</p><p style="font-size:9px;color:#6b6356;">ECP $150 · VPS $225</p></div>
+
+          <!-- SCREEN 1: Services -->
+          <div class="vscreen" id="vs1" style="position:absolute;inset:0;background:#f5f0e8;padding:0;transition:opacity .4s,transform .4s;opacity:0;transform:translateX(30px);">
+            <div style="background:linear-gradient(135deg,#0a1628,#0d4f45);padding:12px;position:relative;overflow:hidden;">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=60&auto=format&fit=crop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;">
+              <div style="position:relative;z-index:1;"><p style="font-size:11px;font-weight:500;color:#fff;">Our concierge services</p><p style="font-size:8px;color:rgba(255,255,255,.5);">Paid securely in advance</p></div>
+            </div>
+            <div style="padding:10px;">
+              <p style="font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9a8878;margin-bottom:8px;">We do it</p>
+              <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;">
+                <span style="font-size:16px;">🛒</span>
+                <div style="flex:1;"><p style="font-size:10px;font-weight:500;">Grocery delivery</p><p style="font-size:8.5px;color:#9a8878;">From $149 + items</p></div>
+              </div>
+              <div style="background:#fff;border-radius:8px;padding:9px;margin-bottom:10px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;">
+                <span style="font-size:16px;">🚗</span>
+                <div style="flex:1;"><p style="font-size:10px;font-weight:500;">Airport transfer</p><p style="font-size:8.5px;color:#9a8878;">$150–299</p></div>
+              </div>
+              <p style="font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9a8878;margin-bottom:8px;">Local partners</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🛺</div><div style="font-size:8px;color:#5a5248;">Golf cart</div></div>
+                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🚤</div><div style="font-size:8px;color:#5a5248;">On the water</div></div>
+                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">📸</div><div style="font-size:8px;color:#5a5248;">Photography</div></div>
+                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🔥</div><div style="font-size:8px;color:#5a5248;">Bonfire</div></div>
+              </div>
+            </div>
           </div>
-          <p style="font-size:8.5px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#6b6356;margin:10px 0 8px;">Local experiences</p>
-          <div style="background:#fff;border-radius:8px;padding:9px;display:flex;gap:8px;align-items:center;">
-            <span style="font-size:18px;">🚤</span>
-            <div style="flex:1;"><p style="font-size:10.5px;font-weight:500;margin-bottom:1px;">On the water</p><p style="font-size:9px;color:#6b6356;">From $400</p></div>
+
+          <!-- SCREEN 2: Explore -->
+          <div class="vscreen" id="vs2" style="position:absolute;inset:0;background:#f5f0e8;padding:10px;transition:opacity .4s,transform .4s;opacity:0;transform:translateX(30px);">
+            <div style="background:#fff;border-radius:8px;padding:8px;margin-bottom:8px;display:flex;align-items:center;gap:6px;border:1px solid #e5ddd0;">
+              <span style="font-size:14px;">🌡️</span>
+              <div><p style="font-size:9px;font-weight:500;">83°F · Sunny</p><p style="font-size:7.5px;color:#9a8878;">Perfect beach day · Rosemary Beach</p></div>
+            </div>
+            <p style="font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9a8878;margin-bottom:6px;">Tonight's picks</p>
+            <div style="background:#fff;border-radius:8px;overflow:hidden;margin-bottom:5px;border:1px solid #e5ddd0;">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=60&auto=format&fit=crop" style="width:100%;height:60px;object-fit:cover;display:block;">
+              <div style="padding:7px;"><p style="font-size:9.5px;font-weight:500;">Gallion's Rosemary Beach</p><p style="font-size:8px;color:#9a8878;">★ 4.7 · Fine dining · Open tonight</p><div style="background:#0d4f45;border-radius:4px;padding:3px 6px;display:inline-block;font-size:7.5px;color:#fff;margin-top:4px;">Reserve now →</div></div>
+            </div>
+            <div style="background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e5ddd0;">
+              <div style="padding:7px;display:flex;gap:6px;align-items:center;"><span style="font-size:14px;">🎵</span><div><p style="font-size:9px;font-weight:500;">Red Bar · Live music tonight</p><p style="font-size:7.5px;color:#9a8878;">Grayton Beach · 8pm</p></div></div>
+            </div>
+          </div>
+
+          <!-- SCREEN 3: Local -->
+          <div class="vscreen" id="vs3" style="position:absolute;inset:0;background:#f5f0e8;padding:10px;transition:opacity .4s,transform .4s;opacity:0;transform:translateX(30px);">
+            <p style="font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9a8878;margin-bottom:8px;">Top local partners</p>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <div style="background:#fff;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;"><span style="font-size:16px;">🛺</span><div style="flex:1;"><p style="font-size:9.5px;font-weight:500;">30A Coastal Carts</p><p style="font-size:8px;color:#9a8878;">Golf cart · Delivered to you</p></div><div style="font-size:7.5px;color:#0d4f45;font-weight:500;">From $150</div></div>
+              <div style="background:#fff;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;"><span style="font-size:16px;">📸</span><div style="flex:1;"><p style="font-size:9.5px;font-weight:500;">Sunset Photography</p><p style="font-size:8px;color:#9a8878;">Beach sessions · Golden hour</p></div><div style="font-size:7.5px;color:#0d4f45;font-weight:500;">From $300</div></div>
+              <div style="background:#fff;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;"><span style="font-size:16px;">🎣</span><div style="flex:1;"><p style="font-size:9.5px;font-weight:500;">Heritage Excursions</p><p style="font-size:8px;color:#9a8878;">Fishing · Great with kids</p></div><div style="font-size:7.5px;color:#0d4f45;font-weight:500;">From $400</div></div>
+              <div style="background:#fff;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;"><span style="font-size:16px;">🔥</span><div style="flex:1;"><p style="font-size:9.5px;font-weight:500;">Beach Bonfire Setup</p><p style="font-size:8px;color:#9a8878;">Permitted · s'mores kit</p></div><div style="font-size:7.5px;color:#0d4f45;font-weight:500;">From $350</div></div>
+              <div style="background:#fff;border-radius:8px;padding:8px;display:flex;gap:8px;align-items:center;border:1px solid #e5ddd0;"><span style="font-size:16px;">💆</span><div style="flex:1;"><p style="font-size:9.5px;font-weight:500;">Wellness & Spa</p><p style="font-size:8px;color:#9a8878;">In-home · We come to you</p></div><div style="font-size:7.5px;color:#0d4f45;font-weight:500;">From $120</div></div>
+            </div>
           </div>
         </div>
-        <div class="mock-nav">
-          <div class="mock-nav-t"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
-          <div class="mock-nav-t a"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
-          <div class="mock-nav-t"><i class="ti ti-map"></i><span>Explore</span></div>
-          <div class="mock-nav-t"><i class="ti ti-user-circle"></i><span>Profile</span></div>
+
+        <!-- Nav bar -->
+        <div style="display:flex;border-top:1px solid rgba(255,255,255,.06);padding:8px 0 12px;background:rgba(10,22,40,.98);">
+          <div class="vmn" id="vn0" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7.5px;color:#c9a96e;" onclick="vSwitch(0)"><i class="ti ti-message-circle" style="font-size:14px;"></i>Vitoria</div>
+          <div class="vmn" id="vn1" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7.5px;color:rgba(255,255,255,.3);" onclick="vSwitch(1)"><i class="ti ti-shopping-bag" style="font-size:14px;"></i>Services</div>
+          <div class="vmn" id="vn2" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7.5px;color:rgba(255,255,255,.3);" onclick="vSwitch(2)"><i class="ti ti-map" style="font-size:14px;"></i>Explore</div>
+          <div class="vmn" id="vn3" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7.5px;color:rgba(255,255,255,.3);" onclick="vSwitch(3)"><i class="ti ti-ticket" style="font-size:14px;"></i>Local</div>
         </div>
       </div>
     </div>
   </div>
 </section>
+<script>
+var vCur=0,vTimer;
+var vScreens=['vs0','vs1','vs2','vs3'];
+var vBtns=['vt0','vt1','vt2','vt3'];
+var vNavs=['vn0','vn1','vn2','vn3'];
+var vLabels=['💬 Chat','🛒 Services','🗺️ Explore','🤝 Local'];
+function vSwitch(to){
+  clearInterval(vTimer);
+  // hide current
+  var old=document.getElementById('vs'+vCur);
+  if(old){old.style.opacity='0';old.style.transform='translateX(-20px)';}
+  vCur=to;
+  // show new
+  setTimeout(function(){
+    vScreens.forEach(function(id,i){
+      var el=document.getElementById(id);
+      if(!el)return;
+      if(i===vCur){el.style.opacity='1';el.style.transform='translateX(0)';}
+      else{el.style.opacity='0';el.style.transform='translateX(30px)';}
+    });
+  },150);
+  // update nav
+  vNavs.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(el)el.style.color=i===vCur?'#c9a96e':'rgba(255,255,255,.3)';
+  });
+  // update buttons
+  vBtns.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(i===vCur){el.style.background='rgba(201,169,110,.15)';el.style.border='1px solid rgba(201,169,110,.35)';el.style.color='#c9a96e';}
+    else{el.style.background='rgba(255,255,255,.05)';el.style.border='1px solid rgba(255,255,255,.12)';el.style.color='rgba(255,255,255,.5)';}
+  });
+  vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
+}
+vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
+</script>
 
 <!-- HOW IT WORKS -->
 <section class="how-section" id="how">
@@ -532,7 +616,6 @@ function showCom(id){
       </div>
     </div>
   </div>
-  </div><!-- /phones-inner -->
 </section>
 
 <!-- SERVICES -->
@@ -563,90 +646,64 @@ function showCom(id){
 
     <div class="services-grid">
 
-      <!-- WE DO IT -->
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f0f8f4;">🛒</div>
-        <div class="svc-card-name">Grocery delivery <span class="badge-us">We do it</span></div>
-        <div class="svc-card-desc">We shop Publix Watersound, stock your fridge, and put everything away — before you arrive. Food-safe gloves, photo confirmation.</div>
-        <div class="svc-card-price">From $175 + items</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=75&auto=format&fit=crop" alt="Stocked kitchen grocery delivery"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0f8f4;">🛒</div><div class="svc-card-name">Grocery delivery <span class="badge-us">We do it</span></div><div class="svc-card-desc">We shop Publix Watersound, stock your fridge, and put everything away — before you arrive. Food-safe gloves, photo confirmation.</div><div class="svc-card-price">From $149 + items</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f0f4fa;">🚗</div>
-        <div class="svc-card-name">Airport transfer <span class="badge-us">We do it</span></div>
-        <div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim with a sign.</div>
-        <div class="svc-card-price">$150–299</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=75&auto=format&fit=crop" alt="Airport transfer"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0f4fa;">🚗</div><div class="svc-card-name">Airport transfer <span class="badge-us">We do it</span></div><div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim with a sign.</div><div class="svc-card-price">$150–299</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#fef0ee;">🍽️</div>
-        <div class="svc-card-name">Dining & reservations <span class="badge-us" style="background:#e8f5ea;color:#1a5a2a;">Free via Vitoria</span></div>
-        <div class="svc-card-desc">Vitoria recommends and books directly — Gallion's, Pescado, Havana Beach, 'drome. Tells you what locals actually order.</div>
-        <div class="svc-card-price">Free</div>
-      </div>
-
-      <!-- PARTNER SERVICES -->
-      <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f4f0fa;">🛺</div>
-        <div class="svc-card-name">Golf cart rental <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Delivered to your rental. We connect you with the best cart companies on 30A — street-legal, full weekend availability.</div>
-        <div class="svc-card-price">From $150/day</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=75&auto=format&fit=crop" alt="Fine dining restaurant"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#fef0ee;">🍽️</div><div class="svc-card-name">Dining & reservations <span class="badge-us" style="background:#e8f5ea;color:#1a5a2a;">Free via Vitoria</span></div><div class="svc-card-desc">Vitoria recommends and books directly — Gallion's, Pescado, Havana Beach, 'drome. Tells you what locals actually order.</div><div class="svc-card-price">Free</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#e8f4fb;">🚤</div>
-        <div class="svc-card-name">On the water <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Boat charter, fishing, dolphin tour, kayak, paddleboard. Curated local captains with proven guest reviews.</div>
-        <div class="svc-card-price">From $400</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1690228685016-4556c897cdcf?w=500&q=75&auto=format&fit=crop" alt="Golf cart rental 30A"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f4f0fa;">🛺</div><div class="svc-card-name">Golf cart rental <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Delivered to your rental. We connect you with the best cart companies on 30A — street-legal, full weekend availability.</div><div class="svc-card-price">From $150/day</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#fbeaf0;">📸</div>
-        <div class="svc-card-name">Photography <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Sunset sessions, family portraits, proposals, anniversary setups on the beach. Our photographers know every perfect spot.</div>
-        <div class="svc-card-price">From $300</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=75&auto=format&fit=crop" alt="Boat charter on the water"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#e8f4fb;">🚤</div><div class="svc-card-name">On the water <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Boat charter, fishing, dolphin tour, kayak, paddleboard. Curated local captains with proven guest reviews.</div><div class="svc-card-price">From $400</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#fdf4e8;">🔥</div>
-        <div class="svc-card-name">Beach bonfire <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Permitted bonfire setup on the beach — wood, seating, s'mores kit. We handle all permit coordination.</div>
-        <div class="svc-card-price">From $350</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=500&q=75&auto=format&fit=crop" alt="Beach photography session sunset"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#fbeaf0;">📸</div><div class="svc-card-name">Photography <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Sunset sessions, family portraits, proposals, anniversary setups. Our photographers know every perfect 30A spot.</div><div class="svc-card-price">From $300</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f0f8fd;">🚲</div>
-        <div class="svc-card-name">Bike rentals <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Beach cruisers, e-bikes, and kids bikes delivered to your door. Explore the 30A Scenic Corridor trail.</div>
-        <div class="svc-card-price">From $35/day</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=75&auto=format&fit=crop" alt="Beach bonfire sunset"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#fdf4e8;">🔥</div><div class="svc-card-name">Beach bonfire <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Permitted bonfire setup on the beach — wood, seating, s'mores kit. We handle all permit coordination.</div><div class="svc-card-price">From $350</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f5f0fb;">👶</div>
-        <div class="svc-card-name">Baby & family gear <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Cribs, high chairs, strollers, pack-n-plays delivered and set up before you arrive. Travel light — we have it covered.</div>
-        <div class="svc-card-price">From $45/stay</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1558981033-0f0309284e44?w=500&q=75&auto=format&fit=crop" alt="Bike rentals beach path"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0f8fd;">🚲</div><div class="svc-card-name">Bike rentals <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Beach cruisers, e-bikes, and kids bikes delivered to your door. Explore the 30A Scenic Corridor trail.</div><div class="svc-card-price">From $35/day</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#fef5f0;">👧</div>
-        <div class="svc-card-name">Babysitters <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Trusted, background-checked sitters on 30A. Date night, beach day for adults, or early morning arrival coverage.</div>
-        <div class="svc-card-price">From $25/hr</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=500&q=75&auto=format&fit=crop" alt="Baby gear delivery"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f5f0fb;">👶</div><div class="svc-card-name">Baby & family gear <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Cribs, high chairs, strollers, pack-n-plays delivered and set up before you arrive. Travel light — we have it covered.</div><div class="svc-card-price">From $45/stay</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f0fbf5;">💆</div>
-        <div class="svc-card-name">Wellness & spa <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">In-home massages, yoga, IV hydration. Our wellness partners come to your rental — no driving required.</div>
-        <div class="svc-card-price">From $120</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1536399231571-1484f2891dd7?w=500&q=75&auto=format&fit=crop" alt="Family at beach babysitter"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#fef5f0;">👧</div><div class="svc-card-name">Babysitters <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Trusted, background-checked sitters on 30A. Date night, beach day for adults, or early morning arrival coverage.</div><div class="svc-card-price">From $25/hr</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-icon-wrap" style="background:#f8f0f5;">🌺</div>
-        <div class="svc-card-name">Welcome setup <span class="badge-partner">Partner</span></div>
-        <div class="svc-card-desc">Balloon arches, floral arrangements, welcome baskets, charcuterie boards. Turn your rental into an arrival experience.</div>
-        <div class="svc-card-price">From $150</div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=75&auto=format&fit=crop" alt="Wellness spa massage"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0fbf5;">💆</div><div class="svc-card-name">Wellness & spa <span class="badge-partner">Partner</span></div><div class="svc-card-desc">In-home massages, yoga, IV hydration. Our wellness partners come to your rental — no driving required.</div><div class="svc-card-price">From $120</div></div>
+      </div>
+
+      <div class="service-card" onclick="window.location.href='/app'">
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1463525216656-7cffbee7c9c9?w=500&q=75&auto=format&fit=crop" alt="Welcome setup flowers decor"></div>
+        <div class="svc-body"><div class="svc-icon-wrap" style="background:#f8f0f5;">🌺</div><div class="svc-card-name">Welcome setup <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Balloon arches, floral arrangements, welcome baskets, charcuterie boards. Turn your rental into an arrival experience.</div><div class="svc-card-price">From $150</div></div>
       </div>
 
     </div>

@@ -60,30 +60,62 @@ td strong{color:var(--ink);}
 
 <div class="cover">
   <h1>My30A Host — Developer Technical Brief</h1>
-  <p>Complete handoff document for the developer building the production app</p>
-  <p>Prepared by Welson Santos & Vitoria Santos · dealsconnectllc@gmail.com</p>
+  <p>Complete handoff document for the developer building the production backend</p>
+  <p>My30A Host · Deals Connect LLC · hello@my30ahost.com</p>
   <div class="meta">
-    <span><i class="ti ti-calendar"></i>July 2026</span>
+    <span><i class="ti ti-calendar"></i>August 2026</span>
     <span><i class="ti ti-code"></i>Stack: Node.js · Supabase · Stripe · Anthropic · Resend</span>
-    <span><i class="ti ti-world"></i>Demo: my30ahost.vercel.app</span>
-    <span><i class="ti ti-app-window"></i>Live app: 30aconcierge.netlify.app</span>
+    <span><i class="ti ti-world"></i>my30ahost.vercel.app</span>
+    <span><i class="ti ti-device-mobile"></i>Designer working in parallel on visual polish</span>
+  </div>
+</div>
+
+<!-- VISION -->
+<div class="sec" style="background:linear-gradient(135deg,#0a1628,#0d3a20);border-radius:12px;margin-bottom:20px;">
+  <div class="sec-hdr" style="border-bottom:1px solid rgba(255,255,255,.08);"><i class="ti ti-sparkles" style="font-size:20px;color:#c9a96e;"></i><h2 style="color:#fff;">The product vision</h2></div>
+  <div class="sec-body">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:400;line-height:1.4;margin-bottom:14px;">"This is 30A. You should be living it — not managing it."</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px;">My30A Host is not a booking engine or a chatbot. It is an AI-powered concierge that delivers the full 30A experience — before guests arrive and throughout their stay. Vitoria handles every question, coordinates every service, and connects guests with the best local partners on the 30A corridor (Rosemary Beach, Alys Beach, WaterColor, Seaside, Watersound, and more).</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:600;color:#c9a96e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">For guests</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;">Fridge stocked on arrival, ride from the airport, bonfire permits, fishing charters, restaurant reservations — all via chat with Vitoria.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:600;color:#c9a96e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">For hosts</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;">Zero guest texts at 10pm. Vitoria handles everything automatically. Hosts pay $99–199/month for their property to offer a 5-star concierge experience.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:600;color:#c9a96e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">For partners</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;">Local businesses get direct referrals from guests who came here to live 30A fully. No commission — My30A Host connects, they deliver.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:10px 14px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:8px;">
+      <p style="font-size:12px;color:#c9a96e;font-weight:600;margin-bottom:4px;">⚠️ Note for developer</p>
+      <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">A designer is working in parallel on visual polish and a Figma file. Your job is the backend only — Supabase, Stripe, Anthropic API, notifications, and agents. Do not modify the HTML/CSS structure. All visual decisions will come from the Figma file the designer delivers.</p>
+    </div>
   </div>
 </div>
 
 <!-- WHAT EXISTS -->
+
 <div class="sec">
   <div class="sec-hdr"><i class="ti ti-check-circle" style="font-size:20px;color:var(--teal);"></i><h2>What already exists</h2></div>
   <div class="sec-body">
     <p style="font-size:13.5px;color:var(--soft);margin-bottom:14px;">All demo files are on Vercel. The real backend is on Netlify. Both are connected to GitHub.</p>
-    <p style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin-bottom:8px;">8 pages on Vercel (demo UI — developer reference)</p>
-    <div class="file-row"><div class="file-nm">index.html</div><div class="file-url">my30ahost.com</div><div class="file-desc">Public landing page — guests and hosts discovering the product</div></div>
-    <div class="file-row"><div class="file-nm">app.html</div><div class="file-url">/app.html</div><div class="file-desc">Full guest app demo — 5 tabs, all service detail screens, Publix flow, status tracker, tips, loyalty</div></div>
-    <div class="file-row"><div class="file-nm">for-hosts.html</div><div class="file-url">/for-hosts.html</div><div class="file-desc">SaaS sales page for property owners, managers and HOAs</div></div>
-    <div class="file-row"><div class="file-nm">host-dashboard.html</div><div class="file-url">/host-dashboard.html</div><div class="file-desc">Host dashboard demo — stats, property config, analytics, QR code</div></div>
-    <div class="file-row"><div class="file-nm">calendar.html</div><div class="file-url">/calendar.html</div><div class="file-desc">Operations calendar — transfers, grocery, welcome setups — monthly view with Stripe card hold</div></div>
-    <div class="file-row"><div class="file-nm">admin.html</div><div class="file-url">/admin.html</div><div class="file-desc">Partner management — 28 partners, 3 modes, toggles, commission reconciliation</div></div>
-    <div class="file-row"><div class="file-nm">privacy.html</div><div class="file-url">/privacy.html</div><div class="file-desc">Privacy policy, terms of service, cancellation policy, substitution policy</div></div>
-    <div class="file-row"><div class="file-nm">watersound-inn.html</div><div class="file-url">/watersound-inn.html</div><div class="file-desc">Hotel-configured app template — Watersound Inn (St. Joe Company)</div></div>
+    <p style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin-bottom:8px;">12 pages on Vercel (all live — use as reference)</p>
+    <div class="file-row"><div class="file-nm">index.html</div><div class="file-url">my30ahost.vercel.app</div><div class="file-desc">Public landing page — hero video, photo carousel, community explorer, services, how it works, pricing</div></div>
+    <div class="file-row"><div class="file-nm">app.html</div><div class="file-url">/app</div><div class="file-desc">Full guest app — 5 tabs (Vitoria chat, Services, Explore, Local guide, Profile), grocery + transfer ordering, Publix tutorial, status tracker, tips, loyalty</div></div>
+    <div class="file-row"><div class="file-nm">for-hosts.html</div><div class="file-url">/hosts</div><div class="file-desc">SaaS sales page for property owners — pricing $99/$199/$149, features, how it works</div></div>
+    <div class="file-row"><div class="file-nm">host-dashboard.html</div><div class="file-url">/dashboard</div><div class="file-desc">Host dashboard — property config, guest analytics, QR code, curated picks</div></div>
+    <div class="file-row"><div class="file-nm">calendar.html</div><div class="file-url">/calendar</div><div class="file-desc">Operations calendar — grocery + transfer orders, monthly view, confirm → Stripe link flow</div></div>
+    <div class="file-row"><div class="file-nm">admin.html</div><div class="file-url">/admin</div><div class="file-desc">Partner management — approve/reject applications, generate tokens, send approval emails, analytics</div></div>
+    <div class="file-row"><div class="file-nm">partner.html</div><div class="file-url">/partner</div><div class="file-desc">Public partner registration form — local businesses apply to be listed in the Local guide</div></div>
+    <div class="file-row"><div class="file-nm">partner-stats.html</div><div class="file-url">/partner/stats?token=</div><div class="file-desc">Token-based partner dashboard — views, clicks, referrals for approved partners</div></div>
+    <div class="file-row"><div class="file-nm">partner-edit.html</div><div class="file-url">/partner/edit?token=</div><div class="file-desc">Token-based partner edit form — update listing, pending_updates table review flow</div></div>
+    <div class="file-row"><div class="file-nm">privacy.html</div><div class="file-url">/privacy</div><div class="file-desc">Privacy policy, cancellation policy, data retention</div></div>
+    <div class="file-row"><div class="file-nm">developer-brief.html</div><div class="file-url">/developer</div><div class="file-desc">This document — technical handoff for the developer</div></div>
+    <div class="file-row"><div class="file-nm">watersound-inn.html</div><div class="file-url">/watersound</div><div class="file-desc">Hotel white-label template — Watersound Inn (future contract, not active)</div></div>
 
     <p style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin:16px 0 8px;">7 Netlify Functions (real backend — already deployed)</p>
     <table>
@@ -262,7 +294,10 @@ td strong{color:var(--ink);}
   <div class="sec-body">
     <table>
       <tr><th>Service</th><th>Rule</th><th>Amount</th></tr>
-      <tr><td><strong>Starter Kit (15 curated items)</strong></td><td>Fixed all-in, no items cost added</td><td>$199</td></tr>
+      <tr><td><strong>Essentials (up to 30 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$149</td></tr>
+      <tr><td><strong>Full Pack (31–70 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$229</td></tr>
+      <tr><td><strong>Large Pack (71–120 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$329</td></tr>
+      <tr><td><strong>XL Pack (121–200 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$379</td></tr>
       <tr><td><strong>Essentials (≤30 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$175 + items</td></tr>
       <tr><td><strong>Full Pack (31–70 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$229 + items</td></tr>
       <tr><td><strong>Large Pack (71–120 items)</strong></td><td>Service fee + exact Publix receipt</td><td>$299 + items</td></tr>

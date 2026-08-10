@@ -340,8 +340,41 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
       <div class="svchr"><div class="svchr-bg"></div><div class="svchr-ov"></div><h2>Our concierge services</h2><p>Grocery delivery & airport transfer · Paid securely in advance</p></div>
       <div class="svlist">
         <p class="slbl">Concierge — we handle everything</p>
-        <div class="srow" onclick="od('grocery')"><div class="sico" style="background:#f0f8f4;">🛒</div><div style="flex:1;"><div class="snm">Grocery delivery</div><div class="sds">Shop via Publix cart · we deliver</div></div><div><div class="spr">From $199</div><div class="spn">service + items</div></div></div>
+        <div class="srow" onclick="od('grocery')"><div class="sico" style="background:#f0f8f4;">🛒</div><div style="flex:1;"><div class="snm">Grocery delivery</div><div class="sds">Shop via Publix · we unpack & stock</div></div><div><div class="spr">From $149</div><div class="spn">service + items</div></div></div>
         <div class="srow" onclick="od('transfer')"><div class="sico" style="background:#f0f4fa;">🚗</div><div style="flex:1;"><div class="snm">Airport transfer</div><div class="sds">ECP · VPS · PNS — private ride</div></div><div><div class="spr">$150–299</div></div></div>
+
+        <!-- PROOF PHOTOS SECTION -->
+        <div style="margin-top:20px;">
+          <p class="slbl">What our delivery looks like</p>
+          <p style="font-size:11px;color:var(--soft);margin-bottom:10px;line-height:1.5;">Every delivery includes a photo confirmation sent to you. This is what you arrive to.</p>
+          <div id="proof-carousel" style="position:relative;overflow:hidden;border-radius:12px;margin-bottom:8px;">
+            <div id="proof-track" style="display:flex;transition:transform .4s ease;">
+              <div style="min-width:100%;position:relative;">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format&fit=crop" alt="Stocked kitchen" style="width:100%;height:180px;object-fit:cover;border-radius:12px;display:block;">
+                <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:10px 12px;border-radius:0 0 12px 12px;">
+                  <p style="font-size:11px;color:#fff;font-weight:500;">Kitchen fully stocked & organized</p>
+                  <p style="font-size:10px;color:rgba(255,255,255,.6);">Replace with your real photos →</p>
+                </div>
+              </div>
+              <div style="min-width:100%;position:relative;">
+                <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&q=80&auto=format&fit=crop" alt="Stocked fridge" style="width:100%;height:180px;object-fit:cover;border-radius:12px;display:block;">
+                <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:10px 12px;border-radius:0 0 12px 12px;">
+                  <p style="font-size:11px;color:#fff;font-weight:500;">Fridge organized by category</p>
+                  <p style="font-size:10px;color:rgba(255,255,255,.6);">Replace with your real photos →</p>
+                </div>
+              </div>
+              <div style="min-width:100%;position:relative;">
+                <img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&q=80&auto=format&fit=crop" alt="Grocery bags" style="width:100%;height:180px;object-fit:cover;border-radius:12px;display:block;">
+                <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:10px 12px;border-radius:0 0 12px 12px;">
+                  <p style="font-size:11px;color:#fff;font-weight:500;">Every item placed with care</p>
+                  <p style="font-size:10px;color:rgba(255,255,255,.6);">Replace with your real photos →</p>
+                </div>
+              </div>
+            </div>
+            <div id="proof-dots" style="position:absolute;bottom:36px;right:10px;display:flex;gap:4px;"></div>
+          </div>
+          <p style="font-size:10px;color:var(--soft);text-align:center;">📸 Swipe · Real delivery photos coming soon</p>
+        </div>
       </div>
     </div>
     <!-- EXPLORE TAB -->
@@ -941,7 +974,7 @@ const PLACES=[
   window.addEventListener('load', ()=>{ setTimeout(loadLivePartners, 1000); });
 
   const SVCS={
-  grocery:{ico:'🛒',bg:'linear-gradient(135deg,#1a4a30,#0d3020)',bdg:'We deliver',tit:'Grocery delivery',sub:'We shop, unpack, and stock your kitchen before you arrive',feats:['One flat fee for our service — you pay the exact Publix receipt on top','Food-safe gloves used when handling and stocking everything','We message you during shopping for any substitution — you approve before we buy','Photo of your stocked kitchen sent right after delivery','Available on holidays — we stay open when other services close'],tiers:[{l:'Starter Kit — 15 curated breakfast items',v:'$199 all-in · no extras'},{l:'Essentials — up to 30 items · service fee',v:'$175 + Publix items'},{l:'Full Pack — 31–70 items · service fee',v:'$229 + Publix items'},{l:'Large Pack — 71–120 items · service fee',v:'$999 + Publix items'},{l:'Premium Pack — 121–200 items · service fee',v:'$379 + Publix items'},{l:'Orders above $1,000 in items',v:'$999 per $1,000 block'},{l:'Rush order · add to any pack',v:'+$50'},{l:'Holiday surcharge · add to any pack',v:'+$75'}],note:'Your total = our service fee + the exact Publix receipt. No averages, no estimates. For orders above $1,000 in groceries, one service fee applies per $1,000 block — we handle it transparently.',cta:'See how to order →',act:()=>go('stut')},
+  grocery:{ico:'🛒',bg:'linear-gradient(135deg,#1a4a30,#0d3020)',bdg:'We deliver',tit:'Grocery delivery',sub:'We shop, unpack, and stock your kitchen before you arrive',feats:['One flat fee for our service — you pay the exact Publix receipt on top','Food-safe gloves used when handling and stocking everything','We message you during shopping for any substitution — you approve before we buy','Photo of your stocked kitchen sent right after delivery','Available on holidays — we stay open when other services close'],tiers:[{l:'Essentials — up to 30 items · service fee',v:'$149 + Publix items'},{l:'Full Pack — 31–70 items · service fee',v:'$229 + Publix items'},{l:'Large Pack — 71–120 items · service fee',v:'$329 + Publix items'},{l:'XL Pack — 121–200 items · service fee',v:'$379 + Publix items'},{l:'Orders above $1,000 in items',v:'$379 per $1,000 block'},{l:'Rush order · add to any pack',v:'+$50'},{l:'Holiday surcharge · add to any pack',v:'+$75'}],note:'Your total = our service fee + the exact Publix receipt. No averages, no estimates. Service fee is always less than your grocery total — transparency guaranteed.',cta:'See how to order →',act:()=>go('stut')},
   welcome:{ico:'🌺',bg:'linear-gradient(135deg,#4a2a1a,#3a1a10)',bdg:'Via local partner',tit:'Welcome setup',sub:'Everything ready when you open the door',feats:['Simple setups done by us (Warm & Coastal)','VIP packages via our trusted partner — you contact them directly','Local flowers, handwritten notes, champagne on ice'],tiers:[{l:'Warm Welcome — flowers + note',v:'$145'},{l:'Coastal Luxury — champagne + fruits + chocolates',v:'$275'},{l:'VIP Arrival — via partner (you pay them)',v:'From $450'}],note:'Warm Welcome and Coastal Luxury: we handle everything. VIP Arrival ($450): we connect you with our trusted décor partner — you book and pay them directly. We coordinate the details.',cta:'Book welcome setup'},
   transfer:{ico:'🚗',bg:'linear-gradient(135deg,#1a2a4a,#0d1a3a)',bdg:'We drive',tit:'Airport transfer',sub:'Private ride — we meet you at baggage claim',feats:['ECP (Northwest FL Beaches) — closest, ~40 min','VPS (Destin-Fort Walton) — ~1h15 with traffic','PNS (Pensacola) — ~2h','Backup transport partners available'],tiers:[{l:'ECP → 30A (~40 min)',v:'$150'},{l:'VPS → 30A (~1h15)',v:'$225'},{l:'PNS → 30A (~2h)',v:'$999'},{l:'Car seat add-on (Nuna RAVA)',v:'+$25/trip'}],note:'Round trip available — 15% discount. We drive or arrange a trusted backup partner if unavailable.',cta:'Request transfer',act:()=>{showTransferRequest()}},
 
@@ -1358,6 +1391,35 @@ function showTransferConfirm(name, dt, isArrival, total, carSeat){
 
 
 function toast(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2500);}
+
+// Proof photos carousel
+(function(){
+  var cur=0,n=3,timer,track,dots=[];
+  function init(){
+    track=document.getElementById('proof-track');
+    var dc=document.getElementById('proof-dots');
+    if(!track||!dc)return;
+    for(var i=0;i<n;i++){
+      var d=document.createElement('div');
+      d.style.cssText='width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;';
+      d.setAttribute('data-i',i);
+      d.onclick=function(){go2(+this.getAttribute('data-i'));};
+      dc.appendChild(d);dots.push(d);
+    }
+    // Touch swipe
+    var sx=0;
+    track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;});
+    track.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-sx;
+      if(Math.abs(dx)>40){clearInterval(timer);go2(dx<0?cur+1:cur-1);startT();}
+    });
+    go2(0);startT();
+  }
+  function go2(to){cur=((to%n)+n)%n;if(track)track.style.transform='translateX(-'+cur+'00%)';dots.forEach(function(d,i){d.style.background=i===cur?'rgba(255,255,255,.9)':'rgba(255,255,255,.4)';});}
+  function startT(){timer=setInterval(function(){go2(cur+1);},3500);}
+  document.addEventListener('DOMContentLoaded',init);
+  setTimeout(init,500);
+})();
 </script>
 </body>
 </html>
