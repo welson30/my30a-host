@@ -36,18 +36,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:fl
 
 /* HERO */
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;}
-.sky{position:absolute;inset:0;background:linear-gradient(180deg,#0a1628 0%,#1a3050 20%,#4a6080 35%,#e08060 52%,#f09040 58%,#d06030 62%);}
-.sun{position:absolute;top:36%;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#f5d060 0%,#e8a030 50%,#c06820 100%);box-shadow:0 0 120px 60px rgba(240,160,60,0.3);}
-.horizon-glow{position:absolute;top:58%;left:0;right:0;height:80px;background:linear-gradient(0deg,transparent,rgba(240,140,60,0.4),transparent);}
-.sea{position:absolute;top:58%;left:0;right:0;bottom:0;background:linear-gradient(180deg,#1a6080 0%,#0d3a50 30%,#061a28 100%);}
-.sea-reflect{position:absolute;top:58%;left:50%;transform:translateX(-50%);width:200px;height:10px;background:rgba(240,160,60,0.5);border-radius:50%;filter:blur(6px);}
-.beach{position:absolute;bottom:0;left:0;right:0;height:22%;background:linear-gradient(180deg,#c8a870 0%,#b89060 40%,#a07848 100%);}
-.palm-l{position:absolute;bottom:20%;left:8%;width:3px;height:100px;background:rgba(10,22,40,0.75);}
-.palm-l::before{content:'';position:absolute;top:-6px;left:-26px;width:56px;height:28px;background:rgba(10,22,40,0.75);border-radius:50% 50% 0 0;transform:rotate(-25deg);}
-.palm-l::after{content:'';position:absolute;top:12px;left:-6px;width:48px;height:24px;background:rgba(10,22,40,0.75);border-radius:50% 0 0 50%;transform:rotate(20deg);}
-.palm-r{position:absolute;bottom:20%;right:6%;width:3px;height:80px;background:rgba(10,22,40,0.6);}
-.palm-r::before{content:'';position:absolute;top:-4px;right:-20px;width:44px;height:22px;background:rgba(10,22,40,0.6);border-radius:50% 50% 0 0;transform:rotate(30deg);}
+.hero-video-wrap{position:absolute;inset:0;overflow:hidden;background:#0a1628;}
+.hero-iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;pointer-events:none;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.55) 0%,rgba(10,22,40,.25) 40%,rgba(10,22,40,.65) 100%);}
+.hero-fallback{position:absolute;inset:0;background:linear-gradient(180deg,#0a1628 0%,#1a3050 20%,#4a6080 35%,#e08060 52%,#f09040 58%,#d06030 62%,#1a6080 65%,#061a28 100%);}
 
 .hero-content{position:relative;z-index:10;text-align:center;padding:0 24px;max-width:760px;}
 .hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;opacity:0.85;}
@@ -194,16 +186,15 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="sky"></div>
-    <div class="sun"></div>
-    <div class="horizon-glow"></div>
-    <div class="sea"></div>
-    <div class="sea-reflect"></div>
-    <div class="beach"></div>
-    <div class="palm-l"></div>
-    <div class="palm-r"></div>
+  <div class="hero-video-wrap">
+    <div class="hero-fallback"></div>
+    <iframe class="hero-iframe"
+      src="https://www.youtube.com/embed/AXZeVvgD5ms?autoplay=1&mute=1&loop=1&playlist=AXZeVvgD5ms&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=30"
+      frameborder="0" allow="autoplay; encrypted-media; fullscreen"
+      title="30A Florida aerial drone footage">
+    </iframe>
   </div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Rosemary Beach · Alys Beach · WaterColor · 30A, Florida</p>
     <h1 class="hero-h1">This is 30A.<br><em>You should be living it.</em></h1>
@@ -249,6 +240,77 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
       <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,32px);color:#fff;font-weight:400;line-height:1.4;max-width:600px;margin:0 auto 16px;">"We've been coming to 30A for years. This was the first time we felt like we actually <em style="color:var(--gold);">lived</em> here instead of just visiting."</p>
       <p style="font-size:12px;color:rgba(255,255,255,.35);">— Guest, Rosemary Beach · Summer 2025</p>
     </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section style="padding:0;background:#0a1628;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:280px 280px;gap:3px;">
+    <div style="grid-column:1/3;grid-row:1/2;position:relative;overflow:hidden;background:#1a3a2a;">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80" alt="30A sunset beach" style="width:100%;height:100%;object-fit:cover;opacity:.9;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">Sunset on 30A</div>
+    </div>
+    <div style="grid-column:3/4;grid-row:1/2;position:relative;overflow:hidden;background:#0a2a3a;">
+      <img src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=600&q=80" alt="Aerial beach view" style="width:100%;height:100%;object-fit:cover;opacity:.9;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">The Gulf</div>
+    </div>
+    <div style="grid-column:4/5;grid-row:1/2;position:relative;overflow:hidden;background:#2a1a0a;">
+      <img src="https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=600&q=80" alt="Beach bonfire" style="width:100%;height:100%;object-fit:cover;opacity:.9;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">Bonfire nights</div>
+    </div>
+    <div style="grid-column:1/2;grid-row:2/3;position:relative;overflow:hidden;background:#0a1a2a;">
+      <img src="https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?w=600&q=80" alt="Turquoise water" style="width:100%;height:100%;object-fit:cover;opacity:.9;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">Emerald waters</div>
+    </div>
+    <div style="grid-column:2/4;grid-row:2/3;position:relative;overflow:hidden;background:#1a2a0a;">
+      <img src="https://images.unsplash.com/photo-1536399231571-1484f2891dd7?w=900&q=80" alt="Family on the beach" style="width:100%;height:100%;object-fit:cover;opacity:.9;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">Family moments</div>
+    </div>
+    <div style="grid-column:4/5;grid-row:2/3;position:relative;overflow:hidden;background:#1a0a2a;">
+      <img src="https://images.unsplash.com/photo-1499242611761-cfae979a673c?w=600&q=80" alt="Beach sunset walk" style="width:100%;height:100%;object-fit:cover;opacity:.9;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.9">
+      <div style="position:absolute;bottom:16px;left:16px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;text-shadow:0 1px 8px rgba(0,0,0,.6);">Golden hour</div>
+    </div>
+  </div>
+  <!-- Replace with your own 30A photos when available -->
+</section>
+
+<!-- FEATURED IN -->
+<section style="background:#fff;padding:40px 24px;border-bottom:1px solid #f0ece8;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#9a8878;margin-bottom:24px;font-weight:600;">30A — As featured in</p>
+    <div style="display:flex;gap:32px;justify-content:center;align-items:center;flex-wrap:wrap;opacity:.55;">
+      <span style="font-family:Georgia,serif;font-size:18px;font-weight:400;color:#1a1a18;letter-spacing:.5px;">Condé Nast Traveler</span>
+      <span style="font-size:11px;color:#ccc;">|</span>
+      <span style="font-family:Georgia,serif;font-size:18px;font-weight:400;font-style:italic;color:#1a1a18;">Vogue</span>
+      <span style="font-size:11px;color:#ccc;">|</span>
+      <span style="font-family:Georgia,serif;font-size:16px;font-weight:400;color:#1a1a18;letter-spacing:-.5px;">The Wall Street Journal</span>
+      <span style="font-size:11px;color:#ccc;">|</span>
+      <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#1a1a18;letter-spacing:-1px;">Airbnb</span>
+      <span style="font-size:11px;color:#ccc;">|</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#1a1a18;">VRBO</span>
+      <span style="font-size:11px;color:#ccc;">|</span>
+      <span style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#1a1a18;">30A.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- 30A VIDEO SECTION -->
+<section style="background:#0a1628;padding:80px 24px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c9a96e;margin-bottom:14px;font-weight:600;text-align:center;">The corridor</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:400;color:#fff;text-align:center;margin-bottom:10px;line-height:1.2;">Seaside. Rosemary. Alys Beach.<br>WaterColor. Watersound.</h2>
+    <p style="font-size:14px;color:rgba(255,255,255,.45);text-align:center;margin-bottom:36px;">30A is not one place. It's a way of life stretched across 24 miles of the most beautiful coastline in America.</p>
+    <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.5);">
+      <iframe
+        src="https://www.youtube.com/embed/AXZeVvgD5ms?rel=0&modestbranding=1&color=white"
+        title="30A Florida — Seaside, Rosemary Beach, Alys Beach, WaterColor, Watersound 4K Drone"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+      </iframe>
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,.2);text-align:center;margin-top:16px;">Drone footage of 30A — Seaside, Rosemary Beach, Alys Beach, WaterColor & Watersound · Replace with your own video when ready</p>
   </div>
 </section>
 
