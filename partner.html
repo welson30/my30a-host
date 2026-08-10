@@ -15,7 +15,7 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
 .brand{font-family:'Cormorant Garamond',serif;color:#fff;font-size:20px;font-weight:500;text-decoration:none;}
 .nav-back{color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:4px;}
 /* HERO */
-.hero{background:linear-gradient(160deg,#0a1628 0%,#0d3a20 100%);padding:40px 20px 36px;text-align:center;}
+.hero{position:relative;overflow:hidden;padding:40px 20px 36px;text-align:center;}
 .hero-eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;font-weight:500;line-height:1.2;margin-bottom:10px;}
 .hero-sub{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;max-width:320px;margin:0 auto;}
@@ -93,9 +93,13 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--ink);}
 
 <!-- HERO -->
 <div class="hero">
+  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1576523913812-cf809eb5a111?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,22,40,.9) 0%,rgba(13,58,32,.85) 100%);"></div>
+  <div style="position:relative;z-index:2;">
   <div class="hero-eyebrow">For local businesses on 30A</div>
   <div class="hero-title">They came here to live 30A.<br>You make that possible.</div>
   <div class="hero-sub">My30A Host connects guests with the best local experiences on 30A — before they even arrive. Be the business Vitoria recommends first.</div>
+  </div>
 </div>
 
 <!-- HOW IT WORKS -->

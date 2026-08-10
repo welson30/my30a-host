@@ -109,9 +109,11 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 @keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
 /* ── SERVICES ── */
-.svchr{background:linear-gradient(160deg,var(--deep),var(--teal));padding:16px;flex-shrink:0;}
-.svchr h2{font-family:'Cormorant Garamond',serif;font-size:21px;color:#fff;font-weight:500;margin-bottom:2px;}
-.svchr p{font-size:10.5px;color:rgba(255,255,255,.45);}
+.svchr{position:relative;overflow:hidden;padding:16px;flex-shrink:0;}
+.svchr-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1576523930574-0eae9f4f60b8?w=800&q=60&auto=format&fit=crop') center/cover no-repeat;}
+.svchr-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,22,40,.92),rgba(13,79,69,.88));}
+.svchr h2{position:relative;z-index:1;font-family:'Cormorant Garamond',serif;font-size:21px;color:#fff;font-weight:500;margin-bottom:2px;}
+.svchr p{position:relative;z-index:1;font-size:10.5px;color:rgba(255,255,255,.45);}
 .svlist{background:var(--cream);flex:1;padding:13px;overflow-y:auto;}
 .slbl{font-size:9.5px;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--soft);margin:0 0 8px;}
 .srow{background:#fff;border:.5px solid rgba(0,0,0,.07);border-radius:11px;padding:11px;margin-bottom:7px;display:flex;gap:9px;align-items:center;cursor:pointer;transition:transform .15s;}
@@ -161,7 +163,9 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 .dnote{margin-top:10px;padding:10px 12px;background:rgba(255,255,255,.04);border-radius:8px;font-size:11px;color:rgba(255,255,255,.35);text-align:center;line-height:1.5;}
 
 /* ── PROFILE ── */
-.phero{background:linear-gradient(160deg,var(--deep),#0d3040);padding:44px 16px 20px;text-align:center;flex-shrink:0;}
+.phero{position:relative;overflow:hidden;padding:44px 16px 20px;text-align:center;flex-shrink:0;}
+.phero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1714494843093-505ea9758a1f?w=600&q=60&auto=format&fit=crop') center/cover no-repeat;}
+.phero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.7) 0%,rgba(10,22,40,.85) 100%);}
 .pav{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--tm),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin:0 auto 9px;border:2px solid var(--bg2);}
 .pnm2{font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;font-weight:500;margin-bottom:1px;}
 .psb{font-size:10.5px;color:rgba(255,255,255,.4);}
@@ -333,7 +337,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
 
     <!-- SERVICES TAB -->
     <div class="tp" id="t-svc">
-      <div class="svchr"><h2>Our concierge services</h2><p>Grocery delivery & airport transfer · Paid securely in advance</p></div>
+      <div class="svchr"><div class="svchr-bg"></div><div class="svchr-ov"></div><h2>Our concierge services</h2><p>Grocery delivery & airport transfer · Paid securely in advance</p></div>
       <div class="svlist">
         <p class="slbl">Concierge — we handle everything</p>
         <div class="srow" onclick="od('grocery')"><div class="sico" style="background:#f0f8f4;">🛒</div><div style="flex:1;"><div class="snm">Grocery delivery</div><div class="sds">Shop via Publix cart · we deliver</div></div><div><div class="spr">From $199</div><div class="spn">service + items</div></div></div>
@@ -624,7 +628,7 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
     </div>
 
 <div class="tp" id="t-prof">
-      <div class="phero"><div class="pav" id="pav">G</div><div class="pnm2" id="pnm">Guest</div><div class="psb">Member since 2025 · 3 stays on 30A</div></div>
+      <div class="phero"><div class="phero-bg"></div><div class="phero-ov"></div><div class="pav" id="pav" style="position:relative;z-index:1;">G</div><div class="pnm2" id="pnm" style="position:relative;z-index:1;">Guest</div><div class="psb" style="position:relative;z-index:1;">Member since 2025 · 3 stays on 30A</div></div>
       <div class="pbody">
         <div class="psgrid">
           <div class="psb2"><div class="psn">3</div><div class="psl">Stays</div></div>
