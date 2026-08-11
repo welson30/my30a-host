@@ -525,6 +525,28 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
             </div>
           </div>
 
+          <div class="lcat-card" id="lcat-baby" onclick="showCat('baby')" style="border-radius:14px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s;">
+            <div style="position:relative;">
+              <img src="https://images.unsplash.com/photo-1542901689-8917f44e3541?w=300&q=80&auto=format&fit=crop" style="width:100%;height:100px;object-fit:cover;display:block;">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.7));"></div>
+            </div>
+            <div style="padding:9px 11px;background:#fff;">
+              <div style="font-size:12px;font-weight:600;color:#1a1714;">👶 Baby & family gear</div>
+              <div style="font-size:10px;color:#0d4f45;font-weight:500;margin-top:1px;">From $45/stay · 2 vendors</div>
+            </div>
+          </div>
+
+          <div class="lcat-card" id="lcat-sitter" onclick="showCat('sitter')" style="border-radius:14px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s;">
+            <div style="position:relative;">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&q=80&auto=format&fit=crop" style="width:100%;height:100px;object-fit:cover;object-position:center 20%;display:block;">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.7));"></div>
+            </div>
+            <div style="padding:9px 11px;background:#fff;">
+              <div style="font-size:12px;font-weight:600;color:#1a1714;">👧 Babysitters</div>
+              <div style="font-size:10px;color:#0d4f45;font-weight:500;margin-top:1px;">From $25/hr · 2 vendors</div>
+            </div>
+          </div>
+
         </div>
 
         <!-- PARTNER PANELS — hidden until category tapped -->
@@ -588,45 +610,57 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
           <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/sunsetyoga30a.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#8a3a6a;display:none;">SY</div></div><div class="vcard-info"><span class="vcard-nm">Sunset Yoga 30A</span></div></div><div class="vcard-area">sunsetyoga30a.com · All 30A</div><div class="vcard-desc">Beach yoga at sunrise and sunset. Private sessions available.</div><div class="vcard-btns"><button class="vb" onclick="toast('sunsetyoga30a.com')"><i class="ti ti-world" style="font-size:12px;"></i>Website</button></div></div>
         </div>
 
+        <div id="lpanel-baby" style="display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <p class="slbl" style="font-size:10px;font-weight:700;letter-spacing:1px;margin:0;">👶 BABY & FAMILY GEAR</p>
+            <button onclick="showCat(null)" style="background:none;border:none;font-size:11px;color:#9a8878;cursor:pointer;">✕ Close</button>
+          </div>
+          <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/vacationbaby.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#4a6a1a;display:none;">VB</div></div><div class="vcard-info"><div style="display:flex;align-items:center;justify-content:space-between;gap:6px;"><span class="vcard-nm">Vacation Baby 30A</span><span class="vbadge vb-feat">⭐ Featured</span></div></div></div><div class="vcard-area">vacationbaby.com · Delivered before arrival</div><div class="vcard-desc">Cribs, strollers, high chairs, car seats — clean and sanitized.</div><div class="vcard-btns"><button class="vb" onclick="toast('vacationbaby.com')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button></div></div>
+          <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/babyquip.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#5a7a2a;display:none;">BQ</div></div><div class="vcard-info"><span class="vcard-nm">BabyQuip 30A</span></div></div><div class="vcard-area">babyquip.com · Delivered to your rental</div><div class="vcard-desc">Quality baby equipment. Beach wagons, toys, bouncers and more.</div><div class="vcard-btns"><button class="vb" onclick="toast('babyquip.com')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button></div></div>
+        </div>
+
+        <div id="lpanel-sitter" style="display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <p class="slbl" style="font-size:10px;font-weight:700;letter-spacing:1px;margin:0;">👧 BABYSITTERS & CHILDCARE</p>
+            <button onclick="showCat(null)" style="background:none;border:none;font-size:11px;color:#9a8878;cursor:pointer;">✕ Close</button>
+          </div>
+          <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/30ababysitters.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#1a5a4a;display:none;">3A</div></div><div class="vcard-info"><div style="display:flex;align-items:center;justify-content:space-between;gap:6px;"><span class="vcard-nm">30A Babysitters</span><span class="vbadge vb-feat">⭐ Featured</span></div></div></div><div class="vcard-area">(850) 909-9290 · 30ababysitters.com · All 30A</div><div class="vcard-desc">CPR certified, background-checked vacation babysitters. Evening care, daytime nannies, pool supervision.</div><div class="vcard-btns"><a class="vb" href="tel:8509099290"><i class="ti ti-phone" style="font-size:12px;"></i>Call</a><button class="vb" onclick="window.open('https://30ababysitters.com','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book online</button></div></div>
+          <div class="vcard"><div class="vcard-top"><div class="vlogo-wrap" style="width:38px;height:38px;flex-shrink:0;"><img src="https://logo.clearbit.com/beachsidebabysitting30a.com" style="width:38px;height:38px;border-radius:10px;object-fit:contain;border:0.5px solid #e5ddd0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vlogo" style="background:#2a6a5a;display:none;">BS</div></div><div class="vcard-info"><span class="vcard-nm">Beachside Babysitting 30A</span></div></div><div class="vcard-area">beachsidebabysitting30a.com · Santa Rosa Beach</div><div class="vcard-desc">Trusted local babysitters for vacation families. From $30/hr.</div><div class="vcard-btns"><button class="vb" onclick="window.open('https://beachsidebabysitting30a.com/book-a-sitter','_blank')"><i class="ti ti-world" style="font-size:12px;"></i>Book a sitter</button></div></div>
+        </div>
+
 <div style="margin-top:18px;background:var(--cream);border-radius:12px;padding:14px 16px;text-align:center;border:1px solid var(--border);"><p style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;">Don&#39;t see what you need?</p><p style="font-size:11.5px;color:var(--soft);margin-bottom:10px;">Vitoria knows every vendor, restaurant, and experience on 30A</p><button onclick="switchTab('chat')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:15px;"></i>Ask Vitoria anything</button></div>
       </div>
     </div>
 
 <div class="tp" id="t-prof">
-      <div class="phero"><div class="phero-bg"></div><div class="phero-ov"></div><div class="pav" id="pav" style="position:relative;z-index:1;">G</div><div class="pnm2" id="pnm" style="position:relative;z-index:1;">Guest</div><div class="psb" style="position:relative;z-index:1;">Member since 2025 · 3 stays on 30A</div></div>
+      <div class="phero"><div class="phero-bg"></div><div class="phero-ov"></div><div class="pav" id="pav" style="position:relative;z-index:1;">G</div><div class="pnm2" id="pnm" style="position:relative;z-index:1;">Guest</div><div class="psb" style="position:relative;z-index:1;">My30A Host member · 2025</div></div>
       <div class="pbody">
-        <div class="psgrid">
-          <div class="psb2"><div class="psn">3</div><div class="psl">Stays</div></div>
-          <div class="psb2"><div class="psn">7</div><div class="psl">Services</div></div>
-          <div class="psb2"><div class="psn">12</div><div class="psl">Restaurants</div></div>
+
+        <!-- OUR SERVICES STATS — only what we can track -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #e5ddd0;">
+            <div style="font-size:24px;font-weight:600;color:#0d4f45;">2</div>
+            <div style="font-size:11px;color:#9a8878;">Grocery orders</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #e5ddd0;">
+            <div style="font-size:24px;font-weight:600;color:#0d4f45;">1</div>
+            <div style="font-size:11px;color:#9a8878;">Transfers booked</div>
+          </div>
         </div>
-        <p class="slbl">Your preferences</p>
-        <div class="ptags"><span class="ptag">🐟 Seafood</span><span class="ptag">👨‍👩‍👧 Family 2 kids</span><span class="ptag">🌅 Sunsets</span><span class="ptag">🍷 White wine</span></div>
-        <p class="slbl">Previous stays</p>
-        <div class="scard"><div class="sc1">Rosemary Beach House 12</div><div class="sc2">July 2024 · 7 nights</div><div class="sctags"><span class="sct">Grocery delivery</span><span class="sct">Family photoshoot</span></div></div>
-        <div class="scard"><div class="sc1">Seagrove Beach Cottage</div><div class="sc2">June 2023 · 5 nights</div><div class="sctags"><span class="sct">Welcome setup</span><span class="sct">Dolphin tour</span></div></div>
-        <p class="slbl">Upcoming bookings</p>
-        <div style="background:linear-gradient(135deg,#0a1628,#0d3a50);border-radius:12px;padding:12px 14px;margin-bottom:10px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <p style="font-size:11px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin:0;">3 upcoming</p>
-            <span style="font-size:10px;background:rgba(13,79,69,.5);color:#6ee8d0;padding:2px 8px;border-radius:999px;">🔔 Vitoria will remind you</span>
+
+        <!-- UPCOMING — ONLY OUR SERVICES (we can actually confirm these) -->
+        <p class="slbl">Upcoming with us</p>
+        <div style="background:linear-gradient(135deg,#0a1628,#0d3a50);border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+            <span style="font-size:10px;background:rgba(13,79,69,.5);color:#6ee8d0;padding:2px 8px;border-radius:999px;">🔔 Vitoria will update you</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;">
-              <span style="font-size:18px;flex-shrink:0;">🍽️</span>
-              <div style="flex:1;">
-                <div style="font-size:12.5px;font-weight:500;color:#fff;">Gallion's Rosemary Beach</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.45);">Sat Jul 26 · 7:30pm · 4 people</div>
-                <div style="font-size:10px;color:#6ee8d0;margin-top:3px;">✅ Confirmed via OpenTable</div>
-              </div>
-              <span style="font-size:10px;color:rgba(255,255,255,.3);white-space:nowrap;">3 days</span>
-            </div>
             <div style="background:rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;">
               <span style="font-size:18px;flex-shrink:0;">🛒</span>
               <div style="flex:1;">
                 <div style="font-size:12.5px;font-weight:500;color:#fff;">Grocery delivery — Full Pack</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.45);">Thu Jul 24 · Morning · 42 items</div>
-                <div style="font-size:10px;color:#ffd060;margin-top:3px;">⏳ Vitoria will confirm shopping start</div>
+                <div style="font-size:10px;color:#ffd060;margin-top:3px;">⏳ Shopping confirmation coming</div>
               </div>
               <span style="font-size:10px;color:rgba(255,255,255,.3);white-space:nowrap;">1 day</span>
             </div>
@@ -635,77 +669,61 @@ body{font-family:'Inter',sans-serif;display:flex;align-items:center;justify-cont
               <div style="flex:1;">
                 <div style="font-size:12.5px;font-weight:500;color:#fff;">Airport transfer — ECP arrival</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.45);">Sun Jul 27 · 2:15pm · 4 people + 6 bags</div>
-                <div style="font-size:10px;color:#6ee8d0;margin-top:3px;">✅ Confirmed · our team will meet you at baggage claim</div>
+                <div style="font-size:10px;color:#6ee8d0;margin-top:3px;">✅ Confirmed · we meet you at baggage claim</div>
               </div>
               <span style="font-size:10px;color:rgba(255,255,255,.3);white-space:nowrap;">4 days</span>
             </div>
           </div>
         </div>
 
-        <p class="slbl" style="margin-top:13px;">Your loyalty level</p>
-        <div class="scard" style="background:linear-gradient(135deg,#0a1628,#0d4f45);border:none;">
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div><div class="sc1" style="color:#fff;font-size:13.5px;">⭐ Returning Guest</div><div class="sc2" style="color:var(--glt);">Loyalty benefit — priority booking & exclusive perks</div></div>
-            <div style="text-align:right;"><div style="font-size:9.5px;color:rgba(255,255,255,.4);margin-bottom:2px;">Next: VIP at 3 stays</div><div style="font-size:11px;color:var(--gold);">2 of 3 stays ●●○</div></div>
-          </div>
-          <div style="margin-top:8px;font-size:10.5px;color:rgba(255,255,255,.4);">VIP benefits: 15% off everything · priority booking · Vitoria remembers your preferences</div>
-        </div>
-        <p class="slbl" style="margin-top:13px;">Active orders</p>
-        <div class="scard" style="border-left:3px solid var(--tm);border-radius:0 9px 9px 0;padding-bottom:0;">
+        <!-- ACTIVE ORDER TRACKER — we DO know this -->
+        <p class="slbl">Active order</p>
+        <div class="scard" style="border-left:3px solid var(--tm);border-radius:0 9px 9px 0;margin-bottom:14px;">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
-            <div><div class="sc1">Grocery delivery — Full Pack</div><div class="sc2">Thu Jul 17 · $229 service + $189 items = $418 total</div></div>
+            <div><div class="sc1">Grocery delivery — Full Pack</div><div class="sc2">Thu Jul 17 · $229 service + $189 items</div></div>
             <span style="font-size:9.5px;background:#e3f0ec;color:#0d4f45;padding:2px 7px;border-radius:999px;white-space:nowrap;">On the way</span>
           </div>
           <div style="padding:10px 0;border-top:.5px solid rgba(0,0,0,.06);">
-            <p style="font-size:10px;font-weight:600;letter-spacing:.5px;color:var(--soft);text-transform:uppercase;margin-bottom:8px;">Delivery status</p>
             <div style="display:flex;flex-direction:column;gap:0;">
-              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;">
-                <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-check" style="font-size:10px;color:#fff;"></i></div>
-                <div><div style="font-size:12px;font-weight:500;color:var(--ink);">Order confirmed</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 8:32am · Payment received</div></div>
-              </div>
-              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;">
-                <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-check" style="font-size:10px;color:#fff;"></i></div>
-                <div><div style="font-size:12px;font-weight:500;color:var(--ink);">Shopping started</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 10:15am · At Publix Watersound</div></div>
-              </div>
-              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;">
-                <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-check" style="font-size:10px;color:#fff;"></i></div>
-                <div><div style="font-size:12px;font-weight:500;color:var(--ink);">Shopping complete</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 11:40am · 42 items found</div></div>
-              </div>
-              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;">
-                <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-truck" style="font-size:10px;color:#fff;"></i></div>
-                <div><div style="font-size:12px;font-weight:500;color:var(--teal);">On the way · ETA 20 min</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 11:55am</div></div>
-              </div>
-              <div style="display:flex;gap:9px;align-items:flex-start;">
-                <div style="width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-home" style="font-size:10px;color:var(--soft);"></i></div>
-                <div><div style="font-size:12px;color:var(--soft);">Delivered & stocked</div><div style="font-size:10.5px;color:var(--soft);">Pending</div></div>
-              </div>
+              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:7px;"><div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-check" style="font-size:10px;color:#fff;"></i></div><div><div style="font-size:12px;font-weight:500;color:var(--ink);">Order confirmed</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 8:32am · Payment received</div></div></div>
+              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:7px;"><div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-check" style="font-size:10px;color:#fff;"></i></div><div><div style="font-size:12px;font-weight:500;color:var(--ink);">Shopping at Publix Watersound</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 10:15am · 42 items</div></div></div>
+              <div style="display:flex;gap:9px;align-items:flex-start;padding-bottom:7px;"><div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-truck" style="font-size:10px;color:#fff;"></i></div><div><div style="font-size:12px;font-weight:500;color:var(--teal);">On the way · ETA 20 min</div><div style="font-size:10.5px;color:var(--soft);">Jul 17 · 11:55am</div></div></div>
+              <div style="display:flex;gap:9px;align-items:flex-start;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-home" style="font-size:10px;color:var(--soft);"></i></div><div><div style="font-size:12px;color:var(--soft);">Delivered & stocked</div><div style="font-size:10.5px;color:var(--soft);">Pending</div></div></div>
             </div>
           </div>
         </div>
-        <p class="slbl" style="margin-top:13px;">Recently completed</p>
-        <div class="scard">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
-            <div><div class="sc1">Airport transfer — ECP</div><div class="sc2">Jul 13 · 4 people · $150 paid</div></div>
-            <span style="font-size:9.5px;background:#e3f0ec;color:#0d4f45;padding:2px 7px;border-radius:999px;">Delivered ✓</span>
+
+        <!-- LOYALTY — based on OUR service orders, not stays -->
+        <p class="slbl">Your loyalty</p>
+        <div class="scard" style="background:linear-gradient(135deg,#0a1628,#0d4f45);border:none;margin-bottom:14px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
+            <div><div class="sc1" style="color:#fff;">⭐ Returning Guest</div><div class="sc2" style="color:rgba(255,255,255,.5);font-size:11px;margin-top:2px;">3 services ordered → unlock VIP discount</div></div>
           </div>
-          <div style="background:var(--cream);border-radius:8px;padding:9px 11px;">
-            <p style="font-size:11px;color:var(--soft);margin-bottom:7px;">Add a tip for your driver</p>
-            <div style="display:flex;gap:5px;margin-bottom:6px;">
-              <button onclick="toast('$15 tip added via Stripe')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#fff;font-size:11.5px;cursor:pointer;font-family:Inter,sans-serif;">10%<br><span style="font-size:10px;color:var(--soft);">$15</span></button>
-              <button onclick="toast('$22 tip added via Stripe')" style="flex:1;padding:6px;border:1.5px solid var(--teal);border-radius:6px;background:#e3f0ec;font-size:11.5px;cursor:pointer;font-family:Inter,sans-serif;color:var(--teal);font-weight:500;">15%<br><span style="font-size:10px;">$22</span></button>
-              <button onclick="toast('$30 tip added via Stripe')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#fff;font-size:11.5px;cursor:pointer;font-family:Inter,sans-serif;">20%<br><span style="font-size:10px;color:var(--soft);">$30</span></button>
-              <button onclick="toast('Custom tip — Stripe')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#fff;font-size:11.5px;cursor:pointer;font-family:Inter,sans-serif;">Custom</button>
-            </div>
-            <div style="display:flex;gap:5px;">
-              <button onclick="toast('Opens Cash App @my30ahost')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#00d632;font-size:10.5px;font-weight:500;color:#fff;cursor:pointer;font-family:Inter,sans-serif;">Cash App</button>
-              <button onclick="toast('Opens Venmo @my30ahost')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#008CFF;font-size:10.5px;font-weight:500;color:#fff;cursor:pointer;font-family:Inter,sans-serif;">Venmo</button>
-              <button onclick="toast('Cash tip — thank you!')" style="flex:1;padding:6px;border:1px solid var(--border);border-radius:6px;background:#fff;font-size:10.5px;cursor:pointer;font-family:Inter,sans-serif;">Cash 💵</button>
-            </div>
-          </div>
+          <div style="background:rgba(255,255,255,.08);border-radius:6px;height:6px;margin-bottom:6px;"><div style="background:linear-gradient(90deg,#c9a96e,#e8c87a);height:6px;border-radius:6px;width:66%;"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><span style="font-size:10px;color:#c9a96e;">2 of 3 services</span><span style="font-size:10px;color:rgba(255,255,255,.4);">VIP at 3</span></div>
+          <div style="font-size:10.5px;color:rgba(255,255,255,.35);padding-top:8px;border-top:1px solid rgba(255,255,255,.1);">VIP perks: 15% off grocery & transfer · priority scheduling</div>
         </div>
+
+        <!-- VITORIA'S NOTES — only what she learned from your chat -->
+        <p class="slbl">What Vitoria knows about you</p>
+        <div style="background:#fff;border:1px solid #e5ddd0;border-radius:10px;padding:12px;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+            <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1a7a6a,#c9a96e);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:11px;color:#fff;font-style:italic;">V</div>
+            <span style="font-size:11px;font-weight:500;color:#1a1714;">Vitoria's memory</span>
+            <span style="font-size:9px;color:#9a8878;margin-left:auto;">from your conversations</span>
+          </div>
+          <div style="font-size:11.5px;color:#5a5248;line-height:1.6;font-style:italic;">"Family of 4, 2 kids. They prefer morning delivery. Landed at ECP last time. Liked Gallion's for dinner. Asked about dolphin tours."</div>
+          <button onclick="switchTab('chat')" style="margin-top:10px;background:none;border:1px solid #e5ddd0;border-radius:999px;padding:5px 12px;font-size:11px;color:#0d4f45;cursor:pointer;font-family:Inter,sans-serif;">💬 Tell Vitoria more about you</button>
+        </div>
+
+        <!-- CONTACT SUPPORT -->
+        <div style="text-align:center;padding:12px 0 6px;">
+          <button onclick="switchTab('chat')" style="background:var(--deep);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:7px;"><i class="ti ti-message-circle" style="font-size:15px;"></i>Chat with Vitoria</button>
+        </div>
+
       </div>
     </div>
-  </div><!-- /tc -->
+</div><!-- /tc -->
   <div class="bnav">
     <div class="nt on" id="n-chat" onclick="switchTab('chat')"><i class="ti ti-message-circle"></i><span>Vitoria</span></div>
     <div class="nt" id="n-svc" onclick="switchTab('svc')"><i class="ti ti-shopping-bag"></i><span>Services</span></div>
@@ -1326,7 +1344,7 @@ function toast(m){const t=document.getElementById('tst');t.textContent=m;t.class
 
 // Local tab category toggle
 function showCat(cat){
-  var cats=['golf','water','photo','beach','bike','well'];
+  var cats=['golf','water','photo','beach','bike','well','baby','sitter'];
   cats.forEach(function(c){
     var panel=document.getElementById('lpanel-'+c);
     var card=document.getElementById('lcat-'+c);
