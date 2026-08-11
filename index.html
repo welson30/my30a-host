@@ -89,7 +89,7 @@ section{padding:80px 24px;}
 .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
 .service-card{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius);overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
 .service-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
-.svc-photo{height:120px;position:relative;overflow:hidden;background:#e5ddd0;}
+.svc-photo{height:220px;position:relative;overflow:hidden;background:#e5ddd0;}
 .svc-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
 .service-card:hover .svc-photo img{transform:scale(1.05);}
 .svc-body{padding:14px;}
@@ -174,6 +174,7 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
   .hero-btns{flex-direction:column;align-items:center;}
   /* Life cards mobile */
   .life-grid-wrap{grid-template-columns:1fr 1fr!important;}
+  .life-grid-wrap > div{min-height:280px!important;}
   /* Carousel mobile */
   .cslide{height:60vw!important;min-height:220px!important;}
   /* Community panel mobile */
@@ -233,44 +234,66 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
     <h2 class="section-h2">You'll leave 30A different.<br>Part of you will stay.</h2>
     <p class="section-sub">You'll go home. Back to traffic, meetings, and everything waiting for you. But something stays behind. The pace. The light. The way you slept here. The feeling that this is how life is supposed to feel. You'll be back.</p>
 
-    <div class="life-grid-wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:40px;">
-      <div style="position:relative;border-radius:16px;overflow:hidden;min-height:320px;">
-        <img src="https://images.unsplash.com/photo-1576523930574-0eae9f4f60b8?w=600&q=80&auto=format&fit=crop" alt="30A beach boardwalk morning" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.1) 0%,rgba(10,22,40,.75) 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;line-height:1.3;margin-bottom:8px;">You wake up and walk to the beach. No traffic, no alarm, no agenda.</div>
-          <div style="font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.6;">The kids already have their coffee ice cream. Your table at Gallion's is confirmed for tonight.</div>
+    <div class="life-grid-wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:40px;">
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;min-height:460px;cursor:pointer;">
+        <img src="https://images.unsplash.com/photo-1576523930574-0eae9f4f60b8?w=700&q=85&auto=format&fit=crop" alt="30A beach boardwalk morning walk" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,25,.05) 0%,rgba(5,12,25,.15) 35%,rgba(5,12,25,.82) 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.4);padding:4px 12px;border-radius:999px;font-size:10px;color:#c9a96e;font-weight:600;letter-spacing:.5px;">MORNING</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.6vw,22px);color:#fff;line-height:1.25;margin-bottom:10px;font-weight:400;">You wake up and walk to the beach. No traffic. No alarm. No agenda.</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;">The kids already have their coffee ice cream. Your table at Gallion's is confirmed for tonight.</div>
         </div>
       </div>
-      <div style="position:relative;border-radius:16px;overflow:hidden;min-height:320px;">
-        <img src="https://images.unsplash.com/photo-1617834784099-7bd56db76ac8?w=600&q=80&auto=format&fit=crop" alt="Rosemary Beach street arrival" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.1) 0%,rgba(10,22,40,.78) 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;line-height:1.3;margin-bottom:8px;">The golf cart is in the driveway. The fridge is full. You haven't lifted a finger yet.</div>
-          <div style="font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.6;">You landed last night. Vitoria had everything ready before you opened the front door.</div>
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;min-height:460px;cursor:pointer;">
+        <img src="https://images.unsplash.com/photo-1646606625592-7d61da12cff0?w=700&q=85&auto=format&fit=crop" alt="Golf cart parked near ocean beach 30A" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,25,.05) 0%,rgba(5,12,25,.15) 35%,rgba(5,12,25,.82) 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.4);padding:4px 12px;border-radius:999px;font-size:10px;color:#c9a96e;font-weight:600;letter-spacing:.5px;">ARRIVAL</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.6vw,22px);color:#fff;line-height:1.25;margin-bottom:10px;font-weight:400;">The golf cart is in the driveway. The fridge is full. You haven't lifted a finger yet.</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;">You landed last night. Vitoria had everything ready before you opened the front door.</div>
         </div>
       </div>
-      <div style="position:relative;border-radius:16px;overflow:hidden;min-height:320px;">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop" alt="30A beach sunset bonfire" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.05) 0%,rgba(10,22,40,.8) 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;line-height:1.3;margin-bottom:8px;">Bonfire on the beach tonight. Your photographer arrives at golden hour.</div>
-          <div style="font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.6;">One message to Vitoria. She handled the permit, the setup, and the s'mores kit.</div>
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;min-height:460px;cursor:pointer;">
+        <img src="https://images.unsplash.com/photo-1712701083828-f692860260c0?w=700&q=85&auto=format&fit=crop" alt="Group of people laughing around bonfire on beach at night" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,25,.05) 0%,rgba(5,12,25,.2) 35%,rgba(5,12,25,.82) 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.4);padding:4px 12px;border-radius:999px;font-size:10px;color:#c9a96e;font-weight:600;letter-spacing:.5px;">EVENING</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.6vw,22px);color:#fff;line-height:1.25;margin-bottom:10px;font-weight:400;">Bonfire on the beach tonight. Your photographer arrives at golden hour.</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;">One message to Vitoria. She handled the permit, the setup, and the s'mores kit.</div>
         </div>
       </div>
-      <div style="position:relative;border-radius:16px;overflow:hidden;min-height:320px;">
-        <img src="https://images.unsplash.com/photo-1714494843093-505ea9758a1f?w=600&q=80&auto=format&fit=crop" alt="30A aerial beach view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,22,40,.1) 0%,rgba(10,22,40,.78) 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;line-height:1.3;margin-bottom:8px;">Captain Mike is taking the kids fishing at 6am. They'll talk about it for years.</div>
-          <div style="font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.6;">Vitoria knows which captains are best with children. She booked it while you slept.</div>
+
+      <div style="position:relative;border-radius:20px;overflow:hidden;min-height:460px;cursor:pointer;">
+        <img src="https://images.unsplash.com/photo-1625183656263-171183307b15?w=700&q=85&auto=format&fit=crop" alt="Family on fishing charter boat Gulf of Mexico" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,12,25,.05) 0%,rgba(5,12,25,.15) 35%,rgba(5,12,25,.82) 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.4);padding:4px 12px;border-radius:999px;font-size:10px;color:#c9a96e;font-weight:600;letter-spacing:.5px;">6AM CHARTER</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,1.6vw,22px);color:#fff;line-height:1.25;margin-bottom:10px;font-weight:400;">Captain Mike is taking the kids fishing at 6am. They'll talk about it for years.</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.65;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;">Vitoria knows which captains are best with children. She booked it while you slept.</div>
         </div>
       </div>
+
     </div>
 
     <div style="margin-top:48px;background:var(--deep);border-radius:16px;padding:36px;text-align:center;">
       <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,32px);color:#fff;font-weight:400;line-height:1.4;max-width:600px;margin:0 auto 16px;">"We've been coming to 30A for years. This was the first time we felt like we actually <em style="color:var(--gold);">lived</em> here instead of just visiting."</p>
       <p style="font-size:12px;color:rgba(255,255,255,.35);">— Guest, Rosemary Beach · Summer 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- LUXURY QUOTE DIVIDER — Alys Beach editorial style -->
+<section style="position:relative;height:420px;overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1597634285596-01fd1bffe116?w=1600&q=90&auto=format&fit=crop" alt="Luxury beach chairs 30A Gulf" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,22,40,.72) 0%,rgba(10,22,40,.4) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 32px;">
+    <div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,48px);color:#fff;font-weight:300;line-height:1.3;max-width:780px;margin:0 auto 20px;font-style:italic;">"You'll go home. But part of you will stay here — in the pace, the light, the feeling that this is how life is supposed to feel."</p>
+      <div style="width:48px;height:1px;background:rgba(201,169,110,.6);margin:0 auto 16px;"></div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);">30A · Florida · The life you keep coming back to</p>
     </div>
   </div>
 </section>
@@ -283,10 +306,10 @@ footer{background:var(--deep);padding:40px 32px;display:flex;justify-content:spa
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,22,40,.8));"></div>
       <div style="position:absolute;bottom:28px;left:32px;color:#fff;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;">Rosemary Beach from above</div><div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">Photo: Bridger Bowcutt · Unsplash</div></div>
     </div>
-    <div class="cslide" style="min-width:100%;height:420px;position:relative;flex-shrink:0;">
-      <img src="https://images.unsplash.com/photo-1576523930574-0eae9f4f60b8?w=1200&q=80&auto=format&fit=crop" alt="30A beach boardwalk" style="width:100%;height:100%;object-fit:cover;">
+    <div class="cslide" style="min-width:100%;height:min(70vh,640px);position:relative;flex-shrink:0;">
+      <img src="https://images.unsplash.com/photo-1523496922380-91d5afba98a3?w=1200&q=80&auto=format&fit=crop" alt="Aerial turquoise water boat Gulf" style="width:100%;height:100%;object-fit:cover;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,22,40,.8));"></div>
-      <div style="position:absolute;bottom:28px;left:32px;color:#fff;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;">The boardwalk to the Gulf</div><div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">Photo: Kirk Thornton · Unsplash</div></div>
+      <div style="position:absolute;bottom:28px;left:32px;color:#fff;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;">The Gulf of Mexico</div><div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;">Photo: Mohamed Masaau · Unsplash</div></div>
     </div>
     <div class="cslide" style="min-width:100%;height:420px;position:relative;flex-shrink:0;">
       <img src="https://images.unsplash.com/photo-1617834784099-7bd56db76ac8?w=1200&q=80&auto=format&fit=crop" alt="Rosemary Beach main street" style="width:100%;height:100%;object-fit:cover;">
@@ -486,7 +509,7 @@ function showCom(id){
           <!-- SCREEN 1: Services -->
           <div class="vscreen" id="vs1" style="position:absolute;inset:0;background:#f5f0e8;padding:0;transition:opacity .4s,transform .4s;opacity:0;transform:translateX(30px);">
             <div style="background:linear-gradient(135deg,#0a1628,#0d4f45);padding:12px;position:relative;overflow:hidden;">
-              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=60&auto=format&fit=crop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;">
+              <img src="https://images.unsplash.com/photo-1643494847705-74808059bf07?w=300&q=60&auto=format&fit=crop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25;">
               <div style="position:relative;z-index:1;"><p style="font-size:11px;font-weight:500;color:#fff;">Our concierge services</p><p style="font-size:8px;color:rgba(255,255,255,.5);">Paid securely in advance</p></div>
             </div>
             <div style="padding:10px;">
@@ -501,10 +524,22 @@ function showCom(id){
               </div>
               <p style="font-size:8px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9a8878;margin-bottom:8px;">Local partners</p>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🛺</div><div style="font-size:8px;color:#5a5248;">Golf cart</div></div>
-                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🚤</div><div style="font-size:8px;color:#5a5248;">On the water</div></div>
-                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">📸</div><div style="font-size:8px;color:#5a5248;">Photography</div></div>
-                <div style="background:#fff;border-radius:6px;padding:7px;text-align:center;border:1px solid #e5ddd0;"><div style="font-size:14px;">🔥</div><div style="font-size:8px;color:#5a5248;">Bonfire</div></div>
+                <div style="border-radius:8px;overflow:hidden;border:1px solid #e5ddd0;position:relative;">
+                  <img src="https://images.unsplash.com/photo-1646606625592-7d61da12cff0?w=200&q=70&auto=format&fit=crop" alt="Golf cart" style="width:100%;height:55px;object-fit:cover;display:block;">
+                  <div style="padding:5px 6px;background:#fff;"><div style="font-size:8.5px;font-weight:500;color:#1a1714;">🛺 Golf cart</div><div style="font-size:7.5px;color:#0d4f45;">From $150</div></div>
+                </div>
+                <div style="border-radius:8px;overflow:hidden;border:1px solid #e5ddd0;position:relative;">
+                  <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=200&q=70&auto=format&fit=crop" alt="On the water" style="width:100%;height:55px;object-fit:cover;display:block;">
+                  <div style="padding:5px 6px;background:#fff;"><div style="font-size:8.5px;font-weight:500;color:#1a1714;">🚤 On the water</div><div style="font-size:7.5px;color:#0d4f45;">From $400</div></div>
+                </div>
+                <div style="border-radius:8px;overflow:hidden;border:1px solid #e5ddd0;position:relative;">
+                  <img src="https://images.unsplash.com/photo-1747956895112-4b1ed4dc24fb?w=200&q=70&auto=format&fit=crop" alt="Photography" style="width:100%;height:55px;object-fit:cover;display:block;">
+                  <div style="padding:5px 6px;background:#fff;"><div style="font-size:8.5px;font-weight:500;color:#1a1714;">📸 Photography</div><div style="font-size:7.5px;color:#0d4f45;">From $300</div></div>
+                </div>
+                <div style="border-radius:8px;overflow:hidden;border:1px solid #e5ddd0;position:relative;">
+                  <img src="https://images.unsplash.com/photo-1712701083828-f692860260c0?w=200&q=70&auto=format&fit=crop" alt="Beach bonfire" style="width:100%;height:55px;object-fit:cover;display:block;">
+                  <div style="padding:5px 6px;background:#fff;"><div style="font-size:8.5px;font-weight:500;color:#1a1714;">🔥 Beach bonfire</div><div style="font-size:7.5px;color:#0d4f45;">From $350</div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -596,8 +631,8 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;">
 
       <div style="border-radius:16px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1576523913812-cf809eb5a111?w=400&q=75&auto=format&fit=crop" alt="30A property welcome" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:relative;height:200px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=400&q=75&auto=format&fit=crop" alt="Beautiful beach bench awaiting guests arrival" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.8));"></div>
           <div style="position:absolute;bottom:10px;left:12px;width:36px;height:36px;background:rgba(201,169,110,.2);border:1px solid rgba(201,169,110,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:16px;color:#c9a96e;">1</div>
         </div>
@@ -608,8 +643,8 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div style="border-radius:16px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1611776704783-53c2469c43ea?w=400&q=75&auto=format&fit=crop" alt="Message Vitoria on phone" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:relative;height:200px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1550399504-8953e1a6ac87?w=400&q=75&auto=format&fit=crop" alt="Woman relaxing on beach chair effortlessly" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.8));"></div>
           <div style="position:absolute;bottom:10px;left:12px;width:36px;height:36px;background:rgba(201,169,110,.2);border:1px solid rgba(201,169,110,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:16px;color:#c9a96e;">2</div>
         </div>
@@ -620,7 +655,7 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div style="border-radius:16px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);">
-        <div style="position:relative;height:180px;overflow:hidden;">
+        <div style="position:relative;height:200px;overflow:hidden;">
           <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=75&auto=format&fit=crop" alt="Traveling on airplane" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.8));"></div>
           <div style="position:absolute;bottom:10px;left:12px;width:36px;height:36px;background:rgba(201,169,110,.2);border:1px solid rgba(201,169,110,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:16px;color:#c9a96e;">3</div>
@@ -632,7 +667,7 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div style="border-radius:16px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);">
-        <div style="position:relative;height:180px;overflow:hidden;">
+        <div style="position:relative;height:200px;overflow:hidden;">
           <img src="https://images.unsplash.com/photo-1643494847705-74808059bf07?w=400&q=75&auto=format&fit=crop" alt="Fridge full stocked arrival" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,22,40,.8));"></div>
           <div style="position:absolute;bottom:10px;left:12px;width:36px;height:36px;background:rgba(201,169,110,.2);border:1px solid rgba(201,169,110,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:16px;color:#c9a96e;">4</div>
@@ -681,7 +716,7 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80&auto=format&fit=crop" alt="Airport transfer private car" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1561101904-da649fcbf03f?w=600&q=80&auto=format&fit=crop" alt="Airport terminal transfer arrival" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0f4fa;">🚗</div><div class="svc-card-name">Airport transfer <span class="badge-us">We do it</span></div><div class="svc-card-desc">Private ride from ECP (40 min), VPS (1h15), or PNS (2h). We meet you at baggage claim with a sign.</div><div class="svc-card-price">$150–299</div></div>
       </div>
 
@@ -691,7 +726,7 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo" style="background:linear-gradient(135deg,#1a3a2a,#0d2a1a);display:flex;align-items:center;justify-content:center;height:120px;"><span style="font-size:64px;">🛺</span><div style="position:absolute;bottom:8px;left:10px;color:rgba(255,255,255,.5);font-size:9px;">📸 Add your golf cart photo</div></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1646606625592-7d61da12cff0?w=600&q=80&auto=format&fit=crop" alt="Golf cart near ocean beach" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#f4f0fa;">🛺</div><div class="svc-card-name">Golf cart rental <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Delivered to your rental. We connect you with the best cart companies on 30A — street-legal, full weekend availability.</div><div class="svc-card-price">From $150/day</div></div>
       </div>
 
@@ -701,27 +736,27 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1576523930574-0eae9f4f60b8?w=600&q=80&auto=format&fit=crop" alt="Beach photography session golden hour" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1747956895112-4b1ed4dc24fb?w=600&q=80&auto=format&fit=crop" alt="Couple at sunset on coast photography session" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#fbeaf0;">📸</div><div class="svc-card-name">Photography <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Sunset sessions, family portraits, proposals, anniversary setups. Our photographers know every perfect 30A spot.</div><div class="svc-card-price">From $300</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1508028471618-6f8e1b73eb56?w=600&q=80&auto=format&fit=crop" alt="Beach bonfire fire at night" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1712701083828-f692860260c0?w=600&q=80&auto=format&fit=crop" alt="Group of people sitting around fire on beach bonfire" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#fdf4e8;">🔥</div><div class="svc-card-name">Beach bonfire <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Permitted bonfire setup on the beach — wood, seating, s'mores kit. We handle all permit coordination.</div><div class="svc-card-price">From $350</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1690228685016-4556c897cdcf?w=600&q=80&auto=format&fit=crop" alt="Bikes for rental 30A corridor" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1709423377993-1a4d150e918c?w=600&q=80&auto=format&fit=crop" alt="Person riding bike on beach at sunset" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#f0f8fd;">🚲</div><div class="svc-card-name">Bike rentals <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Beach cruisers, e-bikes, and kids bikes delivered to your door. Explore the 30A Scenic Corridor trail.</div><div class="svc-card-price">From $35/day</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1576523919154-21f942d3ee91?w=600&q=80&auto=format&fit=crop" alt="Family gear beach vacation" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1458731909820-5850bdcaee0b?w=600&q=80&auto=format&fit=crop" alt="Baby bassinet crib gear vacation rental" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#f5f0fb;">👶</div><div class="svc-card-name">Baby & family gear <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Cribs, high chairs, strollers, pack-n-plays delivered and set up before you arrive. Travel light — we have it covered.</div><div class="svc-card-price">From $45/stay</div></div>
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1714494843093-505ea9758a1f?w=600&q=80&auto=format&fit=crop" alt="Family at 30A beach" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1591394765848-0fdc9ea2a7a9?w=600&q=80&auto=format&fit=crop" alt="Baby sleeping peacefully babysitter" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#fef5f0;">👧</div><div class="svc-card-name">Babysitters <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Trusted, background-checked sitters on 30A. Date night, beach day for adults, or early morning arrival coverage.</div><div class="svc-card-price">From $25/hr</div></div>
       </div>
 
@@ -731,7 +766,7 @@ vTimer=setInterval(function(){vSwitch((vCur+1)%4);},4000);
       </div>
 
       <div class="service-card" onclick="window.location.href='/app'">
-        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1617834784099-7bd56db76ac8?w=600&q=80&auto=format&fit=crop" alt="Welcome setup arrival decoration" loading="lazy"></div>
+        <div class="svc-photo"><img src="https://images.unsplash.com/photo-1740342580395-1a342317f174?w=600&q=80&auto=format&fit=crop" alt="Welcome setup basket decoration arrival" loading="lazy"></div>
         <div class="svc-body"><div class="svc-icon-wrap" style="background:#f8f0f5;">🌺</div><div class="svc-card-name">Welcome setup <span class="badge-partner">Partner</span></div><div class="svc-card-desc">Balloon arches, floral arrangements, welcome baskets, charcuterie boards. Turn your rental into an arrival experience.</div><div class="svc-card-price">From $150</div></div>
       </div>
 
