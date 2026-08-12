@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/hosts",
+      "destination": "/for-hosts",
+      "permanent": true
+    }
+  ]
 }
