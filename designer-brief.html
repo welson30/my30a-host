@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My30A Host — Designer Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f5f0e8;color:#1a1714;line-height:1.6;}
+.page{max-width:900px;margin:0 auto;padding:40px 20px 80px;}
+
+/* HERO */
+.hero{position:relative;background:linear-gradient(160deg,#0a1628,#0d4f45);border-radius:24px;overflow:hidden;padding:52px 44px;margin-bottom:28px;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=60&auto=format&fit=crop') center/cover no-repeat;opacity:.12;}
+.hero-tag{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c9a96e;margin-bottom:14px;position:relative;z-index:1;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:500;color:#fff;line-height:1.15;margin-bottom:10px;position:relative;z-index:1;}
+.hero h2{font-size:15px;color:rgba(255,255,255,.5);font-weight:300;max-width:540px;line-height:1.7;position:relative;z-index:1;}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;position:relative;z-index:1;}
+.hero-meta span{font-size:10.5px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:4px 12px;border-radius:999px;}
+
+/* SECTIONS */
+.sec{background:#fff;border:1px solid #e5ddd0;border-radius:18px;overflow:hidden;margin-bottom:16px;}
+.sec-hdr{padding:16px 22px;border-bottom:1px solid #f0ebe3;display:flex;align-items:center;gap:10px;background:#faf7f2;}
+.sec-hdr .icon{font-size:22px;}
+.sec-hdr h2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#0a1628;}
+.sec-body{padding:20px 22px;}
+
+/* BRAND PILLARS */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:8px;}
+.pillar{border-radius:14px;padding:18px;text-align:center;}
+.pillar .ico{font-size:28px;margin-bottom:8px;}
+.pillar h3{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:#0a1628;margin-bottom:5px;}
+.pillar p{font-size:11.5px;color:#6b6356;line-height:1.6;}
+.p-gold{background:linear-gradient(135deg,#fef9ec,#fdf2d0);border:1px solid rgba(201,169,110,.25);}
+.p-teal{background:linear-gradient(135deg,#e3f5f0,#d0ede6);border:1px solid rgba(13,79,69,.15);}
+.p-dark{background:linear-gradient(135deg,#edf0f5,#dce2ed);border:1px solid rgba(10,22,40,.1);}
+
+/* AUDIENCE */
+.audience{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px;}
+.aud{border-radius:12px;padding:14px 16px;}
+.aud-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;opacity:.6;}
+.aud-line{font-size:12.5px;font-weight:500;line-height:1.5;}
+.aud-sub{font-size:11px;margin-top:5px;opacity:.65;line-height:1.5;}
+.a1{background:linear-gradient(135deg,#0d3a2a,#0d5a38);color:#fff;}
+.a2{background:linear-gradient(135deg,#0a1e3a,#0d3a60);color:#fff;}
+.a3{background:linear-gradient(135deg,#2a1a0a,#5a3a0d);color:#fff;}
+
+/* COLORS */
+.color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.color-swatch{border-radius:10px;overflow:hidden;}
+.swatch-block{height:56px;}
+.swatch-info{padding:8px;background:#fff;border:1px solid #e5ddd0;border-top:none;border-radius:0 0 10px 10px;}
+.swatch-name{font-size:10.5px;font-weight:600;color:#1a1714;}
+.swatch-hex{font-size:10px;color:#9a8878;font-family:monospace;}
+
+/* TYPOGRAPHY */
+.type-row{border-bottom:1px solid #f0ebe3;padding:12px 0;display:flex;align-items:baseline;gap:16px;}
+.type-row:last-child{border-bottom:none;}
+.type-label{font-size:10px;font-weight:600;color:#9a8878;width:120px;flex-shrink:0;text-transform:uppercase;letter-spacing:.5px;}
+.type-sample-serif{font-family:'Cormorant Garamond',serif;}
+.type-sample-sans{font-family:'Inter',sans-serif;}
+
+/* LINKS */
+.link-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.link-card{background:#f9f5ef;border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;transition:background .15s;}
+.link-card:hover{background:#f0e8d8;}
+.link-info{}
+.link-name{font-size:12.5px;font-weight:600;color:#1a1714;}
+.link-url{font-size:10.5px;color:#0d4f45;margin-top:2px;font-family:monospace;}
+.link-desc{font-size:10px;color:#9a8878;margin-top:2px;}
+.link-arrow{font-size:18px;color:#c5bdb5;flex-shrink:0;}
+.badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 7px;border-radius:999px;margin-left:5px;vertical-align:middle;}
+.bg{background:#e3f0ec;color:#0d4f45;}
+.bb{background:#e8f0fb;color:#1a4a8a;}
+.bgold{background:#fef9ec;color:#8a6020;}
+.br{background:#fbeae6;color:#c85a3a;}
+
+/* DO/DON'T */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.do-box,.dont-box{border-radius:12px;padding:16px;}
+.do-box{background:#e3f5f0;border:1px solid #b0dfd4;}
+.dont-box{background:#fbeae6;border:1px solid #f0c0b0;}
+.box-title{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+.do-box .box-title{color:#0d4f45;}
+.dont-box .box-title{color:#c85a3a;}
+ul.checks{list-style:none;padding:0;}
+ul.checks li{font-size:11.5px;color:#2a2420;padding:3px 0;display:flex;gap:7px;align-items:flex-start;}
+
+/* NOTE */
+.note{background:#fef9ec;border-left:3px solid #c9a96e;padding:12px 14px;border-radius:0 10px 10px 0;font-size:12px;color:#5a4a20;line-height:1.7;margin:10px 0;}
+
+.divider{border:none;border-top:1px solid #e5ddd0;margin:8px 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag">Designer Brief · Confidential</div>
+    <h1>My30A Host<br>Designer Brief</h1>
+    <h2>Everything you need to polish and deliver the Figma for this product.</h2>
+    <div class="hero-meta">
+      <span>August 2025</span>
+      <span>Deals Connect LLC</span>
+      <span>13 screens</span>
+      <span>Polish only — not redesign</span>
+    </div>
+  </div>
+
+  <!-- BRAND VISION -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">✦</div><h2>The Big Idea</h2></div>
+    <div class="sec-body">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#0a1628;line-height:1.3;margin-bottom:16px;">"You're not selling services.<br>You're selling a better life."</p>
+      <p style="font-size:13.5px;color:#3a3028;line-height:1.75;margin-bottom:16px;">My30A Host is an AI-powered personal concierge for guests vacationing on the 30A coastal corridor in Florida — one of the most exclusive beach destinations in the US, home to Rosemary Beach, Alys Beach, WaterColor, and Seaside.</p>
+      <p style="font-size:13.5px;color:#3a3028;line-height:1.75;margin-bottom:16px;">People don't come to 30A to manage logistics. They come to <em>live</em> — to feel the pace, the light, the freedom. Our product handles everything before they arrive so that nothing gets in the way of the experience they came for.</p>
+
+      <div class="pillars">
+        <div class="pillar p-gold">
+          <div class="ico">✦</div>
+          <h3>Better life</h3>
+          <p>Guests arrive to a full fridge, a golf cart in the driveway, dinner reserved. They walk in and start living.</p>
+        </div>
+        <div class="pillar p-teal">
+          <div class="ico">◎</div>
+          <h3>Better way to live</h3>
+          <p>Not a booking app. Not a marketplace. A concierge who knows your family, remembers your preferences, and anticipates what you need.</p>
+        </div>
+        <div class="pillar p-dark">
+          <div class="ico">◈</div>
+          <h3>Real & local</h3>
+          <p>Vitoria is the person who grew up here. She knows every captain, every restaurant, every perfect spot. That's the difference.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Reference sites for the visual feeling:</strong><br>
+        alysbeach.com · seasidefl.com · 30a.com · rosemarybeach.com<br>
+        <em>Notice: large photos, minimal text, emotional copy, luxury whitespace. That's the direction.</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 AUDIENCES -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">👥</div><h2>Three Audiences — One Tone</h2></div>
+    <div class="sec-body">
+      <div class="audience">
+        <div class="aud a1">
+          <div class="aud-label">🏖 Guests</div>
+          <div class="aud-line">Fridge stocked, ride booked, dinner reserved. Before you land.</div>
+          <div class="aud-sub">High-income families, couples, repeat visitors. They want effortless luxury.</div>
+        </div>
+        <div class="aud a2">
+          <div class="aud-label">🏠 Hosts</div>
+          <div class="aud-line">Zero guest texts at 10pm. Vitoria handles everything on your behalf.</div>
+          <div class="aud-sub">30A property managers and owners. They want happy guests and no hassle.</div>
+        </div>
+        <div class="aud a3">
+          <div class="aud-label">🤝 Partners</div>
+          <div class="aud-line">Trusted referrals from guests. No commission. Ever.</div>
+          <div class="aud-sub">Local vendors: golf carts, photography, bonfire, bikes, wellness, babysitters.</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#9a8878;margin-top:10px;">Tone across all three: <strong>warm, effortless, knowledgeable, unhurried.</strong> Never pushy. Never corporate. Like a friend who lives here.</p>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">🎨</div><h2>Color Palette</h2></div>
+    <div class="sec-body">
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#0a1628;"></div>
+          <div class="swatch-info"><div class="swatch-name">Deep Navy</div><div class="swatch-hex">#0a1628</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#0d4f45;"></div>
+          <div class="swatch-info"><div class="swatch-name">Teal</div><div class="swatch-hex">#0d4f45</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#c9a96e;"></div>
+          <div class="swatch-info"><div class="swatch-name">Gold</div><div class="swatch-hex">#c9a96e</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#f5f0e8;"></div>
+          <div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#f5f0e8</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1a1714;"></div>
+          <div class="swatch-info"><div class="swatch-name">Ink</div><div class="swatch-hex">#1a1714</div></div>
+        </div>
+      </div>
+      <p style="font-size:11.5px;color:#9a8878;margin-top:12px;">Navy and Teal are primary. Gold is the accent — use sparingly. Cream is the background. Never use harsh blacks or flat whites — always warm tones.</p>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">Aa</div><h2>Typography</h2></div>
+    <div class="sec-body">
+      <div class="type-row">
+        <div class="type-label">Display / Hero</div>
+        <div class="type-sample-serif" style="font-size:32px;color:#0a1628;font-weight:400;">Cormorant Garamond</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Headings</div>
+        <div class="type-sample-serif" style="font-size:22px;color:#0a1628;font-weight:500;">She knows 30A. She knows you.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Body / UI</div>
+        <div class="type-sample-sans" style="font-size:14px;color:#3a3028;">Inter — clean, modern, readable at all sizes</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Labels / Caps</div>
+        <div class="type-sample-sans" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a96e;font-weight:600;">MEET VITORIA · WHAT VITORIA ARRANGES</div>
+      </div>
+      <p style="font-size:11.5px;color:#9a8878;margin-top:12px;">Google Fonts — both free. Cormorant for headlines and large editorial text. Inter for everything functional (buttons, labels, body, app UI).</p>
+    </div>
+  </div>
+
+  <!-- DO / DON'T -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">⚖️</div><h2>Design Direction</h2></div>
+    <div class="sec-body">
+      <div class="do-dont">
+        <div class="do-box">
+          <div class="box-title">✅ Do</div>
+          <ul class="checks">
+            <li><span>✓</span>Large, full-bleed photos that stop the scroll</li>
+            <li><span>✓</span>Generous whitespace — luxury breathes</li>
+            <li><span>✓</span>Serif headlines, sans body — editorial contrast</li>
+            <li><span>✓</span>Gold as a sparingly used accent</li>
+            <li><span>✓</span>Warm tones throughout — cream, sand, ocean</li>
+            <li><span>✓</span>Minimal text — images do the selling</li>
+            <li><span>✓</span>Subtle hover animations, smooth transitions</li>
+            <li><span>✓</span>Cards with real photos, not icons</li>
+          </ul>
+        </div>
+        <div class="dont-box">
+          <div class="box-title">❌ Don't</div>
+          <ul class="checks">
+            <li><span>✗</span>Flat, corporate design — this is not a SaaS dashboard</li>
+            <li><span>✗</span>Harsh shadows or borders — keep it soft</li>
+            <li><span>✗</span>Cluttered layouts — one focal point per section</li>
+            <li><span>✗</span>Too many colors — stick to the palette</li>
+            <li><span>✗</span>Small text — minimum 12px in the app</li>
+            <li><span>✗</span>Redesign the structure — polish what's there</li>
+            <li><span>✗</span>Generic stock photo vibe — photos must feel real</li>
+            <li><span>✗</span>Busy backgrounds with patterns or textures</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YOUR JOB -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">🎯</div><h2>Your Job — What To Polish</h2></div>
+    <div class="sec-body">
+      <div class="note" style="margin-bottom:16px;">
+        <strong>You are NOT designing from scratch.</strong> The prototype is fully built and live. Your job is to take what exists, elevate the visual quality, and deliver Figma files the developer can implement.
+      </div>
+      <ul style="padding-left:18px;display:flex;flex-direction:column;gap:8px;">
+        <li style="font-size:13px;color:#2a2420;">Refine <strong>typography consistency</strong> — sizes, weights, line heights across all screens</li>
+        <li style="font-size:13px;color:#2a2420;">Improve <strong>spacing and breathing room</strong> — sections feel cramped in places</li>
+        <li style="font-size:13px;color:#2a2420;">Create a <strong>component library</strong> — buttons, cards, inputs, badges, icons, nav elements</li>
+        <li style="font-size:13px;color:#2a2420;">Polish <strong>photo cards</strong> — overlays, gradients, text positioning on images</li>
+        <li style="font-size:13px;color:#2a2420;">Refine <strong>the app screens</strong> — especially the chat UI, service cards, and local guide</li>
+        <li style="font-size:13px;color:#2a2420;">Improve <strong>mobile responsiveness</strong> — app is primarily a mobile experience</li>
+        <li style="font-size:13px;color:#2a2420;">Add <strong>micro-interactions</strong> — hover states, button presses, card transitions</li>
+        <li style="font-size:13px;color:#2a2420;"><strong>Deliver:</strong> Figma file + exported assets + component library + all screen specs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ALL LINKS -->
+  <div class="sec">
+    <div class="sec-hdr"><div class="icon">🔗</div><h2>All Pages — Live Links</h2></div>
+    <div class="sec-body">
+      <div class="link-grid">
+
+        <a class="link-card" href="https://my30ahost.vercel.app" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🏠 Landing page <span class="badge bg">Public</span></div>
+            <div class="link-url">my30ahost.vercel.app</div>
+            <div class="link-desc">Main marketing page — all sections</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/app" target="_blank">
+          <div class="link-info">
+            <div class="link-name">📱 Guest App <span class="badge bg">Public</span></div>
+            <div class="link-url">my30ahost.vercel.app/app</div>
+            <div class="link-desc">Chat, services, explore, local, profile</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/hosts" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🏡 For hosts <span class="badge bg">Public</span></div>
+            <div class="link-url">my30ahost.vercel.app/hosts</div>
+            <div class="link-desc">Host onboarding and pricing page</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/partner" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🤝 Partner signup <span class="badge bg">Public</span></div>
+            <div class="link-url">my30ahost.vercel.app/partner</div>
+            <div class="link-desc">Local vendor onboarding form</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/partner-stats" target="_blank">
+          <div class="link-info">
+            <div class="link-name">📊 Partner stats <span class="badge bgold">Internal</span></div>
+            <div class="link-url">my30ahost.vercel.app/partner-stats</div>
+            <div class="link-desc">Vendor dashboard — referral performance</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/partner-edit" target="_blank">
+          <div class="link-info">
+            <div class="link-name">✏️ Partner edit <span class="badge bgold">Internal</span></div>
+            <div class="link-url">my30ahost.vercel.app/partner-edit</div>
+            <div class="link-desc">Vendor profile editing form</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/admin" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🔧 Admin panel <span class="badge br">Internal</span></div>
+            <div class="link-url">my30ahost.vercel.app/admin</div>
+            <div class="link-desc">Order management, status, approvals</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/calendar" target="_blank">
+          <div class="link-info">
+            <div class="link-name">📅 Calendar <span class="badge bgold">Internal</span></div>
+            <div class="link-url">my30ahost.vercel.app/calendar</div>
+            <div class="link-desc">Order and delivery calendar view</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/host-dashboard" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🏨 Host dashboard <span class="badge br">Phase 5</span></div>
+            <div class="link-url">my30ahost.vercel.app/host-dashboard</div>
+            <div class="link-desc">Property manager view — design last</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/watersound-inn" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🌊 Watersound Inn <span class="badge br">Phase 5</span></div>
+            <div class="link-url">my30ahost.vercel.app/watersound-inn</div>
+            <div class="link-desc">Custom branded property page — design last</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/privacy" target="_blank">
+          <div class="link-info">
+            <div class="link-name">🔒 Privacy policy <span class="badge bg">Public</span></div>
+            <div class="link-url">my30ahost.vercel.app/privacy</div>
+            <div class="link-desc">Privacy and terms page</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+        <a class="link-card" href="https://my30ahost.vercel.app/developer-brief" target="_blank">
+          <div class="link-info">
+            <div class="link-name">📄 Developer brief <span class="badge bb">Reference</span></div>
+            <div class="link-url">my30ahost.vercel.app/developer-brief</div>
+            <div class="link-desc">Full technical spec — understand what's being built</div>
+          </div>
+          <i class="ti ti-external-link link-arrow"></i>
+        </a>
+
+      </div>
+
+      <div class="note" style="margin-top:16px;">
+        <strong>Reference sites for visual benchmarking:</strong><br>
+        alysbeach.com · seasidefl.com · 30a.com · rosemarybeach.com · watercolorfl.com
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;">
+    <p style="font-size:12px;color:#9a8878;">© 2025 Deals Connect LLC · My30A Host · Confidential</p>
+    <p style="font-size:11px;color:#c5bdb5;margin-top:4px;">hello@my30ahost.com</p>
+  </div>
+
+</div>
+</body>
+</html>
